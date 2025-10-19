@@ -65,6 +65,15 @@ body::before {
     letter-spacing: -0.02em;
 }
 
+.open-sans-<uniquifier> {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 .site-subtitle {
     font-size: 1.1rem;
     color: #6c757d;
