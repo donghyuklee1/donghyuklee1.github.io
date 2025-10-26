@@ -37,10 +37,6 @@ body::before {
 }
 
 /* Header Styles */
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
 .header {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px 0 30px 0;
@@ -67,15 +63,6 @@ body::before {
     color: #2c3e50;
     margin-bottom: 10px;
     letter-spacing: -0.02em;
-}
-
-.open-sans-<uniquifier> {
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
 }
 
 .site-subtitle {
@@ -123,7 +110,7 @@ body::before {
 .navigation {
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 40px;
     flex-wrap: wrap;
     max-width: 800px;
     margin: 0 auto;
@@ -197,6 +184,7 @@ body::before {
 .profile-image {
     width: 100%;
     height: auto;
+    border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     transition: transform 0.3s ease;
 }
@@ -414,9 +402,6 @@ body::before {
 .footer-bottom {
     border-top: 1px solid #444;
     padding-top: 20px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
 }
 
 .copyright {
@@ -1106,5 +1091,44 @@ body::before {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+    }
+}
+
+/* Mobile Header Optimization */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 0;
+    }
+    
+    .header-top {
+        margin-bottom: 15px;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    .site-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .navigation {
+        gap: 15px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 10px;
+        justify-content: flex-start;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    body {
+        padding-top: 80px;
     }
 }
