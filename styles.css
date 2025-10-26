@@ -1034,8 +1034,8 @@ body::before {
     }
     
     .cv-preview {
-        height: 100vh;
-        min-height: 600px;
+        height: auto;
+        min-height: 2400px;
     }
     
     .cv-content,
@@ -1118,7 +1118,7 @@ body::before {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 0 10px;
-        justify-content: flex-start;
+        justify-content: center;
     }
     
     .nav-link {
@@ -1130,5 +1130,9 @@ body::before {
     
     body {
         padding-top: 80px;
+    }
+    
+    .footer-right {
+        display: none;
     }
 }
