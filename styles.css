@@ -1198,4 +1198,13 @@ body::before {
         padding: 10px 12px;
         font-size: 0.9rem;
     }
+    
+    /* Profile Image Mobile Optimization */
+    .profile-image-container {
+        max-width: 200px;
+    }
+    
+    .two-column-layout {
+        gap: 20px;
+    }
 }
