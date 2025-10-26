@@ -1135,4 +1135,67 @@ body::before {
     .footer-right {
         display: none;
     }
+    
+    /* Insights Section Mobile Optimization */
+    .paper-item {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .paper-number {
+        min-width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+    
+    .paper-title {
+        font-size: 0.95rem;
+    }
+    
+    .paper-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .paper-category {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
+    .category-filter {
+        gap: 8px;
+        margin: 20px auto;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Contact Section Mobile Optimization */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .contact-info,
+    .contact-social {
+        padding: 20px;
+    }
+    
+    .contact-item {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .contact-item i {
+        font-size: 1rem;
+    }
+    
+    .social-link {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
 }
