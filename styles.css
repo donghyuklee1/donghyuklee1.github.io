@@ -1034,8 +1034,8 @@ body::before {
     }
     
     .cv-preview {
-        height: auto;
-        min-height: 2400px;
+        height: 100vh;
+        min-height: 600px;
     }
     
     .cv-content,
