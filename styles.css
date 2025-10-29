@@ -591,7 +591,7 @@ body::before {
 
 /* Photos Section Styles */
 .photos-section {
-    padding: 40px;
+    padding: 20px 40px 40px 40px;
     display: none;
     background-color: #ffffff;
     border-radius: 0;
@@ -666,7 +666,7 @@ body::before {
 
 /* Insights Section Styles */
 .insights-section {
-    padding: 40px;
+    padding: 20px 40px 40px 40px;
     background-color: #ffffff;
     border-radius: 0;
     backdrop-filter: none;
@@ -904,7 +904,7 @@ body::before {
 
 /* Contact Section Styles */
 .contact-section {
-    padding: 40px;
+    padding: 20px 40px 40px 40px;
     display: none;
     background-color: #ffffff;
     border-radius: 0;
