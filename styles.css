@@ -1338,6 +1338,7 @@ body.dark-mode .research-area p {
 
 body.dark-mode .professional-info,
 body.dark-mode .bio-section,
+body.dark-mode .bio-section strong,
 body.dark-mode .research-section,
 body.dark-mode .hobby-section {
     color: #ffffff;
@@ -1378,6 +1379,10 @@ body.dark-mode .link:hover {
     color: #6bb4ff;
 }
 
+body.dark-mode .photo-item {
+    background-color: #808080;
+}
+
 body.dark-mode .photo-title,
 body.dark-mode .photo-date {
     color: #ffffff;
@@ -1406,8 +1411,8 @@ body.dark-mode .social-link:hover {
 }
 
 body.dark-mode .footer {
-    background-color: #000000;
-    border-top-color: #333;
+    background-color: #2c2c2c;
+    border-top-color: #444;
     color: #ffffff;
 }
 
@@ -1415,4 +1420,8 @@ body.dark-mode .footer .institution-name,
 body.dark-mode .footer .contact-detail,
 body.dark-mode .footer .copyright {
     color: #ffffff;
+}
+
+body.dark-mode .footer .kaist-logo {
+    filter: brightness(0) invert(1);
 }
