@@ -1306,8 +1306,8 @@ body.dark-mode::before {
 }
 
 body.dark-mode .header {
-    background-color: #4a4a4a;
-    border-bottom-color: #555;
+    background-color: #1a1a2e;
+    border-bottom-color: #2d1b3d;
 }
 
 body.dark-mode .site-title {
