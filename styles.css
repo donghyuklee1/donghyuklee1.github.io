@@ -1359,11 +1359,17 @@ body.dark-mode .research-area p {
 }
 
 body.dark-mode .professional-info,
+body.dark-mode .professional-info p,
 body.dark-mode .bio-section,
-body.dark-mode .bio-section strong,
+body.dark-mode .bio-section *,
 body.dark-mode .bio-section p,
+body.dark-mode .bio-section strong,
 body.dark-mode .research-section,
-body.dark-mode .hobby-section {
+body.dark-mode .research-section *,
+body.dark-mode .research-section p,
+body.dark-mode .hobby-section,
+body.dark-mode .hobby-section *,
+body.dark-mode .hobby-section p {
     color: #ffffff;
 }
 
