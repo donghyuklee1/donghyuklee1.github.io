@@ -1284,8 +1284,8 @@ body.dark-mode::before {
 }
 
 body.dark-mode .header {
-    background-color: #000080;
-    border-bottom-color: #333;
+    background-color: #808080;
+    border-bottom-color: #666;
 }
 
 body.dark-mode .site-title {
@@ -1389,8 +1389,14 @@ body.dark-mode .photo-date {
 }
 
 body.dark-mode .paper-item {
-    background: #808080;
-    border-color: #666;
+    background: linear-gradient(135deg, #3a3f4f 0%, #2c2d35 100%);
+    border-color: #555;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .paper-item:hover {
+    background: linear-gradient(135deg, #4a4f5f 0%, #3c3d45 100%);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 body.dark-mode .paper-title,
