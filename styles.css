@@ -1388,7 +1388,8 @@ body.dark-mode::before {
 
 body.dark-mode .header {
     background-color: #1a1a2e;
-    border-bottom-color: #2d1b3d;
+    border-bottom: 1px solid #1a1a2e;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 body.dark-mode .site-title {
@@ -1409,7 +1410,7 @@ body.dark-mode .nav-link:hover {
 
 body.dark-mode .nav-link.active {
     color: #4a9eff;
-    border-bottom-color: #4a9eff;
+    border-bottom: 2px solid #4a9eff;
 }
 
 body.dark-mode .main-content,
