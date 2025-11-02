@@ -1279,6 +1279,10 @@ body.dark-mode {
     color: #ffffff;
 }
 
+body.dark-mode::before {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
 body.dark-mode .header {
     background-color: #000000;
     border-bottom-color: #333;
