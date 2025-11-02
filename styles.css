@@ -1329,7 +1329,7 @@ body::before {
     
     /* Contact Section Mobile Optimization */
     .contact-section {
-        padding: 40px 20px;
+        padding: 40px 20px 120px 20px;
     }
     
     .contact-content {
