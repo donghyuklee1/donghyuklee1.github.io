@@ -1284,7 +1284,7 @@ body.dark-mode::before {
 }
 
 body.dark-mode .header {
-    background-color: #000000;
+    background-color: #000080;
     border-bottom-color: #333;
 }
 
@@ -1386,6 +1386,11 @@ body.dark-mode .photo-item {
 body.dark-mode .photo-title,
 body.dark-mode .photo-date {
     color: #ffffff;
+}
+
+body.dark-mode .paper-item {
+    background: #808080;
+    border-color: #666;
 }
 
 body.dark-mode .paper-title,
