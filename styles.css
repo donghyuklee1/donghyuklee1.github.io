@@ -1062,42 +1062,70 @@ body::before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .two-column-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .container {
+        padding: 10px;
     }
 
-    .navigation {
-        gap: 30px;
-        max-width: 100%;
-        padding: 0 10px;
+    .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .name {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .content-card {
-        padding: 30px 20px;
-        border-radius: 8px;
+        padding: 20px 15px;
+        border-radius: 0;
+    }
+
+    .professional-info,
+    .bio-section,
+    .research-section,
+    .hobby-section {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .professional-info p,
+    .bio-section p,
+    .research-section p,
+    .hobby-section p {
+        margin-bottom: 12px;
     }
 
     .research-overview {
-        padding: 20px;
+        padding: 20px 15px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .section-intro {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     }
 
     .research-areas {
         grid-template-columns: 1fr;
-    }
-
-    .photo-grid {
-        grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .research-area {
+        padding: 20px;
+    }
+
+    .research-area h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .research-area p {
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     .cv-section {
@@ -1111,14 +1139,49 @@ body::before {
         min-height: 600px;
     }
     
-    .cv-content,
-    .publications-content,
-    .photo-gallery {
-        padding: 0 15px;
-    }
-    
     .cv-content {
         padding: 0;
+    }
+    
+    .cv-content,
+    .photo-gallery {
+        padding: 0 10px;
+    }
+
+    .photos-section {
+        padding: 20px 15px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .photo-item {
+        border-radius: 8px;
+    }
+
+    .photo-caption {
+        padding: 12px;
+    }
+
+    .photo-title {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+
+    .photo-date {
+        font-size: 0.8rem;
+    }
+
+    .insights-section {
+        padding: 20px 15px;
+    }
+
+    .papers-list {
+        padding: 0 10px;
+        margin-top: 20px;
     }
 
     .footer {
@@ -1129,57 +1192,22 @@ body::before {
     .footer-content {
         padding: 0 15px;
     }
-
-    /* Insights Section Mobile */
-    .category-filter {
-        gap: 10px;
-    }
-
-    .filter-btn {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-
-    .paper-item {
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-    }
-
-    .paper-number {
-        min-width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-
-    .paper-title {
-        font-size: 1.05rem;
-    }
-
-    .paper-description {
-        font-size: 0.9rem;
-    }
-
-    .paper-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
 }
 
 /* Mobile Header Optimization */
 @media (max-width: 768px) {
     .header {
-        padding: 10px 0;
+        padding: 8px 0;
     }
     
     .header-top {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     
     .site-title {
-        font-size: 1.5rem;
-        margin-bottom: 5px;
+        font-size: 1.3rem;
+        margin-bottom: 3px;
+        line-height: 1.2;
     }
     
     .site-subtitle {
@@ -1187,22 +1215,40 @@ body::before {
     }
     
     .navigation {
-        gap: 15px;
+        gap: 8px;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding: 0 10px;
+        padding: 0 8px;
         justify-content: center;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .navigation::-webkit-scrollbar {
+        display: none;
     }
     
     .nav-link {
-        font-size: 0.85rem;
-        padding: 5px 10px;
+        font-size: 0.75rem;
+        padding: 6px 12px;
         white-space: nowrap;
         flex-shrink: 0;
+        font-weight: 500;
+    }
+    
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        top: 8px;
+        right: 8px;
+    }
+    
+    .theme-toggle i {
+        font-size: 0.9rem;
     }
     
     body {
-        padding-top: 80px;
+        padding-top: 70px;
     }
     
     .footer-right {
@@ -1213,17 +1259,20 @@ body::before {
     .paper-item {
         padding: 15px;
         gap: 12px;
+        margin-bottom: 15px;
     }
     
     .paper-number {
         min-width: 40px;
         height: 40px;
-        font-size: 1rem;
+        font-size: 0.9rem;
         border-radius: 8px;
     }
     
     .paper-title {
         font-size: 0.95rem;
+        line-height: 1.3;
+        margin-bottom: 5px;
     }
     
     .paper-description {
@@ -1233,17 +1282,23 @@ body::before {
     
     .paper-category {
         font-size: 0.75rem;
-        padding: 4px 10px;
+        padding: 3px 8px;
+    }
+    
+    .paper-date {
+        font-size: 0.75rem;
     }
     
     .category-filter {
-        gap: 8px;
-        margin: 20px auto;
+        gap: 6px;
+        margin: 15px auto;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .filter-btn {
         padding: 6px 12px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
     
     /* Contact Section Mobile Optimization */
