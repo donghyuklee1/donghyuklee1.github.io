@@ -1122,13 +1122,13 @@ body::before {
     }
 
     .content-card {
-        padding: 20px 15px;
+        padding: 25px 15px 15px 15px;
         border-radius: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
     
     .main-content {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .professional-info,
@@ -1136,17 +1136,38 @@ body::before {
     .research-section,
     .hobby-section {
         font-size: 0.9rem;
-        line-height: 1.6;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .professional-info {
+        margin-bottom: 18px;
+    }
+    
+    .bio-section {
+        margin-bottom: 18px;
+    }
+    
+    .research-section {
+        margin-bottom: 18px;
+    }
+    
+    .hobby-section {
+        margin-bottom: 0;
     }
 
     .professional-info p,
     .bio-section p,
     .research-section p {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
     
     .hobby-section p {
         margin-bottom: 0;
+    }
+    
+    .professional-info strong {
+        font-size: 1rem;
     }
 
     .research-overview {
@@ -1381,80 +1402,85 @@ body::before {
     
     /* Contact Section Mobile Optimization */
     .contact-section {
-        padding: 50px 20px 120px 20px;
+        padding: 40px 20px 100px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        min-height: 60vh;
+        justify-content: flex-start;
+        min-height: auto;
     }
     
     .contact-content {
         gap: 0;
         padding: 0;
-        align-items: center;
-        justify-content: center;
+        align-items: stretch;
+        justify-content: flex-start;
         width: 100%;
-        max-width: 400px;
+        max-width: 100%;
     }
     
     .contact-info {
-        display: none;
-    }
-    
-    .contact-social {
-        padding-top: 0;
-        width: 100%;
-    }
-    
-    .social-links {
+        display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 20px;
         width: 100%;
     }
     
-    .social-link {
-        padding: 16px 24px;
-        font-size: 1rem;
-        justify-content: center;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e8e8e8;
-        background-color: #ffffff;
-        transition: all 0.3s ease;
+    .contact-item {
+        padding-bottom: 18px;
+        font-size: 0.95rem;
+        border-bottom: 1px solid #e9ecef;
+        align-items: flex-start;
     }
     
-    .social-link:hover,
-    .social-link:active {
-        background-color: #f8f9fa;
-        border-color: #333;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    .contact-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
     }
     
-    .social-link i {
-        font-size: 1.2rem;
-        margin-right: 10px;
+    .contact-item i {
+        font-size: 1.1rem;
+        margin-right: 15px;
+        margin-top: 2px;
+        width: 22px;
+        flex-shrink: 0;
+        color: #666;
+    }
+    
+    .contact-item span {
+        line-height: 1.6;
+        word-break: break-word;
+    }
+    
+    .contact-item:last-child span {
+        font-size: 0.9rem;
+        line-height: 1.7;
     }
     
     /* Profile Image Mobile Optimization */
     .profile-image-container {
-        max-width: 200px;
+        max-width: 220px;
+        margin-bottom: 20px;
     }
     
     .profile-social-icons {
-        gap: 15px;
-        margin-top: 15px;
+        gap: 18px;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
     
     .social-icon-link {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
     }
     
     .two-column-layout {
-        gap: 20px;
+        gap: 25px;
+    }
+    
+    .left-column {
+        align-items: center;
     }
 }
 
