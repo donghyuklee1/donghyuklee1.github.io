@@ -1335,10 +1335,11 @@ body::before {
     .contact-content {
         gap: 30px;
         padding: 0;
+        align-items: center;
     }
     
     .contact-info {
-        gap: 20px;
+        display: none;
     }
     
     .contact-item {
@@ -1353,17 +1354,20 @@ body::before {
     }
     
     .contact-social {
-        padding-top: 30px;
+        padding-top: 0;
     }
     
     .social-links {
         flex-direction: column;
         gap: 12px;
+        width: 100%;
+        max-width: 420px;
     }
     
     .social-link {
         padding: 12px 20px;
         font-size: 0.9rem;
+        justify-content: center;
     }
     
     /* Profile Image Mobile Optimization */
