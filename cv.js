@@ -10,7 +10,7 @@ let canvas = document.getElementById('pdfCanvas');
 let ctx = canvas.getContext('2d');
 
 // PDF 파일 경로 (GitHub에 업로드된 파일명)
-const PDF_URL = 'CV(Until 2025 October).pdf';
+const PDF_URL = 'CV.pdf';
 
 // 페이지 로드 시 PDF 자동 로드
 document.addEventListener('DOMContentLoaded', function() {
