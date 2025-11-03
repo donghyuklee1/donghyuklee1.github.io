@@ -199,7 +199,9 @@ body::before {
 /* Profile Image */
 .left-column {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .profile-image-container {
@@ -218,6 +220,37 @@ body::before {
 
 .profile-image:hover {
     transform: scale(1.02);
+}
+
+.profile-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.social-icon-link:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon-link i {
+    color: #ffffff;
 }
 
 .profile-social-links {
@@ -996,6 +1029,8 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .contact-item {
@@ -1026,6 +1061,11 @@ body::before {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.6;
+}
+
+.contact-item:last-child span {
+    font-style: italic;
+    color: #666;
 }
 
 .contact-social {
@@ -1394,6 +1434,17 @@ body::before {
         max-width: 200px;
     }
     
+    .profile-social-icons {
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .social-icon-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
     .two-column-layout {
         gap: 20px;
     }
@@ -1489,6 +1540,20 @@ body.dark-mode .profile-social-link:hover {
 body.dark-mode .profile-email {
     color: #ffffff;
     border-top-color: #333;
+}
+
+body.dark-mode .social-icon-link {
+    background-color: #333;
+    color: #ffffff;
+}
+
+body.dark-mode .social-icon-link:hover {
+    background-color: #555;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .social-icon-link i {
+    color: #ffffff;
 }
 
 body.dark-mode .theme-toggle {
