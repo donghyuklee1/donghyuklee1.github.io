@@ -1204,18 +1204,32 @@ body::before {
     }
 
     .cv-section {
-        min-height: 100vh;
+        min-height: auto;
         height: auto;
-        padding: 0;
+        padding: 80px 0 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
     }
     
     .cv-preview {
-        height: 100vh;
-        min-height: 600px;
+        width: 100%;
+        height: calc(100vh - 120px);
+        min-height: 500px;
+        max-height: 800px;
     }
     
     .cv-content {
-        padding: 0;
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .cv-content iframe {
+        min-height: 500px;
+        height: calc(100vh - 120px);
+        max-height: 800px;
     }
     
     .cv-content,
@@ -1481,6 +1495,17 @@ body::before {
     
     .left-column {
         align-items: center;
+    }
+    
+    /* Hide email address if it appears in home section on mobile */
+    .profile-email {
+        display: none !important;
+    }
+    
+    /* Ensure main-content doesn't show contact info */
+    .main-content .contact-item,
+    .main-content .contact-info {
+        display: none !important;
     }
 }
 
