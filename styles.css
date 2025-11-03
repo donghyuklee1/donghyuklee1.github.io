@@ -1496,7 +1496,7 @@ body.dark-mode::before {
 
 body.dark-mode .header {
     background-color: #000000;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #ffffff;
     box-shadow: 0 2px 4px rgba(255,255,255,0.15);
 }
 
