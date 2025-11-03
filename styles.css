@@ -1281,6 +1281,10 @@ body::before {
         padding-top: 70px;
     }
     
+    .footer-right {
+        display: none;
+    }
+    
     /* Insights Section Mobile Optimization */
     .paper-item {
         padding: 15px;
