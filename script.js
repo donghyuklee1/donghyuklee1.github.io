@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
                if (body) body.classList.remove('footer-fixed');
            }
     
+    // Initially hide all sections except home
+    if (cvSection) cvSection.style.display = 'none';
+    if (photosSection) photosSection.style.display = 'none';
+    if (insightsSection) insightsSection.style.display = 'none';
+    if (contactSection) contactSection.style.display = 'none';
+    
     // Show only home section initially (main-content + Research Overview)
     if (mainContent) mainContent.style.display = 'block';
     if (homeSection) homeSection.style.display = 'block';

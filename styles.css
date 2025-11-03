@@ -1507,6 +1507,21 @@ body::before {
     .main-content .contact-info {
         display: none !important;
     }
+    
+    /* Hide CV and Contact sections by default on mobile */
+    #cv.cv-section,
+    #contact.contact-section {
+        display: none !important;
+    }
+    
+    /* Only show when explicitly set by JavaScript with inline style */
+    #cv.cv-section[style*="flex"] {
+        display: flex !important;
+    }
+    
+    #contact.contact-section[style*="block"] {
+        display: block !important;
+    }
 }
 
 /* Dark Mode Styles */
