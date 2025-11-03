@@ -1412,7 +1412,7 @@ body.dark-mode::before {
 body.dark-mode .header {
     background-color: #000000;
     border-bottom: 1px solid #000000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 2px 8px rgba(255,255,255,0.15);
 }
 
 body.dark-mode .site-title {
