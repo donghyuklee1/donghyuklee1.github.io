@@ -1141,9 +1141,12 @@ body::before {
 
     .professional-info p,
     .bio-section p,
-    .research-section p,
-    .hobby-section p {
+    .research-section p {
         margin-bottom: 12px;
+    }
+    
+    .hobby-section p {
+        margin-bottom: 0;
     }
 
     .research-overview {
