@@ -1333,45 +1333,60 @@ body::before {
     
     /* Contact Section Mobile Optimization */
     .contact-section {
-        padding: 40px 20px 120px 20px;
+        padding: 50px 20px 120px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
     }
     
     .contact-content {
-        gap: 30px;
+        gap: 0;
         padding: 0;
         align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 400px;
     }
     
     .contact-info {
         display: none;
     }
     
-    .contact-item {
-        padding-bottom: 15px;
-        font-size: 0.9rem;
-    }
-    
-    .contact-item i {
-        font-size: 1rem;
-        margin-right: 15px;
-        width: 20px;
-    }
-    
     .contact-social {
         padding-top: 0;
+        width: 100%;
     }
     
     .social-links {
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
         width: 100%;
-        max-width: 420px;
     }
     
     .social-link {
-        padding: 12px 20px;
-        font-size: 0.9rem;
+        padding: 16px 24px;
+        font-size: 1rem;
         justify-content: center;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e8e8e8;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
+    }
+    
+    .social-link:hover,
+    .social-link:active {
+        background-color: #f8f9fa;
+        border-color: #333;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    
+    .social-link i {
+        font-size: 1.2rem;
+        margin-right: 10px;
     }
     
     /* Profile Image Mobile Optimization */
@@ -1548,17 +1563,20 @@ body.dark-mode .contact-social {
 body.dark-mode .social-link {
     color: #ffffff;
     border-color: #444;
-    background-color: transparent;
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .social-link:hover {
+body.dark-mode .social-link:hover,
+body.dark-mode .social-link:active {
     color: #ffffff;
-    background-color: #1a1a1a;
+    background-color: #2a2a2a;
     border-color: #666;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 body.dark-mode .social-link i {
-    color: #999;
+    color: #cccccc;
 }
 
 body.dark-mode .footer {
