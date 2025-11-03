@@ -1124,6 +1124,11 @@ body::before {
     .content-card {
         padding: 20px 15px;
         border-radius: 0;
+        margin-bottom: 20px;
+    }
+    
+    .main-content {
+        margin-bottom: 20px;
     }
 
     .professional-info,
@@ -1463,7 +1468,7 @@ body.dark-mode::before {
 body.dark-mode .header {
     background-color: #000000;
     border-bottom: 1px solid #000000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(255,255,255,0.15);
 }
 
 body.dark-mode .site-title {
