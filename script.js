@@ -28,9 +28,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mainContent) mainContent.style.display = 'block';
     if (homeSection) homeSection.style.display = 'block';
     
+    // Check if mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
     // Navigation click handler
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').substring(1);
+            
+            // Handle CV on mobile: open PDF directly
+            if (targetId === 'cv' && isMobile()) {
+                window.open('[CV] Donghyuk Lee.pdf', '_blank');
+                return;
+            }
+            
             e.preventDefault();
             
             // Remove active class from all links
@@ -41,15 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide all sections first
             hideAllSections();
             
-            // Show target section
-            const targetId = this.getAttribute('href').substring(1);
-            
             // Handle home navigation
             if (targetId === 'home') {
                 if (mainContent) mainContent.style.display = 'block';
                 if (homeSection) homeSection.style.display = 'block';
             } 
-            // Handle CV section
+            // Handle CV section (desktop only)
             else if (targetId === 'cv') {
                 if (cvSection) cvSection.style.display = 'flex';
             }
