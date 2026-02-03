@@ -15,7 +15,7 @@
         *{
               font-family: "Arimo", sans-serif;
               font-optical-sizing: auto;
-              font-weight: <weight>;
+              font-weight: 400;
               font-style: normal;
         }
     </style>
@@ -398,7 +398,10 @@
             </form>
             <div id="archive-list" class="archive-list"></div>
             <div id="archive-post-detail" class="archive-post-detail" style="display: none;">
-                <button type="button" id="archive-back-btn" class="archive-back-btn" aria-label="목록으로">← 목록으로</button>
+                <div class="archive-post-actions">
+                    <button type="button" id="archive-back-btn" class="archive-back-btn" aria-label="목록으로">← 목록으로</button>
+                    <button type="button" id="archive-delete-btn" class="archive-delete-btn" aria-label="글 삭제">삭제</button>
+                </div>
                 <article id="archive-post-body" class="archive-post-body"></article>
             </div>
         </section>
