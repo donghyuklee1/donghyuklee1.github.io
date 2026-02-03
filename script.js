@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentTheme = localStorage.getItem('theme') || 'light';
     
     if (currentTheme === 'dark') {
-        body.classList.add('dark-mode');
+        if (body) body.classList.add('dark-mode');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
     }
@@ -238,9 +238,12 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         e.stopPropagation();
         console.log('Theme toggle clicked');
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
+        // Toggle only on body since CSS uses body.dark-mode
+        if (body) body.classList.toggle('dark-mode');
+
+        const isDark = body && body.classList.contains('dark-mode');
+
+        if (isDark) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
             localStorage.setItem('theme', 'dark');
