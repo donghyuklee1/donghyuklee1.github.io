@@ -88,7 +88,7 @@
         <section id="cv" class="cv-section">
             <div class="cv-content">
                 <div class="cv-preview">
-                    <iframe src="CV.pdf" width="100%" height="100%" style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); min-height: 800px;"></iframe>
+                    <iframe src="CV.pdf" width="100%" height="100%" style="border: none; min-height: 800px;"></iframe>
                 </div>
             </div>
         </section>
@@ -383,25 +383,9 @@
         <section id="archive" class="archive-section">
             <h2 class="section-title">Archive</h2>
             <p class="section-intro">글과 생각을 모아두는 공간입니다.</p>
-            <button type="button" id="archive-write-toggle" class="archive-write-toggle" aria-label="새 글 쓰기">+ 새 글 쓰기</button>
-            <form id="archive-write-form" class="archive-write-form" style="display: none;">
-                <label for="archive-write-title">제목</label>
-                <input type="text" id="archive-write-title" class="archive-write-input" required placeholder="글 제목">
-                <label for="archive-write-date">날짜</label>
-                <input type="date" id="archive-write-date" class="archive-write-input" required>
-                <label for="archive-write-content">본문</label>
-                <textarea id="archive-write-content" class="archive-write-textarea" required placeholder="본문 (간단한 HTML 가능: &lt;p&gt;, &lt;strong&gt;, &lt;a href=&quot;...&quot;&gt;)"></textarea>
-                <div class="archive-write-actions">
-                    <button type="submit" class="archive-write-submit">발행</button>
-                    <button type="button" id="archive-write-cancel" class="archive-write-cancel">취소</button>
-                </div>
-            </form>
             <div id="archive-list" class="archive-list"></div>
             <div id="archive-post-detail" class="archive-post-detail" style="display: none;">
-                <div class="archive-post-actions">
-                    <button type="button" id="archive-back-btn" class="archive-back-btn" aria-label="목록으로">← 목록으로</button>
-                    <button type="button" id="archive-delete-btn" class="archive-delete-btn" aria-label="글 삭제">삭제</button>
-                </div>
+                <button type="button" id="archive-back-btn" class="archive-back-btn" aria-label="목록으로">← 목록으로</button>
                 <article id="archive-post-body" class="archive-post-body"></article>
             </div>
         </section>
