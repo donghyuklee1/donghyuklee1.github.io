@@ -251,13 +251,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Archive: 글 목록 및 상세 보기, 댓글(Utterances)
+// Archive: 글 목록 및 상세 보기
 document.addEventListener('DOMContentLoaded', function() {
     const listEl = document.getElementById('archive-list');
     const detailEl = document.getElementById('archive-post-detail');
     const bodyEl = document.getElementById('archive-post-body');
     const backBtn = document.getElementById('archive-back-btn');
-    const utterancesContainer = document.getElementById('archive-comments');
 
     if (!listEl || !detailEl || !bodyEl || !backBtn) return;
 
@@ -313,29 +312,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </header>
             <div class="archive-post-content">${post.content}</div>
         `;
-        loadUtterances(id);
-    }
-
-    function loadUtterances(issueTerm) {
-        const container = document.getElementById('utterances-container');
-        if (!container) return;
-        container.innerHTML = '';
-        var s = document.createElement('script');
-        s.src = 'https://utteranc.es/client.js';
-        // 댓글용 GitHub 저장소: 공개 repo를 만들고 아래에 'username/repo' 형태로 설정하세요.
-        s.setAttribute('data-repo', (window.UTTERANCES_REPO || 'donghyuklee1/archive-comments').trim());
-        s.setAttribute('data-issue-term', issueTerm);
-        s.setAttribute('data-theme', document.body.classList.contains('dark-mode') ? 'github-dark' : 'github-light');
-        s.setAttribute('crossorigin', 'anonymous');
-        s.setAttribute('async', '');
-        container.appendChild(s);
     }
 
     backBtn.addEventListener('click', function() {
         detailEl.style.display = 'none';
         listEl.style.display = '';
         if (writeToggle) writeToggle.style.display = '';
-        document.getElementById('utterances-container').innerHTML = '';
     });
 
     var writeCancel = document.getElementById('archive-write-cancel');
