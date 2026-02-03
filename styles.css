@@ -2064,6 +2064,128 @@ html.dark-mode body .footer .kaist-logo {
     filter: brightness(0) invert(1);
 }
 
+/* Dark Mode - Container and Layout */
+html.dark-mode body .container {
+    background-color: transparent;
+}
+
+html.dark-mode body .two-column-layout {
+    background-color: transparent;
+}
+
+html.dark-mode body .left-column,
+html.dark-mode body .right-column {
+    background-color: transparent;
+}
+
+/* Dark Mode - CV Page Specific Styles */
+html.dark-mode body .cv-section h2 {
+    color: #ffffff;
+}
+
+html.dark-mode body .pdf-container {
+    background-color: transparent;
+}
+
+html.dark-mode body .pdf-loading {
+    background-color: #1a1a1a;
+    border-color: #444444;
+}
+
+html.dark-mode body .loading-icon {
+    color: #ffffff;
+}
+
+html.dark-mode body .loading-content p {
+    color: #cccccc;
+}
+
+html.dark-mode body .pdf-error {
+    background-color: #2a1a1a;
+    border-color: #cc4444;
+}
+
+html.dark-mode body .error-icon {
+    color: #ff6666;
+}
+
+html.dark-mode body .error-content h3 {
+    color: #ffffff;
+}
+
+html.dark-mode body .error-content p {
+    color: #cccccc;
+}
+
+html.dark-mode body .pdf-viewer {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode body .pdf-controls {
+    background-color: #2a2a2a;
+    border-bottom-color: #444444;
+}
+
+html.dark-mode body .control-btn {
+    background-color: #444444;
+    color: #ffffff;
+}
+
+html.dark-mode body .control-btn:hover {
+    background-color: #555555;
+}
+
+html.dark-mode body .control-btn:disabled {
+    background-color: #333333;
+    color: #777777;
+}
+
+html.dark-mode body #pageInfo {
+    color: #ffffff;
+}
+
+/* Dark Mode - Filter Buttons */
+html.dark-mode body .filter-btn {
+    background-color: #1a1a1a;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+html.dark-mode body .filter-btn:hover {
+    background-color: #2a2a2a;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+html.dark-mode body .filter-btn.active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+html.dark-mode body .filter-btn.active:hover {
+    background-color: #e6e6e6;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark Mode - Paper Number */
+html.dark-mode body .paper-number {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+/* Dark Mode - Professional Info Title */
+html.dark-mode body .professional-info .title {
+    color: #ffffff;
+}
+
+html.dark-mode body .professional-info strong {
+    color: #ffffff;
+}
+
 /* Extra Small Devices (480px and below) */
 @media (max-width: 480px) {
     .container {
