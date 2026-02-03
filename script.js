@@ -250,25 +250,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Archive: 글 목록 및 상세 보기
+// Archive: 글 목록 및 상세 보기 (archive-data.js에서만 읽기)
 document.addEventListener('DOMContentLoaded', function() {
     const listEl = document.getElementById('archive-list');
     const detailEl = document.getElementById('archive-post-detail');
     const bodyEl = document.getElementById('archive-post-body');
     const backBtn = document.getElementById('archive-back-btn');
-    const deleteBtn = document.getElementById('archive-delete-btn');
-    var currentPostId = null;
 
-    if (!listEl || !detailEl || !bodyEl || !backBtn || !deleteBtn) return;
+    if (!listEl || !detailEl || !bodyEl || !backBtn) return;
 
     function getPosts() {
-        const fromStorage = localStorage.getItem('archive_posts');
-        const stored = fromStorage ? JSON.parse(fromStorage) : [];
         const fromData = typeof ARCHIVE_POSTS !== 'undefined' ? ARCHIVE_POSTS : [];
-        const byId = {};
-        fromData.forEach(p => { byId[p.id] = p; });
-        stored.forEach(p => { byId[p.id] = p; });
-        return Object.values(byId).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        return fromData.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
     }
 
     function renderArchiveList() {
@@ -296,16 +289,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return div.innerHTML;
     }
 
-    var writeToggle = document.getElementById('archive-write-toggle');
-    var writeForm = document.getElementById('archive-write-form');
     function showPost(id) {
         const posts = getPosts();
         const post = posts.find(p => p.id === id);
         if (!post) return;
-        currentPostId = id;
         listEl.style.display = 'none';
-        if (writeToggle) writeToggle.style.display = 'none';
-        if (writeForm) writeForm.style.display = 'none';
         detailEl.style.display = 'block';
         bodyEl.innerHTML = `
             <header class="archive-post-header">
@@ -314,77 +302,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </header>
             <div class="archive-post-content">${post.content}</div>
         `;
-        // localStorage에서 온 글만 삭제 가능 (archive-data.js의 글은 삭제 불가)
-        const fromData = typeof ARCHIVE_POSTS !== 'undefined' ? ARCHIVE_POSTS : [];
-        const isFromData = fromData.some(p => p.id === id);
-        if (deleteBtn) {
-            deleteBtn.style.display = isFromData ? 'none' : 'inline-flex';
-        }
     }
 
     backBtn.addEventListener('click', function() {
         detailEl.style.display = 'none';
         listEl.style.display = '';
-        if (writeToggle) writeToggle.style.display = '';
-        currentPostId = null;
     });
-
-    deleteBtn.addEventListener('click', function() {
-        if (!currentPostId) return;
-        if (!confirm('이 글을 삭제하시겠습니까?')) return;
-        const stored = localStorage.getItem('archive_posts');
-        const arr = stored ? JSON.parse(stored) : [];
-        const filtered = arr.filter(p => p.id !== currentPostId);
-        localStorage.setItem('archive_posts', JSON.stringify(filtered));
-        detailEl.style.display = 'none';
-        listEl.style.display = '';
-        if (writeToggle) writeToggle.style.display = '';
-        currentPostId = null;
-        renderArchiveList();
-    });
-
-    var writeCancel = document.getElementById('archive-write-cancel');
-    if (writeToggle && writeForm) {
-        writeToggle.addEventListener('click', function() {
-            var visible = writeForm.style.display !== 'none';
-            writeForm.style.display = visible ? 'none' : 'block';
-            writeToggle.textContent = visible ? '+ 새 글 쓰기' : '− 글쓰기 닫기';
-            if (!visible) {
-                var dateInput = document.getElementById('archive-write-date');
-                if (dateInput && !dateInput.value) {
-                    var today = new Date().toISOString().slice(0, 10);
-                    dateInput.value = today;
-                }
-            }
-        });
-    }
-    if (writeCancel && writeForm) {
-        writeCancel.addEventListener('click', function() {
-            writeForm.style.display = 'none';
-            if (writeToggle) writeToggle.textContent = '+ 새 글 쓰기';
-        });
-    }
-    if (writeForm) {
-        writeForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var title = document.getElementById('archive-write-title');
-            var date = document.getElementById('archive-write-date');
-            var content = document.getElementById('archive-write-content');
-            if (!title || !date || !content) return;
-            var id = 'post-' + Date.now();
-            var post = { id: id, title: title.value.trim(), date: date.value, content: '<p>' + content.value.trim().replace(/\n/g, '</p><p>') + '</p>' };
-            var stored = localStorage.getItem('archive_posts');
-            var arr = stored ? JSON.parse(stored) : [];
-            arr.push(post);
-            localStorage.setItem('archive_posts', JSON.stringify(arr));
-            title.value = '';
-            date.value = '';
-            content.value = '';
-            writeForm.style.display = 'none';
-            if (writeToggle) writeToggle.textContent = '+ 새 글 쓰기';
-            renderArchiveList();
-        });
-    }
 
     window.renderArchiveList = renderArchiveList;
 });
