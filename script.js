@@ -218,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
     
     if (!themeToggle || !themeIcon) {
         console.error('Theme toggle elements not found');
@@ -229,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentTheme = localStorage.getItem('theme') || 'light';
     
     if (currentTheme === 'dark') {
-        if (body) body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
     }
@@ -238,19 +237,21 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         e.stopPropagation();
         console.log('Theme toggle clicked');
-        // Toggle only on body since CSS uses body.dark-mode
-        if (body) body.classList.toggle('dark-mode');
+        // Toggle dark-mode on html element
+        document.documentElement.classList.toggle('dark-mode');
 
-        const isDark = body && body.classList.contains('dark-mode');
+        const isDark = document.documentElement.classList.contains('dark-mode');
 
         if (isDark) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
             localStorage.setItem('theme', 'dark');
+            console.log('Dark mode enabled');
         } else {
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
             localStorage.setItem('theme', 'light');
+            console.log('Light mode enabled');
         }
     });
 });

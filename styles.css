@@ -1414,7 +1414,7 @@ body::before {
     }
 
     .photos-section {
-        padding: 18px 12px 24px;
+        padding: 80px 12px 24px;
     }
 
     .photo-grid {
@@ -1448,7 +1448,7 @@ body::before {
     }
 
     .archive-section {
-        padding: 18px 12px 28px;
+        padding: 80px 12px 28px;
     }
 
     .archive-card {
@@ -1464,7 +1464,7 @@ body::before {
     }
 
     .insights-section {
-        padding: 18px 12px 28px;
+        padding: 80px 12px 28px;
     }
 
     .papers-list {
@@ -1598,7 +1598,7 @@ body::before {
     
     /* Contact Section Mobile Optimization */
     .contact-section {
-        padding: 20px 16px 60px 16px;
+        padding: 80px 16px 60px 16px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1753,312 +1753,313 @@ body::before {
 }
 
 /* Dark Mode Styles */
-body.dark-mode {
+html.dark-mode body {
     background-color: #000000;
     color: #ffffff;
 }
 
-body.dark-mode::before {
+html.dark-mode body::before {
     background: #000000;
 }
 
-body.dark-mode .header {
+html.dark-mode body .header {
     background-color: #000000;
     border-bottom: 1px solid #ffffff;
 }
 
-body.dark-mode .header-name {
+html.dark-mode body .header-name {
     color: #ffffff;
 }
 
-body.dark-mode .nav-link {
+html.dark-mode body .nav-link {
     color: #ffffff;
 }
 
-body.dark-mode .nav-link:hover {
+html.dark-mode body .nav-link:hover {
     color: #ffffff;
     background-color: #222222;
 }
 
-body.dark-mode .nav-link.active {
+html.dark-mode body .nav-link.active {
     color: #ffffff;
     background-color: #333333;
 }
 
-body.dark-mode .main-content,
-body.dark-mode .content-card,
-body.dark-mode .research-overview,
-body.dark-mode .cv-section {
+html.dark-mode body .main-content,
+html.dark-mode body .content-card,
+html.dark-mode body .research-overview,
+html.dark-mode body .cv-section {
     background-color: #000000;
 }
 
-body.dark-mode .cv-preview {
+html.dark-mode body .cv-preview {
     background-color: #000000;
 }
 
-body.dark-mode .cv-preview iframe {
+html.dark-mode body .cv-preview iframe {
     background-color: #000000;
 }
 
-body.dark-mode .photos-section,
-body.dark-mode .insights-section,
-body.dark-mode .archive-section,
-body.dark-mode .contact-section {
+html.dark-mode body .photos-section,
+html.dark-mode body .insights-section,
+html.dark-mode body .archive-section,
+html.dark-mode body .contact-section {
     background-color: #000000;
     color: #ffffff;
 }
 
-body.dark-mode .section-title {
+html.dark-mode body .section-title {
     color: #ffffff;
 }
 
-body.dark-mode .archive-section .archive-empty,
-body.dark-mode .archive-section .archive-empty code {
+html.dark-mode body .archive-section .archive-empty,
+html.dark-mode body .archive-section .archive-empty code {
     color: #999;
     background: #222;
 }
 
-body.dark-mode .archive-card {
+html.dark-mode body .archive-card {
     border-bottom-color: #444444;
 }
 
-body.dark-mode .archive-card::before {
+html.dark-mode body .archive-card::before {
     background-color: #ffffff;
 }
 
-body.dark-mode .archive-card:hover {
+html.dark-mode body .archive-card:hover {
     border-bottom-color: #ffffff;
     background-color: #1a1a1a;
 }
 
-body.dark-mode .archive-date {
+html.dark-mode body .archive-date {
     color: #777777;
 }
 
-body.dark-mode .archive-card-title {
+html.dark-mode body .archive-card-title {
     color: #ffffff;
 }
 
-body.dark-mode .archive-card:hover .archive-card-title {
+html.dark-mode body .archive-card:hover .archive-card-title {
     color: #ffffff;
 }
 
-body.dark-mode .archive-back-btn {
+html.dark-mode body .archive-back-btn {
     color: #ffffff;
 }
 
-body.dark-mode .archive-back-btn:hover {
+html.dark-mode body .archive-back-btn:hover {
     color: #999;
 }
 
-body.dark-mode .archive-delete-btn {
+html.dark-mode body .archive-delete-btn {
     background: #ffffff;
     border-color: #ffffff;
     color: #000000;
 }
 
-body.dark-mode .archive-delete-btn:hover {
+html.dark-mode body .archive-delete-btn:hover {
     background: #000000;
     border-color: #ffffff;
     color: #ffffff;
 }
 
-body.dark-mode .archive-post-actions {
+html.dark-mode body .archive-post-actions {
     border-bottom-color: #333;
 }
 
-body.dark-mode .archive-post-title {
+html.dark-mode body .archive-post-title {
     color: #ffffff;
 }
 
-body.dark-mode .archive-post-content,
-body.dark-mode .archive-post-content p {
+html.dark-mode body .archive-post-content,
+html.dark-mode body .archive-post-content p {
     color: #dddddd;
 }
 
-body.dark-mode .archive-post-content a {
+html.dark-mode body .archive-post-content a {
     color: #ffffff;
     text-decoration-color: #777777;
 }
 
-body.dark-mode .archive-post-content a:hover {
+html.dark-mode body .archive-post-content a:hover {
     text-decoration-color: #ffffff;
 }
 
-body.dark-mode .archive-post-content code {
+html.dark-mode body .archive-post-content code {
     background: #222;
     color: #ffffff;
     border: 1px solid #333333;
 }
 
-body.dark-mode .archive-post-header {
+html.dark-mode body .archive-post-header {
     border-bottom-color: #444444;
 }
 
-body.dark-mode .archive-post-header time {
+html.dark-mode body .archive-post-header time {
     color: #777777;
 }
 
-body.dark-mode .section-intro {
+html.dark-mode body .section-intro {
     color: #ffffff;
 }
 
-body.dark-mode .research-area h3 {
+html.dark-mode body .research-area h3 {
     color: #ffffff;
 }
 
-body.dark-mode .research-area p {
+html.dark-mode body .research-area p {
     color: #ffffff;
 }
 
-body.dark-mode .professional-info,
-body.dark-mode .professional-info p,
-body.dark-mode .bio-section,
-body.dark-mode .bio-section *,
-body.dark-mode .bio-section p,
-body.dark-mode .bio-section strong,
-body.dark-mode .research-section,
-body.dark-mode .research-section *,
-body.dark-mode .research-section p,
-body.dark-mode .hobby-section,
-body.dark-mode .hobby-section *,
-body.dark-mode .hobby-section p {
+html.dark-mode body .professional-info,
+html.dark-mode body .professional-info p,
+html.dark-mode body .bio-section,
+html.dark-mode body .bio-section *,
+html.dark-mode body .bio-section p,
+html.dark-mode body .bio-section strong,
+html.dark-mode body .research-section,
+html.dark-mode body .research-section *,
+html.dark-mode body .research-section p,
+html.dark-mode body .hobby-section,
+html.dark-mode body .hobby-section *,
+html.dark-mode body .hobby-section p {
     color: #ffffff;
 }
 
-body.dark-mode .profile-social-link {
+html.dark-mode body .profile-social-link {
     color: #ffffff;
 }
 
-body.dark-mode .profile-social-link:hover {
+html.dark-mode body .profile-social-link:hover {
     color: #4a9eff;
 }
 
-body.dark-mode .profile-email {
+html.dark-mode body .profile-email {
     color: #ffffff;
     border-top-color: #333;
 }
 
-body.dark-mode .social-icon-link {
+html.dark-mode body .social-icon-link {
     background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+html.dark-mode body .social-icon-link:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+}
+
+html.dark-mode body .social-icon-link i {
     color: #000000;
 }
 
-body.dark-mode .social-icon-link:hover {
-    background-color: #cccccc;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode .social-icon-link i {
-    color: #ffffff;
-}
-
-body.dark-mode .theme-toggle {
+html.dark-mode body .theme-toggle {
     border-color: #ffffff;
     background-color: #000000;
 }
 
-body.dark-mode .theme-toggle:hover {
+html.dark-mode body .theme-toggle:hover {
     background-color: #1a1a1a;
     border-color: #ffffff;
 }
 
-body.dark-mode .theme-toggle i {
+html.dark-mode body .theme-toggle i {
     color: #ffffff;
 }
 
-body.dark-mode .link {
+html.dark-mode body .link {
     color: #4a9eff;
 }
 
-body.dark-mode .link:hover {
+html.dark-mode body .link:hover {
     color: #6bb4ff;
 }
 
-body.dark-mode .photo-item {
+html.dark-mode body .photo-item {
     background-color: #1a1a1a;
 }
 
-body.dark-mode .photo-title,
-body.dark-mode .photo-date {
+html.dark-mode body .photo-title,
+html.dark-mode body .photo-date {
     color: #ffffff;
 }
 
-body.dark-mode .paper-item {
+html.dark-mode body .paper-item {
     background-color: #1a1a1a;
     border-color: #444444;
     border-left-color: #ffffff;
 }
 
-body.dark-mode .paper-item:hover {
+html.dark-mode body .paper-item:hover {
     background-color: #2a2a2a;
     border-color: #ffffff;
     border-left-color: #ffffff;
 }
 
-body.dark-mode .paper-title,
-body.dark-mode .paper-description {
+html.dark-mode body .paper-title,
+html.dark-mode body .paper-description {
     color: #ffffff;
 }
 
-body.dark-mode .paper-category,
-body.dark-mode .paper-date {
+html.dark-mode body .paper-category,
+html.dark-mode body .paper-date {
     color: #ffffff;
 }
 
-body.dark-mode .contact-item {
+html.dark-mode body .contact-item {
     border-bottom-color: #444444;
 }
 
-body.dark-mode .contact-item:hover {
+html.dark-mode body .contact-item:hover {
     border-bottom-color: #ffffff;
     padding-left: 8px;
 }
 
-body.dark-mode .contact-item i {
+html.dark-mode body .contact-item i {
     color: #ffffff;
 }
 
-body.dark-mode .contact-item span {
+html.dark-mode body .contact-item span {
     color: #ffffff;
 }
 
-body.dark-mode .contact-social {
+html.dark-mode body .contact-social {
     border-top-color: #444444;
 }
 
-body.dark-mode .social-link {
+html.dark-mode body .social-link {
     color: #ffffff;
     border-color: #555555;
     background-color: #1a1a1a;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-body.dark-mode .social-link:hover,
-body.dark-mode .social-link:active {
+html.dark-mode body .social-link:hover,
+html.dark-mode body .social-link:active {
     color: #ffffff;
     background-color: #2a2a2a;
     border-color: #777777;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-body.dark-mode .social-link i {
+html.dark-mode body .social-link i {
     color: #cccccc;
 }
 
-body.dark-mode .footer {
+html.dark-mode body .footer {
     background-color: #000000;
     border-top-color: #333333;
     color: #ffffff;
 }
 
-body.dark-mode .footer .institution-name,
-body.dark-mode .footer .contact-detail,
-body.dark-mode .footer .copyright {
+html.dark-mode body .footer .institution-name,
+html.dark-mode body .footer .contact-detail,
+html.dark-mode body .footer .copyright {
     color: #ffffff;
 }
 
-body.dark-mode .footer .kaist-logo {
+html.dark-mode body .footer .kaist-logo {
     filter: brightness(0) invert(1);
 }
 
@@ -2165,5 +2166,14 @@ body.dark-mode .footer .kaist-logo {
 
     .contact-detail {
         font-size: 0.75rem;
+    }
+
+    /* Section padding for smaller screens */
+    .archive-section,
+    .photos-section,
+    .insights-section,
+    .contact-section,
+    .cv-section {
+        padding-top: 100px;
     }
 }
