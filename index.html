@@ -27,11 +27,12 @@
                 <i class="fas fa-moon" id="theme-icon"></i>
             </button>
             <div class="header-top">
-                <h1 style="font-weight: 300; font-size: 48px;" class="open-sans-<uniquifier>">Donghyuk Lee</h1>
+                <h1 class="header-name">Donghyuk Lee</h1>
                 <p class="site-subtitle">🎵 <a href="https://youtu.be/JbhVO9iXC9E?si=itz5mXJYBfh0mxVL&t=34" class="link">Gadd a Tee? (2000, Trio Töykeät)</a> 🎵</p>
             </div>
             <nav class="navigation">
                 <a href="#home" class="nav-link active">Home</a>
+                <a href="#archive" class="nav-link">Archive</a>
                 <a href="#cv" class="nav-link">CV</a>
                 <a href="#photos" class="nav-link">Photos</a>
                 <a href="#insights" class="nav-link">Insights</a>
@@ -383,6 +384,35 @@
             </div>
         </section>
 
+        <!-- Archive Section -->
+        <section id="archive" class="archive-section">
+            <h2 class="section-title">Archive</h2>
+            <p class="section-intro">글과 생각을 모아두는 공간입니다.</p>
+            <button type="button" id="archive-write-toggle" class="archive-write-toggle" aria-label="새 글 쓰기">+ 새 글 쓰기</button>
+            <form id="archive-write-form" class="archive-write-form" style="display: none;">
+                <label for="archive-write-title">제목</label>
+                <input type="text" id="archive-write-title" class="archive-write-input" required placeholder="글 제목">
+                <label for="archive-write-date">날짜</label>
+                <input type="date" id="archive-write-date" class="archive-write-input" required>
+                <label for="archive-write-content">본문</label>
+                <textarea id="archive-write-content" class="archive-write-textarea" required placeholder="본문 (간단한 HTML 가능: &lt;p&gt;, &lt;strong&gt;, &lt;a href=&quot;...&quot;&gt;)"></textarea>
+                <div class="archive-write-actions">
+                    <button type="submit" class="archive-write-submit">발행</button>
+                    <button type="button" id="archive-write-cancel" class="archive-write-cancel">취소</button>
+                </div>
+            </form>
+            <div id="archive-list" class="archive-list"></div>
+            <div id="archive-post-detail" class="archive-post-detail" style="display: none;">
+                <button type="button" id="archive-back-btn" class="archive-back-btn" aria-label="목록으로">← 목록으로</button>
+                <article id="archive-post-body" class="archive-post-body"></article>
+                <div id="archive-comments" class="archive-comments">
+                    <h3 class="archive-comments-title">댓글</h3>
+                    <p class="archive-comments-info">GitHub 계정으로 로그인하면 댓글을 남길 수 있습니다.</p>
+                    <div id="utterances-container"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="contact-section">
             <div class="contact-content">
@@ -442,6 +472,7 @@
         </div>
     </footer>
 
+    <script src="archive-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
