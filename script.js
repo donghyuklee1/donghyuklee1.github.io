@@ -257,8 +257,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const detailEl = document.getElementById('archive-post-detail');
     const bodyEl = document.getElementById('archive-post-body');
     const backBtn = document.getElementById('archive-back-btn');
+    const deleteBtn = document.getElementById('archive-delete-btn');
+    var currentPostId = null;
 
-    if (!listEl || !detailEl || !bodyEl || !backBtn) return;
+    if (!listEl || !detailEl || !bodyEl || !backBtn || !deleteBtn) return;
 
     function getPosts() {
         const fromStorage = localStorage.getItem('archive_posts');
@@ -301,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const posts = getPosts();
         const post = posts.find(p => p.id === id);
         if (!post) return;
+        currentPostId = id;
         listEl.style.display = 'none';
         if (writeToggle) writeToggle.style.display = 'none';
         if (writeForm) writeForm.style.display = 'none';
@@ -312,12 +315,33 @@ document.addEventListener('DOMContentLoaded', function() {
             </header>
             <div class="archive-post-content">${post.content}</div>
         `;
+        // localStorage에서 온 글만 삭제 가능 (archive-data.js의 글은 삭제 불가)
+        const fromData = typeof ARCHIVE_POSTS !== 'undefined' ? ARCHIVE_POSTS : [];
+        const isFromData = fromData.some(p => p.id === id);
+        if (deleteBtn) {
+            deleteBtn.style.display = isFromData ? 'none' : 'inline-flex';
+        }
     }
 
     backBtn.addEventListener('click', function() {
         detailEl.style.display = 'none';
         listEl.style.display = '';
         if (writeToggle) writeToggle.style.display = '';
+        currentPostId = null;
+    });
+
+    deleteBtn.addEventListener('click', function() {
+        if (!currentPostId) return;
+        if (!confirm('이 글을 삭제하시겠습니까?')) return;
+        const stored = localStorage.getItem('archive_posts');
+        const arr = stored ? JSON.parse(stored) : [];
+        const filtered = arr.filter(p => p.id !== currentPostId);
+        localStorage.setItem('archive_posts', JSON.stringify(filtered));
+        detailEl.style.display = 'none';
+        listEl.style.display = '';
+        if (writeToggle) writeToggle.style.display = '';
+        currentPostId = null;
+        renderArchiveList();
     });
 
     var writeCancel = document.getElementById('archive-write-cancel');
