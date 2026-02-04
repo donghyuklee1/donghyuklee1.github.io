@@ -1003,7 +1003,7 @@ body::before {
 
 /* Archive Section Styles */
 .archive-section {
-    padding: 48px 40px 60px 40px;
+    padding: 60px 40px 60px 40px;
     display: none;
     background-color: #ffffff;
     border-radius: 0;
