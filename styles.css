@@ -1754,7 +1754,13 @@ body::before {
 
     /* 모바일: 섹션이 헤더와 겹치지 않도록 최대 높이 낮추고 상단 패딩 추가
        home 섹션과 contact 섹션은 제외 */
-    [class*="-section"]:not(.contact-section):not(.home):not(.home-section) {
+    .photos-section,
+    .archive-section,
+    .insights-section {
+        padding-top: 60px !important;
+    }
+    
+    [class*="-section"]:not(.contact-section):not(.home):not(.home-section):not(.photos-section):not(.archive-section):not(.insights-section) {
         max-height: calc(100vh - 140px);
         overflow: auto;
         padding-top: 20px;
@@ -1777,6 +1783,10 @@ html.dark-mode body {
 
 html.dark-mode body::before {
     background: #000000;
+}
+
+html.dark-mode body .container {
+    background-color: transparent;
 }
 
 html.dark-mode body .header {
@@ -2022,6 +2032,47 @@ html.dark-mode body .paper-description {
 html.dark-mode body .paper-category,
 html.dark-mode body .paper-date {
     color: #ffffff;
+}
+
+html.dark-mode body .filter-btn {
+    background-color: #1a1a1a;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+html.dark-mode body .filter-btn:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+html.dark-mode body .filter-btn.active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+html.dark-mode body .paper-number {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+html.dark-mode body .paper-item:hover {
+    background-color: #2a2a2a;
+}
+
+html.dark-mode body .photo-item::after {
+    border-color: #ffffff;
+}
+
+html.dark-mode body .photo-placeholder {
+    background-color: #1a1a1a;
+    color: #777777;
+}
+
+html.dark-mode body .photo-placeholder i {
+    color: #555555;
 }
 
 html.dark-mode body .contact-item {
