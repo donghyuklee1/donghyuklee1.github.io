@@ -1777,46 +1777,46 @@ body::before {
 
 /* Dark Mode Styles */
 html.dark-mode body {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body::before {
-    background: #000000;
+    background: #000000 !important;
 }
 
 html.dark-mode body .container {
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 html.dark-mode body .header {
-    background-color: #000000;
-    border-bottom: 1px solid #ffffff;
+    background-color: #000000 !important;
+    border-bottom: 1px solid #ffffff !important;
 }
 
 html.dark-mode body .header-name {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .nav-link {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .nav-link:hover {
-    color: #ffffff;
-    background-color: #222222;
+    color: #ffffff !important;
+    background-color: #222222 !important;
 }
 
 html.dark-mode body .nav-link.active {
-    color: #ffffff;
-    background-color: #333333;
+    color: #ffffff !important;
+    background-color: #333333 !important;
 }
 
 html.dark-mode body .main-content,
 html.dark-mode body .content-card,
 html.dark-mode body .research-overview,
 html.dark-mode body .cv-section {
-    background-color: #000000;
+    background-color: #000000 !important;
 }
 
 html.dark-mode body .cv-preview {
@@ -1831,12 +1831,12 @@ html.dark-mode body .photos-section,
 html.dark-mode body .insights-section,
 html.dark-mode body .archive-section,
 html.dark-mode body .contact-section {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .section-title {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-section .archive-empty,
@@ -1863,79 +1863,79 @@ html.dark-mode body .archive-date {
 }
 
 html.dark-mode body .archive-card-title {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-card:hover .archive-card-title {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-back-btn {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-back-btn:hover {
-    color: #999;
+    color: #999 !important;
 }
 
 html.dark-mode body .archive-delete-btn {
-    background: #ffffff;
-    border-color: #ffffff;
-    color: #000000;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 html.dark-mode body .archive-delete-btn:hover {
-    background: #000000;
-    border-color: #ffffff;
-    color: #ffffff;
+    background: #000000 !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-actions {
-    border-bottom-color: #333;
+    border-bottom-color: #333 !important;
 }
 
 html.dark-mode body .archive-post-title {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-content,
 html.dark-mode body .archive-post-content p {
-    color: #dddddd;
+    color: #dddddd !important;
 }
 
 html.dark-mode body .archive-post-content a {
-    color: #ffffff;
-    text-decoration-color: #777777;
+    color: #ffffff !important;
+    text-decoration-color: #777777 !important;
 }
 
 html.dark-mode body .archive-post-content a:hover {
-    text-decoration-color: #ffffff;
+    text-decoration-color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-content code {
-    background: #222;
-    color: #ffffff;
-    border: 1px solid #333333;
+    background: #222 !important;
+    color: #ffffff !important;
+    border: 1px solid #333333 !important;
 }
 
 html.dark-mode body .archive-post-header {
-    border-bottom-color: #444444;
+    border-bottom-color: #444444 !important;
 }
 
 html.dark-mode body .archive-post-header time {
-    color: #777777;
+    color: #777777 !important;
 }
 
 html.dark-mode body .section-intro {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .research-area h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .research-area p {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .professional-info,
@@ -1950,120 +1950,121 @@ html.dark-mode body .research-section p,
 html.dark-mode body .hobby-section,
 html.dark-mode body .hobby-section *,
 html.dark-mode body .hobby-section p {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .profile-social-link {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .profile-social-link:hover {
-    color: #4a9eff;
+    color: #4a9eff !important;
 }
 
 html.dark-mode body .profile-email {
-    color: #ffffff;
-    border-top-color: #333;
+    color: #ffffff !important;
+    border-top-color: #333 !important;
 }
 
 html.dark-mode body .social-icon-link {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2) !important;
 }
 
 html.dark-mode body .social-icon-link:hover {
-    background-color: #e6e6e6;
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+    background-color: #e6e6e6 !important;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3) !important;
 }
 
 html.dark-mode body .social-icon-link i {
-    color: #000000;
+    color: #000000 !important;
 }
 
 html.dark-mode body .theme-toggle {
-    border-color: #ffffff;
-    background-color: #000000;
+    border-color: #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .theme-toggle:hover {
-    background-color: #1a1a1a;
-    border-color: #ffffff;
+    background-color: #1a1a1a !important;
+    border-color: #ffffff !important;
 }
 
 html.dark-mode body .theme-toggle i {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .link {
-    color: #4a9eff;
+    color: #4a9eff !important;
 }
 
 html.dark-mode body .link:hover {
-    color: #6bb4ff;
+    color: #6bb4ff !important;
 }
 
 html.dark-mode body .photo-item {
-    background-color: #1a1a1a;
+    background-color: #1a1a1a !important;
 }
 
 html.dark-mode body .photo-title,
 html.dark-mode body .photo-date {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .paper-item {
-    background-color: #1a1a1a;
-    border-color: #444444;
-    border-left-color: #ffffff;
+    background-color: #1a1a1a !important;
+    border-color: #444444 !important;
+    border-left-color: #ffffff !important;
 }
 
 html.dark-mode body .paper-item:hover {
-    background-color: #2a2a2a;
-    border-color: #ffffff;
-    border-left-color: #ffffff;
+    background-color: #2a2a2a !important;
+    border-color: #ffffff !important;
+    border-left-color: #ffffff !important;
 }
 
 html.dark-mode body .paper-title,
 html.dark-mode body .paper-description {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .paper-category,
 html.dark-mode body .paper-date {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .filter-btn {
-    background-color: #1a1a1a;
-    border-color: #ffffff;
-    color: #ffffff;
+    background-color: #1a1a1a !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .filter-btn:hover {
-    background-color: #ffffff;
-    border-color: #ffffff;
-    color: #000000;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 html.dark-mode body .filter-btn.active {
-    background-color: #ffffff;
-    border-color: #ffffff;
-    color: #000000;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 html.dark-mode body .paper-number {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border-color: #ffffff;
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
 }
 
 html.dark-mode body .paper-item:hover {
-    background-color: #2a2a2a;
+    background-color: #2a2a2a !important;
 }
 
 html.dark-mode body .photo-item::after {
-    border-color: #ffffff;
+    border-color: #ffffff !important;
 }
 
 html.dark-mode body .photo-placeholder {
@@ -2076,59 +2077,59 @@ html.dark-mode body .photo-placeholder i {
 }
 
 html.dark-mode body .contact-item {
-    border-bottom-color: #444444;
+    border-bottom-color: #444444 !important;
 }
 
 html.dark-mode body .contact-item:hover {
-    border-bottom-color: #ffffff;
+    border-bottom-color: #ffffff !important;
     padding-left: 8px;
 }
 
 html.dark-mode body .contact-item i {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .contact-item span {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .contact-social {
-    border-top-color: #444444;
+    border-top-color: #444444 !important;
 }
 
 html.dark-mode body .social-link {
-    color: #ffffff;
-    border-color: #555555;
-    background-color: #1a1a1a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    color: #ffffff !important;
+    border-color: #555555 !important;
+    background-color: #1a1a1a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
 }
 
 html.dark-mode body .social-link:hover,
 html.dark-mode body .social-link:active {
-    color: #ffffff;
-    background-color: #2a2a2a;
-    border-color: #777777;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    color: #ffffff !important;
+    background-color: #2a2a2a !important;
+    border-color: #777777 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
 }
 
 html.dark-mode body .social-link i {
-    color: #cccccc;
+    color: #cccccc !important;
 }
 
 html.dark-mode body .footer {
-    background-color: #000000;
-    border-top-color: #333333;
-    color: #ffffff;
+    background-color: #000000 !important;
+    border-top-color: #333333 !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .footer .institution-name,
 html.dark-mode body .footer .contact-detail,
 html.dark-mode body .footer .copyright {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .footer .kaist-logo {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1) !important;
 }
 
 /* Extra Small Devices (480px and below) */
