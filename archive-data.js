@@ -13,6 +13,9 @@
 //     url: "https://..."
 // ---
 
+// 404 시 raw 파일로 폴백 (repo/branch에 맞게 수정)
+const ARCHIVE_RAW_BASE = 'https://raw.githubusercontent.com/donghyuklee1/donghyuklee1.github.io/main/posts/';
+
 const ARCHIVE_POSTS_MANIFEST = [
   { file: '2025-02-07-sample-post.md' },
   // 새 포스트: { file: 'YYYY-MM-DD-slug.md' }

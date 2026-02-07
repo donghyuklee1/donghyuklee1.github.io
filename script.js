@@ -266,6 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!listEl || !detailEl || !bodyEl || !backBtn) return;
 
     const manifest = typeof ARCHIVE_POSTS_MANIFEST !== 'undefined' ? ARCHIVE_POSTS_MANIFEST : [];
+    const rawBase = typeof ARCHIVE_RAW_BASE !== 'undefined' ? ARCHIVE_RAW_BASE : '';
     // GitHub Pages 프로젝트 사이트(예: user.github.io/repo-name/) 대응
     let base = window.location.pathname;
     if (!base.endsWith('/')) base = base.replace(/\/[^/]*$/, '/') || '/';
@@ -328,13 +329,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function fetchPost(url) {
+        return fetch(url).then(r => {
+            if (r.ok) return r.text();
+            return Promise.reject(new Error('Not found'));
+        });
+    }
+
     function showPost(id, file) {
-        const url = baseUrl + file;
+        const pageUrl = baseUrl + file;
+        const rawUrl = rawBase ? rawBase + file : null;
         listEl.style.display = 'none';
         detailEl.style.display = 'block';
         bodyEl.innerHTML = '<p class="archive-loading">로딩 중...</p>';
-        fetch(url)
-            .then(r => r.ok ? r.text() : Promise.reject(new Error('Not found')))
+        const load = (url) => fetchPost(url).catch(() => rawUrl && url === pageUrl ? fetchPost(rawUrl) : Promise.reject());
+        load(pageUrl)
             .then(raw => {
                 const { body, title, date, links } = parseFrontmatter(raw);
                 if (typeof marked !== 'undefined') {
