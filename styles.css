@@ -1132,6 +1132,71 @@ body::before {
     border-bottom: 1px solid #cccccc;
 }
 
+/* 메타데이터 테이블 (title, last_modified_at, categories, tags, excerpt) */
+.archive-meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.archive-meta-table th {
+    text-align: left;
+    vertical-align: top;
+    padding: 8px 16px 8px 0;
+    font-weight: 600;
+    color: #555;
+    min-width: 120px;
+}
+
+.archive-meta-table td {
+    padding: 8px 0;
+    color: #1a1a1a;
+}
+
+.archive-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.archive-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* 논문 정보 (conference, links, authors, affiliation) */
+.archive-paper-info {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    margin-top: 16px;
+}
+
+.archive-paper-info a {
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.archive-paper-info a:hover {
+    text-decoration-color: #000;
+}
+
+.archive-paper-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 .archive-post-header time {
     display: block;
     font-size: 0.75rem;
@@ -2068,6 +2133,28 @@ html.dark-mode body .archive-post-content .archive-image-caption {
 
 html.dark-mode body .archive-post-header {
     border-bottom-color: #444444 !important;
+}
+
+html.dark-mode body .archive-meta-table th {
+    color: #999 !important;
+}
+
+html.dark-mode body .archive-meta-table td {
+    color: #dddddd !important;
+}
+
+html.dark-mode body .archive-tag {
+    background: #333 !important;
+    border-color: #555 !important;
+    color: #cccccc !important;
+}
+
+html.dark-mode body .archive-paper-info {
+    color: #999 !important;
+}
+
+html.dark-mode body .archive-paper-info a {
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-header time {

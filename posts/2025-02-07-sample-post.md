@@ -1,6 +1,11 @@
 ---
 title: 샘플 포스트 (Sample Post)
-date: 2025-02-07
+last_modified_at: 2025-02-07
+categories: 일반
+tags:
+  - Sample
+  - Markdown
+excerpt: 마크다운 포스트 작성 예시
 links:
   - label: "GitHub"
     url: "https://github.com"

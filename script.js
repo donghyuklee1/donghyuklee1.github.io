@@ -274,24 +274,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function parseFrontmatter(raw) {
         const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-        if (!match) return { body: raw, title: '', date: '', links: [] };
+        if (!match) return { body: raw, title: '', date: '', links: [], tags: [], categories: '', excerpt: '', paper: null };
         const fm = match[1];
         const body = match[2];
-        let title = '', date = '', links = [];
-        const titleM = fm.match(/title:\s*["']?([^"'\n]+)["']?/);
-        const dateM = fm.match(/date:\s*(\d{4}-\d{2}-\d{2})/);
-        if (titleM) title = titleM[1].trim();
+        let title = '', date = '', links = [], tags = [], categories = '', excerpt = '', paper = null;
+        const trim = (s) => (s || '').trim().replace(/^["']|["']$/g, '');
+        const titleM = fm.match(/title:\s*["']?([\s\S]*?)["']?\s*(?=\n|$)/);
+        if (titleM) title = trim(titleM[1]).replace(/\n\s*/g, ' ');
+        const dateM = fm.match(/(?:last_modified_at|date):\s*(\d{4}-\d{2}-\d{2})/);
         if (dateM) date = dateM[1];
-        const linksBlock = fm.match(/links:\s*\n([\s\S]*?)(?=\n[a-z]|\n---|$)/i);
+        const catM = fm.match(/categories:\s*["']?([^"'\n]+)["']?/);
+        if (catM) categories = trim(catM[1]);
+        const exM = fm.match(/excerpt:\s*["']?([\s\S]*?)["']?\s*(?=\n[a-z_]|\n---|$)/i);
+        if (exM) excerpt = trim(exM[1]).replace(/\n\s*/g, ' ');
+        const tagsBlock = fm.match(/tags:\s*\n([\s\S]*?)(?=\n[a-z_]|\n---|$)/i);
+        if (tagsBlock) {
+            const items = tagsBlock[1].match(/-\s*["']?([^"'\n-]+)["']?/g);
+            if (items) tags = items.map(t => trim(t.replace(/^-\s*/, '')));
+        }
+        const linksBlock = fm.match(/links:\s*\n([\s\S]*?)(?=\n[a-z_]|\n---|$)/i);
         if (linksBlock) {
-            const ls = [];
             const block = linksBlock[1];
             const re = /-\s*label:\s*["']?([^"'\n]+)["']?\s*\n\s*url:\s*["']([^"']+)["']/g;
             let m;
-            while ((m = re.exec(block)) !== null) ls.push({ label: m[1].trim(), url: m[2] });
-            if (ls.length) links = ls;
+            while ((m = re.exec(block)) !== null) links.push({ label: m[1].trim(), url: m[2] });
         }
-        return { body, title, date, links };
+        const paperBlock = fm.match(/paper:\s*\n([\s\S]*?)(?=\n[a-z_][a-z_]*:\s|\n---|$)/i);
+        if (paperBlock) {
+            const pb = paperBlock[1];
+            paper = {};
+            const confM = pb.match(/conference:\s*["']?([^"'\n]+)["']?/);
+            if (confM) paper.conference = trim(confM[1]);
+            const authM = pb.match(/authors:\s*["']?([^"'\n]+)["']?/);
+            if (authM) paper.authors = trim(authM[1]);
+            const affM = pb.match(/affiliation:\s*["']?([^"'\n]+)["']?/);
+            if (affM) paper.affiliation = trim(affM[1]);
+            const datePM = pb.match(/date:\s*["']?([^"'\n]+)["']?/);
+            if (datePM) paper.date = trim(datePM[1]);
+            const imgM = pb.match(/image:\s*["']?([^"'\n]+)["']?/);
+            if (imgM) paper.image = trim(imgM[1]);
+            const lnBlock = pb.match(/links:\s*\n([\s\S]*?)(?=\n\w|\n---|$)/);
+            if (lnBlock) {
+                paper.links = {};
+                ['paper','page','github','code'].forEach(k => {
+                    const km = lnBlock[1].match(new RegExp(k + ':\\s*["\']([^"\']+)["\']'));
+                    if (km) paper.links[k] = km[1];
+                });
+            }
+        }
+        if (links.length === 0 && paper && paper.links) {
+            links = Object.entries(paper.links).map(([k, v]) => ({ label: k.charAt(0).toUpperCase() + k.slice(1), url: v }));
+        }
+        return { body, title, date, links, tags, categories, excerpt, paper };
     }
 
     function escapeHtml(text) {
@@ -345,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const load = () => (cdnUrl ? fetchPost(cdnUrl) : fetchPost(pageUrl)).catch(() => cdnUrl && fetchPost(pageUrl).catch(() => Promise.reject()));
         load()
             .then(raw => {
-                const { body, title, date, links } = parseFrontmatter(raw);
+                const { body, title, date, links, tags, categories, excerpt, paper } = parseFrontmatter(raw);
                 if (typeof marked !== 'undefined') {
                     const renderer = new marked.Renderer();
                     const origLink = renderer.link.bind(renderer);
@@ -356,19 +390,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     marked.setOptions({ gfm: true, breaks: true, renderer });
                 }
                 const html = typeof marked !== 'undefined' ? marked.parse(body) : body.replace(/\n/g, '<br>');
-                const linksHtml = (links && links.length > 0)
-                    ? `<aside class="archive-links"><h4 class="archive-links-title">관련 링크</h4><ul class="archive-links-list">${links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}</ul></aside>`
-                    : '';
                 const post = getPostsForList().find(p => p.id === id);
                 const finalTitle = title || (post && post.title) || file;
                 const finalDate = date || (post && post.date) || '';
+                const tagsHtml = (tags && tags.length > 0) ? tags.map(t => `<span class="archive-tag">${escapeHtml(t)}</span>`).join('') : '';
+                let metaRows = [];
+                if (finalTitle) metaRows.push(`<tr><th>title</th><td>${escapeHtml(finalTitle)}</td></tr>`);
+                if (finalDate) metaRows.push(`<tr><th>last_modified_at</th><td>${escapeHtml(finalDate)}</td></tr>`);
+                if (categories) metaRows.push(`<tr><th>categories</th><td>${escapeHtml(categories)}</td></tr>`);
+                if (tagsHtml) metaRows.push(`<tr><th>tags</th><td><div class="archive-tags">${tagsHtml}</div></td></tr>`);
+                if (excerpt) metaRows.push(`<tr><th>excerpt</th><td>${escapeHtml(excerpt)}</td></tr>`);
+                const metaTable = metaRows.length ? `<table class="archive-meta-table"><tbody>${metaRows.join('')}</tbody></table>` : '';
+                let paperHtml = '';
+                if (paper) {
+                    const ln = (paper.links && Object.keys(paper.links).length) ? Object.entries(paper.links).map(([k, v]) => `<a href="${escapeHtml(v)}" target="_blank" rel="noopener noreferrer">[${k.charAt(0).toUpperCase() + k.slice(1)}]</a>`).join(' ') : (links && links.length) ? links.map(l => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">[${escapeHtml(l.label)}]</a>`).join(' ') : '';
+                    paperHtml = `<div class="archive-paper-info">
+                        ${paper.conference ? `<span>${escapeHtml(paper.conference)}.</span> ` : ''}
+                        ${ln ? ln + '<br>' : ''}
+                        ${paper.authors ? `Authors: ${escapeHtml(paper.authors)}<br>` : ''}
+                        ${paper.affiliation ? `Affiliation: ${escapeHtml(paper.affiliation)}<br>` : ''}
+                        ${paper.date ? escapeHtml(paper.date) : ''}
+                        ${paper.image ? `<br><img src="${escapeHtml(paper.image)}" alt="" class="archive-paper-image">` : ''}
+                    </div>`;
+                } else if (links && links.length > 0) {
+                    paperHtml = `<aside class="archive-links"><h4 class="archive-links-title">관련 링크</h4><ul class="archive-links-list">${links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}</ul></aside>`;
+                }
                 bodyEl.innerHTML = `
                     <header class="archive-post-header">
-                        <time datetime="${escapeHtml(finalDate)}">${escapeHtml(finalDate)}</time>
-                        <h2 class="archive-post-title">${escapeHtml(finalTitle)}</h2>
+                        ${metaTable}
+                        ${paperHtml}
                     </header>
                     <div class="archive-post-content">${html}</div>
-                    ${linksHtml}
                 `;
             })
             .catch(() => {

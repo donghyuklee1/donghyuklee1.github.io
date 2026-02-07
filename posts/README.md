@@ -3,28 +3,36 @@
 ## 새 글 추가 방법
 
 1. **파일 생성**: `YYYY-MM-DD-slug.md` 형식으로 파일을 만듭니다.
-   - 예: `2025-02-07-my-first-post.md`
+2. **archive-data.js 등록**: `ARCHIVE_POSTS_MANIFEST` 배열에 `{ file: 'YYYY-MM-DD-slug.md' }` 추가
+3. **이미지**: `images/posts/` 폴더에 저장 후 `![](images/posts/파일명.jpg)` 로 참조
 
-2. **archive-data.js 등록**: `archive-data.js`의 `ARCHIVE_POSTS_MANIFEST` 배열에 추가합니다.
-   ```js
-   { file: '2025-02-07-my-first-post.md' },
-   ```
-
-3. **이미지 사용**: `images/posts/` 폴더에 이미지를 넣고, 마크다운에서 다음과 같이 참조합니다.
-   ```markdown
-   ![설명](images/posts/파일명.jpg)
-   ```
-
-## frontmatter 형식
-
-파일 상단에 YAML frontmatter를 넣습니다:
+## frontmatter 양식
 
 ```yaml
 ---
-title: 포스트 제목
-date: 2025-02-07
-links:  # 선택
-  - label: "링크 텍스트"
+title: "[논문리뷰] 포스트 제목"
+last_modified_at: 2026-02-07
+categories: 논문리뷰
+tags:
+  - Diffusion
+  - Image Generation
+  - Computer Vision
+excerpt: 포스트 요약 한 줄
+use_ma: true
+# 논문 포스트일 경우 (선택)
+paper:
+  conference: ICCV 2025
+  links:
+    paper: "https://arxiv.org/..."
+    page: "https://..."
+    github: "https://github.com/..."
+  authors: Author1, Author2
+  affiliation: Affiliation
+  date: 10 Mar 2025
+  image: "images/posts/teaser.png"
+# 일반 포스트는 links만
+links:
+  - label: "링크"
     url: "https://..."
 ---
 ```
