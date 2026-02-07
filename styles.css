@@ -1219,17 +1219,51 @@ body::before {
 
 .archive-post-content {
     font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: #1a1a1a;
     margin-top: 32px;
+    max-width: 100%;
 }
 
 .archive-post-content p {
-    margin-bottom: 1em;
+    margin-bottom: 1.25em;
 }
 
 .archive-post-content p:last-child {
     margin-bottom: 0;
+}
+
+/* 리스트 항목 스타일 */
+.archive-post-content ul,
+.archive-post-content ol {
+    margin: 1.25em 0;
+    padding-left: 1.5em;
+}
+
+.archive-post-content ul {
+    list-style-type: disc;
+}
+
+.archive-post-content ol {
+    list-style-type: decimal;
+}
+
+.archive-post-content li {
+    margin-bottom: 0.75em;
+    line-height: 1.8;
+    padding-left: 0.25em;
+}
+
+.archive-post-content li:last-child {
+    margin-bottom: 0;
+}
+
+.archive-post-content li > p {
+    margin-bottom: 0.25em;
+}
+
+.archive-post-content li strong {
+    color: #000;
 }
 
 .archive-post-content a {
@@ -1268,10 +1302,31 @@ body::before {
     padding: 0;
 }
 
-.archive-post-content h1, .archive-post-content h2, .archive-post-content h3 {
+.archive-post-content h1 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.archive-post-content h2 {
+    margin-top: 1.75em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.archive-post-content h3 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
     font-weight: 600;
+    font-size: 1.15rem;
+}
+
+.archive-post-content h1:first-child,
+.archive-post-content h2:first-child,
+.archive-post-content h3:first-child {
+    margin-top: 0;
 }
 
 .archive-post-content blockquote {
@@ -2081,8 +2136,13 @@ html.dark-mode body .archive-post-title {
 }
 
 html.dark-mode body .archive-post-content,
-html.dark-mode body .archive-post-content p {
+html.dark-mode body .archive-post-content p,
+html.dark-mode body .archive-post-content li {
     color: #dddddd !important;
+}
+
+html.dark-mode body .archive-post-content li strong {
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-content a {
