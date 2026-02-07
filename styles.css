@@ -1198,6 +1198,58 @@ body::before {
     font-style: italic;
 }
 
+/* Archive 카드: 논문/링크 배지 */
+.archive-card-links-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #666;
+    background: #f0f0f0;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+/* Archive 상세: 관련 링크 섹션 */
+.archive-links {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #cccccc;
+}
+
+.archive-links-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.archive-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.archive-links-list li {
+    margin-bottom: 10px;
+}
+
+.archive-links-list a {
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #999;
+    text-underline-offset: 2px;
+    font-size: 0.95rem;
+}
+
+.archive-links-list a:hover {
+    text-decoration-color: #000000;
+}
+
 
 /* Contact Section Styles */
 .contact-section {
@@ -1944,6 +1996,29 @@ html.dark-mode body .archive-post-content code {
 
 html.dark-mode body .archive-post-content img {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+html.dark-mode body .archive-card-links-badge {
+    background: #333 !important;
+    color: #999 !important;
+}
+
+html.dark-mode body .archive-links {
+    border-top-color: #333 !important;
+}
+
+html.dark-mode body .archive-links-title {
+    color: #999 !important;
+}
+
+html.dark-mode body .archive-links-list a {
+    color: #cccccc !important;
+    text-decoration-color: #555 !important;
+}
+
+html.dark-mode body .archive-links-list a:hover {
+    text-decoration-color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 html.dark-mode body .archive-post-content .archive-image-caption {

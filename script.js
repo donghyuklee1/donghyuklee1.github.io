@@ -274,12 +274,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const posts = getPosts();
         listEl.innerHTML = posts.length === 0
             ? '<p class="archive-empty">아직 글이 없습니다. <code>archive-data.js</code>에 글을 추가해 보세요.</p>'
-            : posts.map(p => `
+            : posts.map(p => {
+                const linksBadge = (p.links && p.links.length > 0)
+                    ? `<span class="archive-card-links-badge" title="관련 링크 ${p.links.length}개">🔗 ${p.links.length}</span>`
+                    : '';
+                return `
                 <article class="archive-card" data-id="${p.id}">
                     <time class="archive-date" datetime="${p.date}">${p.date}</time>
-                    <h3 class="archive-card-title">${escapeHtml(p.title)}</h3>
+                    <h3 class="archive-card-title">${escapeHtml(p.title)}${linksBadge}</h3>
                 </article>
-            `).join('');
+            `;
+            }).join('');
 
         listEl.querySelectorAll('.archive-card').forEach(card => {
             card.addEventListener('click', function() {
@@ -301,12 +306,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!post) return;
         listEl.style.display = 'none';
         detailEl.style.display = 'block';
+        const linksHtml = (post.links && post.links.length > 0)
+            ? `<aside class="archive-links">
+                <h4 class="archive-links-title">관련 링크</h4>
+                <ul class="archive-links-list">
+                    ${post.links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}
+                </ul>
+            </aside>`
+            : '';
         bodyEl.innerHTML = `
             <header class="archive-post-header">
                 <time datetime="${post.date}">${post.date}</time>
                 <h2 class="archive-post-title">${escapeHtml(post.title)}</h2>
             </header>
             <div class="archive-post-content">${post.content}</div>
+            ${linksHtml}
         `;
     }
 
