@@ -1001,18 +1001,29 @@ body::before {
     font-style: italic;
 }
 
-/* Archive Section Styles */
+/* Archive Section Styles - kimjy99 스타일 깔끔/실용적 */
 .archive-section {
-    padding: 60px 40px 60px 40px;
+    padding: 60px 40px 80px 40px;
     display: none;
     background-color: #ffffff;
     border-radius: 0;
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
+.archive-header {
+    margin-bottom: 40px;
+}
+
+.archive-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
 .archive-list {
-    margin-top: 32px;
+    margin-top: 0;
 }
 
 .archive-empty {
@@ -1032,59 +1043,55 @@ body::before {
 }
 
 .archive-card {
-    display: block;
-    padding: 28px 0;
-    border-bottom: 1px solid #cccccc;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e8e8e8;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     text-decoration: none;
     color: inherit;
     position: relative;
 }
 
-.archive-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background-color: #000000;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .archive-card:hover {
-    border-bottom-color: #000000;
-    padding-left: 18px;
-}
-
-.archive-card:hover::before {
-    width: 4px;
+    border-bottom-color: #000;
 }
 
 .archive-date {
-    display: block;
-    font-size: 0.75rem;
-    color: #777777;
-    margin-bottom: 12px;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: #888;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     font-family: 'Monaco', 'Courier New', monospace;
+    min-width: 90px;
 }
 
 .archive-card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #000000;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #1a1a1a;
     margin: 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1.5;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .archive-card:hover .archive-card-title {
-    color: #000000;
+    color: #000;
+}
+
+.archive-loading,
+.archive-error {
+    color: #666;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.archive-error {
+    color: #c00;
 }
 
 .archive-post-detail {
@@ -1094,6 +1101,7 @@ body::before {
 .archive-back-btn {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
     padding: 10px 0;
     background: none;
     border: none;
@@ -1108,6 +1116,10 @@ body::before {
 
 .archive-back-btn:hover {
     color: #000000;
+}
+
+.archive-back-btn i {
+    font-size: 0.85em;
 }
 
 .archive-post-body {
@@ -1173,6 +1185,35 @@ body::before {
     border-radius: 0;
     font-size: 0.9em;
     color: #000000;
+}
+
+.archive-post-content pre {
+    background: #f8f8f8;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    font-size: 0.9em;
+}
+
+.archive-post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.archive-post-content h1, .archive-post-content h2, .archive-post-content h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.archive-post-content blockquote {
+    border-left: 4px solid #ccc;
+    margin: 1.5em 0;
+    padding-left: 1em;
+    color: #555;
 }
 
 /* Archive 포스트 내 인라인 이미지 */
@@ -1915,6 +1956,10 @@ html.dark-mode body .section-title {
     color: #ffffff !important;
 }
 
+html.dark-mode body .archive-desc {
+    color: #999 !important;
+}
+
 html.dark-mode body .archive-section .archive-empty,
 html.dark-mode body .archive-section .archive-empty code {
     color: #999;
@@ -1923,10 +1968,6 @@ html.dark-mode body .archive-section .archive-empty code {
 
 html.dark-mode body .archive-card {
     border-bottom-color: #444444;
-}
-
-html.dark-mode body .archive-card::before {
-    background-color: #ffffff;
 }
 
 html.dark-mode body .archive-card:hover {

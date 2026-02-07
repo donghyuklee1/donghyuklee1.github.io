@@ -1,26 +1,20 @@
-// Archive 글 목록
-// 새 글을 추가하려면 아래 배열에 객체를 추가하세요.
-// { id: '고유한-id', title: '제목', date: 'YYYY-MM-DD', content: '본문 (HTML 가능)' }
-// links(선택): [{ label: '논문', url: 'https://...' }, ...] — 논문 링크 등 관련 링크
+// Archive 포스트 매니페스트 (MD 기반)
+// 새 글을 추가하려면:
+// 1. _posts/ 폴더에 YYYY-MM-DD-slug.md 파일 생성 (마크다운 + frontmatter)
+// 2. 아래 ARCHIVE_POSTS_MANIFEST 배열에 항목 추가
+// 3. 포스트 이미지는 images/posts/ 폴더에 저장 후 ![](images/posts/파일명.jpg) 로 참조
 //
-// 본문 중간에 사진 추가하기:
-// <img src="images/파일명.jpg" alt="설명" class="archive-inline-image">
-// 캡션과 함께: <figure><img src="images/파일명.jpg" alt="설명" class="archive-inline-image"><figcaption class="archive-image-caption">캡션 텍스트</figcaption></figure>
-//
-// 아래 예시 글들은 MIT Technology Review AI 섹션 기사들을 참고하여 작성되었습니다.
-// https://www.technologyreview.com/topic/artificial-intelligence/
+// frontmatter 예시:
+// ---
+// title: 포스트 제목
+// date: 2025-02-07
+// links:  # 선택
+//   - label: "링크 텍스트"
+//     url: "https://..."
+// ---
 
-/*
-const ARCHIVE_POSTS = [
-  {
-    id: 'what-even-is-the-ai-bubble',
-    title: 'AI 버블인가? 모두가 동의하지만 정의는 각각 다르다',
-    date: '2026-02-06',
-    links: [
-      { label: 'What even is the AI bubble?', url: 'https://www.technologyreview.com/2025/12/15/1129183/what-even-is-the-ai-bubble/' },
-      { label: 'The great AI hype correction of 2025', url: 'https://www.technologyreview.com/2025/12/15/1129174/the-great-ai-hype-correction-of-2025/' }
-    ],
-    content: '<p>7월 MIT 연구에서 생성형 AI에 투자한 조직의 95%가 “제로 수익”을 보고 있다고 발표되자, 테크 주가가 일시적으로 급락했습니다. 연구 자체는 헤드라인보다 뉘앙스가 있었지만, 회의론자들이 수개월간 속삭이던 말—“AI 하이프가 현실보다 앞서가고 있다”—을 뒷받침하는 첫 데이터처럼 받아들여졌어요. 그다음 8월, OpenAI CEO 샘 알트만이 기자 만찬에서 모든 사람이 속으로 생각하던 말을 꺼냈습니다. “AI에 대한 투자자들의 전반적인 과잉 열기가 있는 단계인가? 제 생각엔 그렇습니다.” 그는 이를 닷컴 버블에 비유했죠. “버블이 일어나면, 똑똑한 사람들이 진실의 핵심에 대해 과도하게 흥분한다. 테크는 정말 중요했고, 인터넷은 정말 큰 일이었다. 사람들이 지나치게 흥분한 것이다.”</p><p>문제는 누가, 무엇이 과대평가되어 있냐에 대해 의견이 갈린다는 점입니다. 메타 CEO 마크 저커버그는 철도, 인터넷 광케이블, 닷컴 붐의 역사적 유추를 들며 “인프라가 구축되고, 사람들이 과도한 부채를 짊어지고, 그다음 어떤 충격이 오면 많은 회사가 도산한다”고 말했습니다. 하지만 그의 결론은 브레이크를 밟는 게 아니라 계속 투자하는 것이었어요. “몇천억 달러를 잘못 써도 불행하겠지만, 그 반대 쪽 위험이 더 크다.” OpenAI 이사회 의장이자 Sierra CEO 브렛 테일러는 90년대 후반과의 유사성을 강조해요. 당시 모두 이커머스가 커질 거라고 알았지만, Buy.com과 아마존 사이에는 엄청난 차이가 있었죠. 그는 지금이 그 시절과 비슷하다고 보며, 본인들을 “오늘의 아마존”에 가깝게 포지셔닝하려 해요.</p><p>반면 구글 CEO 순다 피차이는 BBC 인터뷰에서 현재 붐에 “어떤 비이성”이 있다고 했고, 구글도 버블 붕괴에서 면제되지 않을 수 있다고 경고했어요. Anthropic CEO 다리오 아모데이는 뉴욕타임스 DealBook 서밋에서 “경제 측면에서는 우려가 있다. 기술이 모든 약속을 지켜도, 타이밍을 조금만 잘못 맞추면 나쁜 일이 일어날 수 있는 플레이어들이 있다”며, 이름을 짚지 않았지만 OpenAI를 암시했습니다. “YOLO하는 플레이어들이 있다”는 식으로요.</p><p>버블이 터질 가능성이 가장 높은 시나리오는 과잉 자금을 받은 스타트업이 수익을 내지 못하거나, 거대한 밸류에이션을 실현하지 못할 때입니다. OpenAI는 2029년까지 1,400억 달러를 소진할 것으로, Anthropic은 2027년까지 200억 달러를 태울 것으로 예상됩니다. 베인 컨설팅은 AI 인프라 투자를 정당화하려면 2030년까지 연간 2조 달러의 AI 매출이 필요하다고 추정했는데, 이는 아마존·애플·알파벳·마이크로소프트·메타·엔비디아의 2024년 매출 합계보다 많습니다. 테일러의 말이 요약해요. “AI가 경제를 변혁할 것이라는 것과, 우리가 버블 속에 있고 많은 사람이 많은 돈을 잃을 것이라는 것, 둘 다 동시에 참이다.”</p>'
-  },
+const ARCHIVE_POSTS_MANIFEST = [
+  { file: '2025-02-07-sample-post.md' },
+  // 새 포스트: { file: 'YYYY-MM-DD-slug.md' }
+  // title, date는 .md frontmatter에서 자동 파싱되며, 여기서 지정하면 우선 사용
 ];
-*/

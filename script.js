@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Archive: 글 목록 및 상세 보기 (archive-data.js에서만 읽기)
+// Archive: MD 기반 글 목록 및 상세 보기
 document.addEventListener('DOMContentLoaded', function() {
     const listEl = document.getElementById('archive-list');
     const detailEl = document.getElementById('archive-post-detail');
@@ -265,33 +265,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!listEl || !detailEl || !bodyEl || !backBtn) return;
 
-    function getPosts() {
-        const fromData = typeof ARCHIVE_POSTS !== 'undefined' ? ARCHIVE_POSTS : [];
-        return fromData.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-    }
+    const manifest = typeof ARCHIVE_POSTS_MANIFEST !== 'undefined' ? ARCHIVE_POSTS_MANIFEST : [];
+    const baseUrl = '_posts/';
 
-    function renderArchiveList() {
-        const posts = getPosts();
-        listEl.innerHTML = posts.length === 0
-            ? '<p class="archive-empty">아직 글이 없습니다. <code>archive-data.js</code>에 글을 추가해 보세요.</p>'
-            : posts.map(p => {
-                const linksBadge = (p.links && p.links.length > 0)
-                    ? `<span class="archive-card-links-badge" title="관련 링크 ${p.links.length}개">🔗 ${p.links.length}</span>`
-                    : '';
-                return `
-                <article class="archive-card" data-id="${p.id}">
-                    <time class="archive-date" datetime="${p.date}">${p.date}</time>
-                    <h3 class="archive-card-title">${escapeHtml(p.title)}${linksBadge}</h3>
-                </article>
-            `;
-            }).join('');
-
-        listEl.querySelectorAll('.archive-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                showPost(id);
-            });
-        });
+    function parseFrontmatter(raw) {
+        const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+        if (!match) return { body: raw, title: '', date: '', links: [] };
+        const fm = match[1];
+        const body = match[2];
+        let title = '', date = '', links = [];
+        const titleM = fm.match(/title:\s*["']?([^"'\n]+)["']?/);
+        const dateM = fm.match(/date:\s*(\d{4}-\d{2}-\d{2})/);
+        if (titleM) title = titleM[1].trim();
+        if (dateM) date = dateM[1];
+        const linksBlock = fm.match(/links:\s*\n([\s\S]*?)(?=\n[a-z]|\n---|$)/i);
+        if (linksBlock) {
+            const ls = [];
+            const block = linksBlock[1];
+            const re = /-\s*label:\s*["']?([^"'\n]+)["']?\s*\n\s*url:\s*["']([^"']+)["']/g;
+            let m;
+            while ((m = re.exec(block)) !== null) ls.push({ label: m[1].trim(), url: m[2] });
+            if (ls.length) links = ls;
+        }
+        return { body, title, date, links };
     }
 
     function escapeHtml(text) {
@@ -300,28 +296,72 @@ document.addEventListener('DOMContentLoaded', function() {
         return div.innerHTML;
     }
 
-    function showPost(id) {
-        const posts = getPosts();
-        const post = posts.find(p => p.id === id);
-        if (!post) return;
+    function getPostsForList() {
+        const fromFile = (f) => f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '').replace(/-/g, ' ');
+        const dateFromFile = (f) => (f.match(/^(\d{4}-\d{2}-\d{2})/) || [])[1] || '';
+        return manifest.map((m, i) => ({
+            id: String(i),
+            file: m.file,
+            title: m.title || fromFile(m.file),
+            date: m.date || dateFromFile(m.file),
+        })).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    }
+
+    function renderArchiveList() {
+        const posts = getPostsForList();
+        listEl.innerHTML = posts.length === 0
+            ? '<p class="archive-empty">아직 글이 없습니다. <code>_posts/</code>에 .md 파일을 추가하고 <code>archive-data.js</code>의 매니페스트에 등록해 보세요.</p>'
+            : posts.map(p => `
+                <article class="archive-card" data-id="${escapeHtml(p.id)}" data-file="${escapeHtml(p.file)}">
+                    <span class="archive-date">${escapeHtml(p.date)}</span>
+                    <h3 class="archive-card-title">${escapeHtml(p.title)}</h3>
+                </article>
+            `).join('');
+
+        listEl.querySelectorAll('.archive-card').forEach(card => {
+            card.addEventListener('click', function() {
+                showPost(this.getAttribute('data-id'), this.getAttribute('data-file'));
+            });
+        });
+    }
+
+    function showPost(id, file) {
+        const url = baseUrl + file;
         listEl.style.display = 'none';
         detailEl.style.display = 'block';
-        const linksHtml = (post.links && post.links.length > 0)
-            ? `<aside class="archive-links">
-                <h4 class="archive-links-title">관련 링크</h4>
-                <ul class="archive-links-list">
-                    ${post.links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}
-                </ul>
-            </aside>`
-            : '';
-        bodyEl.innerHTML = `
-            <header class="archive-post-header">
-                <time datetime="${post.date}">${post.date}</time>
-                <h2 class="archive-post-title">${escapeHtml(post.title)}</h2>
-            </header>
-            <div class="archive-post-content">${post.content}</div>
-            ${linksHtml}
-        `;
+        bodyEl.innerHTML = '<p class="archive-loading">로딩 중...</p>';
+        fetch(url)
+            .then(r => r.ok ? r.text() : Promise.reject(new Error('Not found')))
+            .then(raw => {
+                const { body, title, date, links } = parseFrontmatter(raw);
+                if (typeof marked !== 'undefined') {
+                    const renderer = new marked.Renderer();
+                    const origLink = renderer.link.bind(renderer);
+                    renderer.link = function(href, title, text) {
+                        const out = origLink(href, title, text);
+                        return href.startsWith('http') ? out.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ') : out;
+                    };
+                    marked.setOptions({ gfm: true, breaks: true, renderer });
+                }
+                const html = typeof marked !== 'undefined' ? marked.parse(body) : body.replace(/\n/g, '<br>');
+                const linksHtml = (links && links.length > 0)
+                    ? `<aside class="archive-links"><h4 class="archive-links-title">관련 링크</h4><ul class="archive-links-list">${links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}</ul></aside>`
+                    : '';
+                const post = getPostsForList().find(p => p.id === id);
+                const finalTitle = title || (post && post.title) || file;
+                const finalDate = date || (post && post.date) || '';
+                bodyEl.innerHTML = `
+                    <header class="archive-post-header">
+                        <time datetime="${escapeHtml(finalDate)}">${escapeHtml(finalDate)}</time>
+                        <h2 class="archive-post-title">${escapeHtml(finalTitle)}</h2>
+                    </header>
+                    <div class="archive-post-content">${html}</div>
+                    ${linksHtml}
+                `;
+            })
+            .catch(() => {
+                bodyEl.innerHTML = '<p class="archive-error">글을 불러올 수 없습니다.</p>';
+            });
     }
 
     backBtn.addEventListener('click', function() {
