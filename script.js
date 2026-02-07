@@ -392,33 +392,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 const html = typeof marked !== 'undefined' ? marked.parse(body) : body.replace(/\n/g, '<br>');
                 const post = getPostsForList().find(p => p.id === id);
                 const finalTitle = title || (post && post.title) || file;
-                const finalDate = date || (post && post.date) || '';
                 const tagsHtml = (tags && tags.length > 0) ? tags.map(t => `<span class="archive-tag">${escapeHtml(t)}</span>`).join('') : '';
-                let metaRows = [];
-                if (finalTitle) metaRows.push(`<tr><th>title</th><td>${escapeHtml(finalTitle)}</td></tr>`);
-                if (finalDate) metaRows.push(`<tr><th>last_modified_at</th><td>${escapeHtml(finalDate)}</td></tr>`);
-                if (categories) metaRows.push(`<tr><th>categories</th><td>${escapeHtml(categories)}</td></tr>`);
-                if (tagsHtml) metaRows.push(`<tr><th>tags</th><td><div class="archive-tags">${tagsHtml}</div></td></tr>`);
-                if (excerpt) metaRows.push(`<tr><th>excerpt</th><td>${escapeHtml(excerpt)}</td></tr>`);
-                const metaTable = metaRows.length ? `<table class="archive-meta-table"><tbody>${metaRows.join('')}</tbody></table>` : '';
                 let paperHtml = '';
                 if (paper) {
                     const ln = (paper.links && Object.keys(paper.links).length) ? Object.entries(paper.links).map(([k, v]) => `<a href="${escapeHtml(v)}" target="_blank" rel="noopener noreferrer">[${k.charAt(0).toUpperCase() + k.slice(1)}]</a>`).join(' ') : (links && links.length) ? links.map(l => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">[${escapeHtml(l.label)}]</a>`).join(' ') : '';
                     paperHtml = `<div class="archive-paper-info">
-                        ${paper.conference ? `<span>${escapeHtml(paper.conference)}.</span> ` : ''}
-                        ${ln ? ln + '<br>' : ''}
-                        ${paper.authors ? `Authors: ${escapeHtml(paper.authors)}<br>` : ''}
-                        ${paper.affiliation ? `Affiliation: ${escapeHtml(paper.affiliation)}<br>` : ''}
-                        ${paper.date ? escapeHtml(paper.date) : ''}
+                        ${paper.conference ? `${escapeHtml(paper.conference)}. ` : ''}
+                        ${ln || ''}
+                        ${paper.authors ? `<br>Authors: ${escapeHtml(paper.authors)}` : ''}
+                        ${paper.affiliation ? `<br>Affiliation: ${escapeHtml(paper.affiliation)}` : ''}
+                        ${paper.date ? `<br>${escapeHtml(paper.date)}` : ''}
                         ${paper.image ? `<br><img src="${escapeHtml(paper.image)}" alt="" class="archive-paper-image">` : ''}
                     </div>`;
                 } else if (links && links.length > 0) {
-                    paperHtml = `<aside class="archive-links"><h4 class="archive-links-title">관련 링크</h4><ul class="archive-links-list">${links.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a></li>`).join('')}</ul></aside>`;
+                    paperHtml = `<div class="archive-paper-info">${links.map(l => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">[${escapeHtml(l.label)}]</a>`).join(' ')}</div>`;
                 }
+                const metaSub = [date, categories, excerpt].filter(Boolean).join(' · ');
                 bodyEl.innerHTML = `
                     <header class="archive-post-header">
-                        ${metaTable}
+                        <h1 class="archive-post-title">${escapeHtml(finalTitle)}</h1>
+                        ${tagsHtml ? `<div class="archive-tags">${tagsHtml}</div>` : ''}
                         ${paperHtml}
+                        ${metaSub ? `<div class="archive-meta-sub">${escapeHtml(metaSub)}</div>` : ''}
                     </header>
                     <div class="archive-post-content">${html}</div>
                 `;
