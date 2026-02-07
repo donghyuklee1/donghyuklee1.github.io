@@ -1175,6 +1175,29 @@ body::before {
     color: #000000;
 }
 
+/* Archive 포스트 내 인라인 이미지 */
+.archive-post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.archive-post-content img.archive-inline-image {
+    max-width: min(100%, 600px);
+    cursor: default;
+}
+
+.archive-post-content .archive-image-caption {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    margin: -0.5em 0 1.5em 0;
+    font-style: italic;
+}
+
 
 /* Contact Section Styles */
 .contact-section {
@@ -1532,6 +1555,7 @@ body::before {
         white-space: nowrap;
         flex-shrink: 0;
     }
+}
 
 /* Mobile Header Optimization */
 @media (max-width: 768px) {
@@ -1916,6 +1940,14 @@ html.dark-mode body .archive-post-content code {
     background: #222 !important;
     color: #ffffff !important;
     border: 1px solid #333333 !important;
+}
+
+html.dark-mode body .archive-post-content img {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+html.dark-mode body .archive-post-content .archive-image-caption {
+    color: #999 !important;
 }
 
 html.dark-mode body .archive-post-header {
