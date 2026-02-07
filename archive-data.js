@@ -1,6 +1,6 @@
 // Archive 포스트 매니페스트 (MD 기반)
 // 새 글을 추가하려면:
-// 1. _posts/ 폴더에 YYYY-MM-DD-slug.md 파일 생성 (마크다운 + frontmatter)
+// 1. posts/ 폴더에 YYYY-MM-DD-slug.md 파일 생성 (마크다운 + frontmatter)
 // 2. 아래 ARCHIVE_POSTS_MANIFEST 배열에 항목 추가
 // 3. 포스트 이미지는 images/posts/ 폴더에 저장 후 ![](images/posts/파일명.jpg) 로 참조
 //

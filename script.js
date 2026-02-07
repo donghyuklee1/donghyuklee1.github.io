@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!listEl || !detailEl || !bodyEl || !backBtn) return;
 
     const manifest = typeof ARCHIVE_POSTS_MANIFEST !== 'undefined' ? ARCHIVE_POSTS_MANIFEST : [];
-    const baseUrl = '_posts/';
+    const baseUrl = 'posts/';
 
     function parseFrontmatter(raw) {
         const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderArchiveList() {
         const posts = getPostsForList();
         listEl.innerHTML = posts.length === 0
-            ? '<p class="archive-empty">아직 글이 없습니다. <code>_posts/</code>에 .md 파일을 추가하고 <code>archive-data.js</code>의 매니페스트에 등록해 보세요.</p>'
+            ? '<p class="archive-empty">아직 글이 없습니다. <code>posts/</code>에 .md 파일을 추가하고 <code>archive-data.js</code>의 매니페스트에 등록해 보세요.</p>'
             : posts.map(p => `
                 <article class="archive-card" data-id="${escapeHtml(p.id)}" data-file="${escapeHtml(p.file)}">
                     <span class="archive-date">${escapeHtml(p.date)}</span>

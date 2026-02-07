@@ -33,6 +33,6 @@ console.log('마크다운으로 코드도 예쁘게!');
 ---
 
 새 포스트를 추가하려면:
-1. `_posts/` 폴더에 `YYYY-MM-DD-slug.md` 형식으로 파일 생성
+1. `posts/` 폴더에 `YYYY-MM-DD-slug.md` 형식으로 파일 생성
 2. `archive-data.js`의 `ARCHIVE_POSTS_MANIFEST`에 항목 추가
 3. 사진은 `images/posts/` 폴더에 저장 후 `![](images/posts/파일명.jpg)` 형식으로 참조
