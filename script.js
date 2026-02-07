@@ -338,12 +338,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showPost(id, file) {
         const pageUrl = baseUrl + file;
-        const rawUrl = rawBase ? rawBase + file : null;
+        const cdnUrl = rawBase ? rawBase + file : null;
         listEl.style.display = 'none';
         detailEl.style.display = 'block';
         bodyEl.innerHTML = '<p class="archive-loading">로딩 중...</p>';
-        const load = (url) => fetchPost(url).catch(() => rawUrl && url === pageUrl ? fetchPost(rawUrl) : Promise.reject());
-        load(pageUrl)
+        const load = () => (cdnUrl ? fetchPost(cdnUrl) : fetchPost(pageUrl)).catch(() => cdnUrl && fetchPost(pageUrl).catch(() => Promise.reject()));
+        load()
             .then(raw => {
                 const { body, title, date, links } = parseFrontmatter(raw);
                 if (typeof marked !== 'undefined') {

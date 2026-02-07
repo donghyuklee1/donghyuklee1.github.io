@@ -13,8 +13,9 @@
 //     url: "https://..."
 // ---
 
-// 404 시 raw 파일로 폴백 (repo/branch에 맞게 수정)
-const ARCHIVE_RAW_BASE = 'https://raw.githubusercontent.com/donghyuklee1/donghyuklee1.github.io/main/posts/';
+// 마크다운 fetch URL (CORS 정상 동작, repo/branch에 맞게 수정)
+// jsDelivr CDN 사용 (raw.githubusercontent.com은 CORS 제한 있음)
+const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.github.io@main/posts/';
 
 const ARCHIVE_POSTS_MANIFEST = [
   { file: '2025-02-07-sample-post.md' },
