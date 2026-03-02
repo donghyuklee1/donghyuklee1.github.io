@@ -175,7 +175,7 @@ body::before {
 .profile-image {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 0;
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1937,7 +1937,7 @@ html.dark-mode .home-news-text {
     }
 
     .profile-image {
-        border-radius: 8px;
+        border-radius: 0;
     }
     
     .profile-social-icons {
