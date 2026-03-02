@@ -168,7 +168,7 @@ body::before {
 
 .profile-image-container {
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
     margin-bottom: 20px;
 }
 
@@ -252,6 +252,57 @@ body::before {
 
 .profile-email i {
     margin-right: 6px;
+}
+
+/* Home News Section */
+.home-news-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
+.home-news-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+html.dark-mode .home-news-title {
+    color: #e0e0e0;
+}
+
+.home-news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.home-news-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.home-news-date {
+    flex-shrink: 0;
+    color: #666;
+    min-width: 4.5em;
+}
+
+html.dark-mode .home-news-date {
+    color: #aaa;
+}
+
+.home-news-text {
+    color: #333;
+}
+
+html.dark-mode .home-news-text {
+    color: #e0e0e0;
 }
 
 /* Right Column Content */
@@ -1881,7 +1932,7 @@ body::before {
     
     /* Profile Image Mobile Optimization */
     .profile-image-container {
-        max-width: 240px;
+        max-width: 180px;
         margin-bottom: 24px;
     }
 
@@ -2439,7 +2490,7 @@ html.dark-mode body .footer .kaist-logo {
     }
 
     .profile-image-container {
-        max-width: 200px;
+        max-width: 160px;
     }
 
     .photo-grid {
