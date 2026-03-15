@@ -1,6 +1,6 @@
 ---
 title: "[논문리뷰] Fourier-based three-dimensional multistage transformer for aberration correction in multicellular specimens (AOViFT, Nature Methods 2025)"
-last_modified_at: 2025-03-16
+last_modified_at: 2025-03-02
 categories: 논문리뷰
 tags:
   - Adaptive Optics
