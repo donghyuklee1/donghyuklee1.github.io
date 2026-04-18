@@ -180,11 +180,6 @@ body::before {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-image:hover {
-    transform: scale(1.01);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-}
-
 .profile-social-icons {
     display: flex;
     justify-content: center;
@@ -1937,7 +1932,7 @@ html.dark-mode .home-news-text {
     }
 
     .profile-image {
-        border-radius: 0;
+        border-radius: 50%;
     }
     
     .profile-social-icons {
