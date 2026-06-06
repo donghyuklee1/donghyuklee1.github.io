@@ -220,11 +220,14 @@
         <!-- Insights Section -->
         <section id="insights" class="insights-section">
             <h2 class="section-title">Paper List</h2>
-            <p class="section-intro">I'm sharing some impressive papers I've read recently. (Last updated: September 2025)</p>
+            <p class="section-intro">I'm sharing some impressive papers I've read recently. (Last updated: June 2026)</p>
             
             <!-- Category Filter -->
             <div class="category-filter">
                 <button class="filter-btn active" data-category="all">All Papers</button>
+                <button class="filter-btn" data-category="computational-microscopy">Computational Microscopy</button>
+                <button class="filter-btn" data-category="computational-imaging">Computational Imaging</button>
+                <button class="filter-btn" data-category="bioimaging">Bioimaging</button>
                 <button class="filter-btn" data-category="machine-learning">Machine Learning</button>
                 <button class="filter-btn" data-category="computer-vision">Computer Vision</button>
                 <button class="filter-btn" data-category="nlp">NLP</button>
@@ -232,9 +235,108 @@
             </div>
 
             <div class="papers-list">
+                <!-- Computational microscopy and imaging papers -->
+                <div class="paper-item" data-category="computational-microscopy">
+                    <div class="paper-number">01</div>
+                    <div class="paper-content">
+                        <a href="https://www.mdpi.com/1424-8220/24/7/2053" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category microscopy">Computational Microscopy</span>
+                                <span class="paper-date">Mar 2024</span>
+                            </div>
+                            <h3 class="paper-title">Distortion Correction and Denoising of Light Sheet Fluorescence Images</h3>
+                            <p class="paper-description">A practical LSFM preprocessing pipeline that combines deblurring, contrast enhancement, denoising, and axial distortion correction for cleaner 3D reconstruction.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="computational-imaging">
+                    <div class="paper-number">02</div>
+                    <div class="paper-content">
+                        <a href="https://www.science.org/doi/10.1126/sciadv.adg4671" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category imaging">Computational Imaging</span>
+                                <span class="paper-date">Jun 2023</span>
+                            </div>
+                            <h3 class="paper-title">NeuWS: Neural Wavefront Shaping for Guidestar-Free Imaging through Static and Dynamic Scattering Media</h3>
+                            <p class="paper-description">A neural wavefront-shaping method that reconstructs diffraction-limited images through strong scattering without guidestars or point scanning.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="computational-microscopy">
+                    <div class="paper-number">03</div>
+                    <div class="paper-content">
+                        <a href="https://opg.optica.org/boe/abstract.cfm?URI=boe-13-11-5900" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category microscopy">Computational Microscopy</span>
+                                <span class="paper-date">Nov 2022</span>
+                            </div>
+                            <h3 class="paper-title">Three-dimensional Bi-functional Refractive Index and Fluorescence Microscopy (BRIEF)</h3>
+                            <p class="paper-description">A multimodal microscopy approach that jointly recovers 3D fluorescence and refractive index information to correct scattering in fluorescence images.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="computational-imaging">
+                    <div class="paper-number">04</div>
+                    <div class="paper-content">
+                        <a href="https://openaccess.thecvf.com/content/ICCV2025/html/He_Recover_Biological_Structure_from_Sparse-View_Diffraction_Images_with_Neural_Volumetric_ICCV_2025_paper.html" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category imaging">Computational Imaging</span>
+                                <span class="paper-date">Oct 2025</span>
+                            </div>
+                            <h3 class="paper-title">Recover Biological Structure from Sparse-View Diffraction Images with Neural Volumetric Prior</h3>
+                            <p class="paper-description">A physics-guided neural volumetric prior for reconstructing biological 3D structure from sparse-view diffraction microscopy measurements.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="bioimaging">
+                    <div class="paper-number">05</div>
+                    <div class="paper-content">
+                        <a href="https://elifesciences.org/articles/91979" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category bio">Bioimaging</span>
+                                <span class="paper-date">Jun 2025</span>
+                            </div>
+                            <h3 class="paper-title">Expansion-assisted Selective Plane Illumination Microscopy for Nanoscale Imaging of Centimeter-scale Tissues</h3>
+                            <p class="paper-description">ExA-SPIM combines tissue expansion, clearing, and large-field light-sheet imaging for fast nanoscale visualization across centimeter-scale samples.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="computational-microscopy">
+                    <div class="paper-number">06</div>
+                    <div class="paper-content">
+                        <a href="https://www.nature.com/articles/s41592-026-03082-1" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category microscopy">Computational Microscopy</span>
+                                <span class="paper-date">May 2026</span>
+                            </div>
+                            <h3 class="paper-title">MicroSplit: Semantic Unmixing of Fluorescent Microscopy Data</h3>
+                            <p class="paper-description">A deep learning-based computational multiplexing method that separates superimposed fluorescent structures into denoised semantic channels.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="paper-item" data-category="computer-vision">
+                    <div class="paper-number">07</div>
+                    <div class="paper-content">
+                        <a href="https://arxiv.org/abs/2403.06977" target="_blank" class="paper-link">
+                            <div class="paper-header">
+                                <span class="paper-category cv">Computer Vision</span>
+                                <span class="paper-date">Mar 2024</span>
+                            </div>
+                            <h3 class="paper-title">VideoMamba: State Space Model for Efficient Video Understanding</h3>
+                            <p class="paper-description">An efficient video understanding backbone that adapts state space models for scalable long-range spatiotemporal representation learning.</p>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Machine Learning Papers -->
                 <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">01</div>
+                    <div class="paper-number">08</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.07295" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -248,7 +350,7 @@
                 </div>
 
                 <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">02</div>
+                    <div class="paper-number">09</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.00997" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -262,7 +364,7 @@
                 </div>
 
                 <div class="paper-item" data-category="nlp">
-                    <div class="paper-number">03</div>
+                    <div class="paper-number">10</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.14476" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -276,7 +378,7 @@
                 </div>
 
                 <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">04</div>
+                    <div class="paper-number">11</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.13311" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -290,7 +392,7 @@
                 </div>
 
                 <div class="paper-item" data-category="robotics">
-                    <div class="paper-number">05</div>
+                    <div class="paper-number">12</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.10414" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -304,7 +406,7 @@
                 </div>
 
                 <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">06</div>
+                    <div class="paper-number">13</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.10446" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -318,7 +420,7 @@
                 </div>
 
                 <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">07</div>
+                    <div class="paper-number">14</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2508.10922" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -332,7 +434,7 @@
                 </div>
 
                 <div class="paper-item" data-category="nlp">
-                    <div class="paper-number">08</div>
+                    <div class="paper-number">15</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2509.13310" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -346,7 +448,7 @@
                 </div>
 
                 <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">09</div>
+                    <div class="paper-number">16</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2501.18914" target="_blank" class="paper-link">
                             <div class="paper-header">
@@ -360,7 +462,7 @@
                 </div>
 
                 <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">10</div>
+                    <div class="paper-number">17</div>
                     <div class="paper-content">
                         <a href="https://arxiv.org/abs/2508.05004" target="_blank" class="paper-link">
                             <div class="paper-header">

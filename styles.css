@@ -971,6 +971,24 @@ html.dark-mode .home-news-text {
     border: 1px solid #444444;
 }
 
+.paper-category.microscopy {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.paper-category.imaging {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #2b2b2b;
+}
+
+.paper-category.bio {
+    background-color: #666666;
+    color: #ffffff;
+    border: 1px solid #666666;
+}
+
 .paper-date {
     font-size: 0.85rem;
     color: #777777;
