@@ -18,7 +18,6 @@
 const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.github.io@main/posts/';
 
 const ARCHIVE_POSTS_MANIFEST = [
-  { file: '2025-03-16-adaptive-optics-microscopy-boe-review.md' },
   // 새 포스트: { file: 'YYYY-MM-DD-slug.md' }
   // title, date는 .md frontmatter에서 자동 파싱되며, 여기서 지정하면 우선 사용
 ];
