@@ -30,7 +30,7 @@ const ARCHIVE_POSTS_MANIFEST = [
   },
   { 
     file: '2026-06-21-starting-the-archiving.md', 
-    title: 'Starting the archiving..', 
+    title: 'Starting the archiving', 
     date: '2026-06-21',
     categories: 'Talk, Daily',
     excerpt: 'Started archiving my projects and research here.',
