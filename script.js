@@ -467,6 +467,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     </header>
                     <div class="archive-post-content">${html}</div>
                 `;
+                if (typeof MathJax !== 'undefined') {
+                    MathJax.typesetPromise([bodyEl]).catch(function (err) {
+                        console.error('MathJax rendering failed: ' + err.message);
+                    });
+                }
             })
             .catch(() => {
                 bodyEl.innerHTML = '<p class="archive-error">글을 불러올 수 없습니다.</p>';
