@@ -22,7 +22,7 @@ const ARCHIVE_RAW_BASE = ''; // 로컬 테스트를 위해 비워둡니다. (Git
 const ARCHIVE_POSTS_MANIFEST = [
   { 
     file: '2026-06-22-vit-inr-3d-correction.md', 
-    title: 'ViT-INR based 3D abb. correction', 
+    title: '26S EE.49904 Final Project', 
     date: '2026-06-22',
     categories: 'Project',
     excerpt: 'Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers',
