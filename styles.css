@@ -740,7 +740,7 @@ html.dark-mode .home-news-text {
 .photo-item {
     background-color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -758,7 +758,7 @@ html.dark-mode .home-news-text {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    border-radius: 8px;
+    border-radius: 0;
 }
 
 .photo-item:hover {
@@ -1775,7 +1775,7 @@ html.dark-mode .archive-card-divider {
     }
 
     .photo-item {
-        border-radius: 8px;
+        border-radius: 0;
         overflow: hidden;
     }
 
@@ -2576,7 +2576,7 @@ html.dark-mode body .footer .kaist-logo {
     }
 
     .photo-item {
-        border-radius: 4px;
+        border-radius: 0;
     }
 
     .gallery-image {
@@ -2650,5 +2650,26 @@ html.dark-mode body .footer .kaist-logo {
     .contact-section,
     .cv-section {
         padding-top: 20px;
+    }
+}
+
+/* Mobile specific styling for Archive */
+@media (max-width: 768px) {
+    .archive-section {
+        padding: 40px 20px 60px 20px;
+    }
+    
+    .archive-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .archive-card {
+        padding: 20px;
+        min-height: auto;
+    }
+    
+    .archive-card-title {
+        font-size: 1.25rem;
     }
 }
