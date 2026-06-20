@@ -1,5 +1,5 @@
 ---
-title: "ViT-INR based 3D abb. correction"
+title: "26S EE.49904 Final Project"
 date: 2026-06-22
 categories: "Project"
 excerpt: "Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers"
@@ -26,7 +26,7 @@ $$x = N \left(\text{PoissonGaus} \left(G * (L \cdot v(f, c^{\text{obs}})) + b\ri
 
 ## 3. Model Architecture
 The network conceptually integrates a global context pathway for understanding macroscopic distortion via a Vision Transformer and a continuous local reconstruction pathway via a Multi-Head Implicit Neural Representation.
-<img width="741" height="249" alt="image" src="https://github.com/user-attachments/assets/c27e6fc9-feab-4f89-9fc1-e14aee0078de" />
+<img width="1460" height="474" alt="image" src="https://github.com/user-attachments/assets/7e1518c2-d4af-46d8-a457-a54f1ebab689" />
 
 ### 3.1 Vision Transformer (ViT) Encoder
 The distorted stack is formulated as a sequence of axial slices along the z-axis:
@@ -66,16 +66,15 @@ $$L_{\text{phys}} = \|s \cdot D(\hat{y}, f) - x\|_{1, w}$$
 
 ## 5. Results and Discussion
 I conducted a comprehensive evaluation against three baseline methodologies using 4,092 fully degraded LSFM volumetric stacks. 
+<img width="1439" height="348" alt="image" src="https://github.com/user-attachments/assets/d3312892-55be-448d-b8fe-229d16161023" />
 
 My proposed framework demonstrates unprecedented geometric reconstruction, securing the lowest axial ratio error (0.0449 ± 0.0246) while maintaining competitive global restoration scores. 
-<img width="629" height="122" alt="image" src="https://github.com/user-attachments/assets/bddd37fa-3244-4447-8c6f-4500aa0cf9e2" />
+<img width="1235" height="673" alt="image" src="https://github.com/user-attachments/assets/d083baa7-e420-432e-9436-3649f545c43c" />
 
 This confirms that the explicitly disentangled Multi-Head INR decoder, guided heavily by the physics-informed forward operator ($L_{phys}$), successfully reconstructs the true continuous spherical boundaries of the calibration samples. Rather than blindly interpolating discrete voxel intensities, the coordinate-based implicit fields map spatial coordinates to structural densities, inherently acting as a powerful geometrical prior against the ill-posed nature of extreme axial smearing.
-<img width="666" height="372" alt="image" src="https://github.com/user-attachments/assets/1505bcfe-ec82-44e0-9ba5-36211030a428" />
-
+<img width="1355" height="413" alt="image" src="https://github.com/user-attachments/assets/c738dfec-4d44-4e6e-aade-0fd42016257c" />
 
 The 16/64 z-stack mosaic explicitly verifies that my coordinate-based model successfully decouples structural localization from geometric warping, preserving both localized brightness amplitudes and sharp isotropic boundaries across the entire field of view—an outcome severely blurred by the spatial discretization constraints of standard CNNs.
-<img width="739" height="211" alt="image" src="https://github.com/user-attachments/assets/d22baa07-6f51-4126-b731-d66acee879a2" />
 
 
 ## 6. Limitations and Future Work
