@@ -17,7 +17,7 @@
 
 // 마크다운 fetch URL (CORS 정상 동작, repo/branch에 맞게 수정)
 // jsDelivr CDN 사용 (raw.githubusercontent.com은 CORS 제한 있음)
-const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.github.io@main/posts/';
+const ARCHIVE_RAW_BASE = ''; // 로컬 테스트를 위해 비워둡니다. (GitHub 배포 전에는 jsdelivr에서 파일을 찾을 수 없습니다)
 
 const ARCHIVE_POSTS_MANIFEST = [
   { 
@@ -26,7 +26,7 @@ const ARCHIVE_POSTS_MANIFEST = [
     date: '2026-06-22',
     categories: 'Project',
     excerpt: 'Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers',
-    author: 'Donghyuk Lee, Iksung Kang(adv.)'
+    author: 'Donghyuk Lee'
   },
   { 
     file: '2026-06-21-starting-the-archiving.md', 

@@ -739,35 +739,18 @@ html.dark-mode .home-news-text {
 
 .photo-item {
     background-color: #ffffff;
-    border: none;
+    border: 3px solid #000;
     border-radius: 0;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.photo-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid #000000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    border-radius: 0;
+    box-shadow: 8px 8px 0px #000;
+    cursor: pointer;
 }
 
 .photo-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-}
-
-.photo-item:hover::after {
-    opacity: 1;
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #000;
 }
 
 .gallery-image {
@@ -2412,6 +2395,11 @@ html.dark-mode body .link:hover {
 
 html.dark-mode body .photo-item {
     background-color: #1a1a1a !important;
+    border-color: #444;
+    box-shadow: 8px 8px 0px #444;
+}
+html.dark-mode body .photo-item:hover {
+    box-shadow: 12px 12px 0px #444;
 }
 
 html.dark-mode body .photo-title,
@@ -2469,9 +2457,6 @@ html.dark-mode body .paper-item:hover {
     background-color: #2a2a2a !important;
 }
 
-html.dark-mode body .photo-item::after {
-    border-color: #ffffff !important;
-}
 
 html.dark-mode body .photo-placeholder {
     background-color: #1a1a1a;
