@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </header>
                     <div class="archive-post-content">${html}</div>
                 `;
-                if (typeof MathJax !== 'undefined') {
+                if (typeof MathJax !== 'undefined' && typeof MathJax.typesetPromise === 'function') {
                     MathJax.typesetPromise([bodyEl]).catch(function (err) {
                         console.error('MathJax rendering failed: ' + err.message);
                     });
