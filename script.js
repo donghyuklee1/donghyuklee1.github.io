@@ -437,7 +437,27 @@ document.addEventListener('DOMContentLoaded', function() {
                         return (typeof h === 'string' && h.startsWith('http')) ? out.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ') : out;
                     };
                     marked.setOptions({ gfm: true, breaks: true, renderer });
-                    html = marked.parse(body);
+
+                    // Protect LaTeX math blocks from marked.js mangling
+                    const mathPlaceholders = [];
+                    let safeBody = body;
+                    // Extract display math $$...$$ first (greedy across lines)
+                    safeBody = safeBody.replace(/\$\$([\s\S]*?)\$\$/g, function(match) {
+                        mathPlaceholders.push(match);
+                        return '%%MATH_BLOCK_' + (mathPlaceholders.length - 1) + '%%';
+                    });
+                    // Extract inline math $...$  (non-greedy, single line)
+                    safeBody = safeBody.replace(/\$([^\$\n]+?)\$/g, function(match) {
+                        mathPlaceholders.push(match);
+                        return '%%MATH_BLOCK_' + (mathPlaceholders.length - 1) + '%%';
+                    });
+
+                    html = marked.parse(safeBody);
+
+                    // Restore LaTeX blocks after markdown parsing
+                    mathPlaceholders.forEach(function(original, i) {
+                        html = html.replace('%%MATH_BLOCK_' + i + '%%', original);
+                    });
                 } else {
                     html = body.replace(/\n/g, '<br>');
                 }

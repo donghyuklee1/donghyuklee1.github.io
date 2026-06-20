@@ -1450,6 +1450,18 @@ html.dark-mode .archive-card-divider {
     font-style: italic;
 }
 
+/* MathJax display math styling */
+.archive-post-content .MathJax {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.archive-post-content mjx-container[jax="CHTML"][display="true"] {
+    margin: 1.2em 0 !important;
+    padding: 0.5em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
 /* Archive 카드: 논문/링크 배지 */
 .archive-card-links-badge {
     display: inline-flex;
