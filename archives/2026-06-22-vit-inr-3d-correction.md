@@ -10,6 +10,7 @@ paper:
   links:
     github: "https://github.com/donghyuklee1/3D-LSFM-Distortion-Correction"
 ---
+*Please check the GitHub repository for detailed formulas and code*
 
 ## 1. Introduction
 Light-Sheet Fluorescence Microscopy (LSFM) has become an indispensable tool for rapid, high-resolution volumetric imaging of biological samples. However, LSFM inherently suffers from sample-induced optical aberrations and scattering, which severely degrade the axial resolution and produce elongation artifacts.
