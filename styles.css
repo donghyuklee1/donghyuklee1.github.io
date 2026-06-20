@@ -1450,17 +1450,36 @@ html.dark-mode .archive-card-divider {
     font-style: italic;
 }
 
-/* MathJax display math styling */
-.archive-post-content .MathJax {
+/* MathJax rendering isolation - prevent page CSS from breaking math layout */
+.archive-post-content mjx-container {
     overflow-x: auto;
     overflow-y: hidden;
+    line-height: normal !important;
+    font-size: inherit;
 }
 
 .archive-post-content mjx-container[jax="CHTML"][display="true"] {
-    margin: 1.2em 0 !important;
+    display: block !important;
+    margin: 1.5em auto !important;
     padding: 0.5em 0;
     overflow-x: auto;
     overflow-y: hidden;
+    text-align: center;
+}
+
+/* Reset line-height inside MathJax to prevent accent/hat misalignment */
+.archive-post-content mjx-container * {
+    line-height: normal !important;
+}
+
+.archive-post-content mjx-math {
+    line-height: 0 !important;
+}
+
+.archive-post-content mjx-mover,
+.archive-post-content mjx-munder,
+.archive-post-content mjx-munderover {
+    line-height: normal !important;
 }
 /* Archive 카드: 논문/링크 배지 */
 .archive-card-links-badge {
