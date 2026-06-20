@@ -210,8 +210,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 300);
                 }
             });
+            });
         });
     });
+
+    // Photo modal functionality
+    const photoModal = document.getElementById('photo-modal');
+    const photoModalImg = document.getElementById('photo-modal-img');
+    const photoModalCaption = document.getElementById('photo-modal-caption');
+    const photoModalClose = document.getElementById('photo-modal-close');
+
+    if (photoModal && photoModalImg && photoModalCaption && photoModalClose) {
+        document.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('.gallery-image');
+                const caption = this.querySelector('.photo-caption');
+                
+                if (img) photoModalImg.src = img.src;
+                if (caption) photoModalCaption.innerHTML = caption.innerHTML;
+                
+                photoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        photoModalClose.addEventListener('click', function() {
+            photoModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        photoModal.addEventListener('click', function(e) {
+            if (e.target === photoModal) {
+                photoModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
 });
 
 // Dark mode toggle functionality
