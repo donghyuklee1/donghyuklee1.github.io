@@ -337,24 +337,41 @@ document.addEventListener('DOMContentLoaded', function() {
     function getPostsForList() {
         const fromFile = (f) => f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '').replace(/-/g, ' ');
         const dateFromFile = (f) => (f.match(/^(\d{4}-\d{2}-\d{2})/) || [])[1] || '';
-        return manifest.map((m, i) => ({
-            id: String(i),
-            file: m.file,
-            title: m.title || fromFile(m.file),
-            date: m.date || dateFromFile(m.file),
-        })).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        return manifest.map((m, i) => {
+            const date = m.date || dateFromFile(m.file);
+            const formattedDate = date ? new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+            return {
+                id: String(i),
+                file: m.file,
+                title: m.title || fromFile(m.file),
+                date: formattedDate,
+                rawDate: date,
+                categories: m.categories || 'Uncategorized',
+                excerpt: m.excerpt || '',
+                author: m.author || 'Theme Admin'
+            };
+        }).sort((a, b) => (b.rawDate || '').localeCompare(a.rawDate || ''));
     }
 
     function renderArchiveList() {
         const posts = getPostsForList();
         listEl.innerHTML = posts.length === 0
             ? '<p class="archive-empty">Not yet! 👾</p>'
-            : posts.map(p => `
+            : posts.map(p => {
+                const cats = p.categories.split(',').map(c => `<span class="archive-card-cat">${escapeHtml(c.trim())}</span>`).join('');
+                return `
                 <article class="archive-card" data-id="${escapeHtml(p.id)}" data-file="${escapeHtml(p.file)}">
-                    <span class="archive-date">${escapeHtml(p.date)}</span>
+                    <div class="archive-card-cat-container">${cats}</div>
                     <h3 class="archive-card-title">${escapeHtml(p.title)}</h3>
+                    <p class="archive-card-excerpt">${escapeHtml(p.excerpt)}</p>
+                    <hr class="archive-card-divider">
+                    <div class="archive-card-meta">
+                        <span><i class="fas fa-feather-alt"></i> ${escapeHtml(p.author)}</span>
+                        <span>&bull;</span>
+                        <span><i class="far fa-calendar-alt"></i> ${escapeHtml(p.date)}</span>
+                    </div>
                 </article>
-            `).join('');
+            `}).join('');
 
         listEl.querySelectorAll('.archive-card').forEach(card => {
             card.addEventListener('click', function() {

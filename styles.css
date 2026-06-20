@@ -1071,7 +1071,7 @@ html.dark-mode .home-news-text {
     display: none;
     background-color: #ffffff;
     border-radius: 0;
-    max-width: 720px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1088,6 +1088,9 @@ html.dark-mode .home-news-text {
 
 .archive-list {
     margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
 }
 
 .archive-empty {
@@ -1096,6 +1099,7 @@ html.dark-mode .home-news-text {
     margin-top: 40px;
     text-align: center;
     font-style: italic;
+    grid-column: 1 / -1;
 }
 
 .archive-empty code {
@@ -1108,43 +1112,103 @@ html.dark-mode .home-news-text {
 
 .archive-card {
     display: flex;
-    align-items: baseline;
-    gap: 24px;
-    padding: 20px 0;
-    border-bottom: 1px solid #e8e8e8;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background-color: #fff;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     color: inherit;
     position: relative;
+    min-height: 280px;
 }
 
 .archive-card:hover {
-    border-bottom-color: #000;
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #000;
 }
 
-.archive-date {
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    color: #888;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    font-family: 'Monaco', 'Courier New', monospace;
-    min-width: 90px;
+.archive-card-cat-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.archive-card-cat {
+    background-color: #d32f2f;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
 }
 
 .archive-card-title {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
     margin: 0;
-    letter-spacing: -0.01em;
-    line-height: 1.5;
+    line-height: 1.3;
     transition: color 0.2s ease;
 }
 
-.archive-card:hover .archive-card-title {
+.archive-card-excerpt {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.archive-card-divider {
+    border: none;
+    border-top: 1px dashed #999;
+    margin: auto 0 0 0;
+    width: 100%;
+}
+
+.archive-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
     color: #000;
+    font-weight: 500;
+}
+
+.archive-card-meta i {
+    margin-right: 4px;
+}
+
+/* Dark mode support */
+html.dark-mode .archive-section {
+    background-color: transparent;
+}
+html.dark-mode .archive-card {
+    background-color: #1a1a1a;
+    border-color: #444;
+    box-shadow: 8px 8px 0px #444;
+    color: #e0e0e0;
+}
+html.dark-mode .archive-card:hover {
+    box-shadow: 12px 12px 0px #444;
+}
+html.dark-mode .archive-card-title {
+    color: #fff;
+}
+html.dark-mode .archive-card-excerpt {
+    color: #ccc;
+}
+html.dark-mode .archive-card-meta {
+    color: #fff;
+}
+html.dark-mode .archive-card-divider {
+    border-top-color: #555;
 }
 
 .archive-loading,

@@ -11,6 +11,8 @@
 // links:  # 선택
 //   - label: "링크 텍스트"
 //     url: "https://..."
+// categories: "Category"
+// excerpt: "Brief description..."
 // ---
 
 // 마크다운 fetch URL (CORS 정상 동작, repo/branch에 맞게 수정)
@@ -18,6 +20,52 @@
 const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.github.io@main/posts/';
 
 const ARCHIVE_POSTS_MANIFEST = [
-  // 새 포스트: { file: 'YYYY-MM-DD-slug.md' }
-  // title, date는 .md frontmatter에서 자동 파싱되며, 여기서 지정하면 우선 사용
+  { 
+    file: '2026-06-20-worth-a-thousand-words.md', 
+    title: 'Worth A Thousand Words', 
+    date: '2008-10-17',
+    categories: 'Uncategorized',
+    excerpt: 'Boat.',
+    author: 'Theme Admin'
+  },
+  { 
+    file: '2026-06-20-elements.md', 
+    title: 'Elements', 
+    date: '2008-09-05',
+    categories: 'Uncategorized',
+    excerpt: 'The purpose of this HTML is ...',
+    author: 'Theme Admin'
+  },
+  { 
+    file: '2026-06-20-more-tags.md', 
+    title: 'More Tags', 
+    date: '2008-06-21',
+    categories: 'Uncategorized',
+    excerpt: 'More of these posts need tags.',
+    author: 'Theme Admin'
+  },
+  { 
+    file: '2026-06-20-html.md', 
+    title: 'HTML', 
+    date: '2008-06-21',
+    categories: 'Uncategorized',
+    excerpt: 'What HTML tags would you like ...',
+    author: 'Theme Admin'
+  },
+  { 
+    file: '2026-06-20-links.md', 
+    title: 'Links', 
+    date: '2008-06-20',
+    categories: 'Uncategorized',
+    excerpt: 'A few well known WordPress links: ...',
+    author: 'Theme Admin'
+  },
+  { 
+    file: '2026-06-20-category-hierarchy.md', 
+    title: 'Category Hierarchy', 
+    date: '2008-06-20',
+    categories: 'First Child Category, One Grandchild Category, Parent, Second Child Category',
+    excerpt: 'This post has 4 categories, part ...',
+    author: 'Theme Admin'
+  }
 ];
