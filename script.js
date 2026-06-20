@@ -455,8 +455,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     html = marked.parse(safeBody);
 
                     // Restore LaTeX blocks after markdown parsing
+                    // IMPORTANT: Use function form to avoid $ special chars in String.replace
                     mathPlaceholders.forEach(function(original, i) {
-                        html = html.replace('%%MATH_BLOCK_' + i + '%%', original);
+                        html = html.replace('%%MATH_BLOCK_' + i + '%%', function() { return original; });
                     });
                 } else {
                     html = body.replace(/\n/g, '<br>');
