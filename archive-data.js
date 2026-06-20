@@ -21,19 +21,19 @@ const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.
 
 const ARCHIVE_POSTS_MANIFEST = [
   { 
-    file: '2026-06-20-worth-a-thousand-words.md', 
+    file: '2026-06-22-vit-inr-3d-correction.md', 
     title: 'ViT-INR based 3D abb. correction', 
     date: '2026-06-22',
     categories: 'Project',
-    excerpt: 'Boat.',
-    author: 'Donghyuk Lee', 'Iksung Kang(adv.)'
+    excerpt: 'Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers',
+    author: 'Donghyuk Lee, Iksung Kang(adv.)'
   },
   { 
-    file: '2026-06-20-worth-a-thousand-words.md', 
+    file: '2026-06-21-starting-the-archiving.md', 
     title: 'Starting the archiving..', 
     date: '2026-06-21',
-    categories: 'Talk', 'Daily',
-    excerpt: 'Boat.',
+    categories: 'Talk, Daily',
+    excerpt: 'Started archiving my projects and research here.',
     author: 'Donghyuk Lee'
   }
 ];
