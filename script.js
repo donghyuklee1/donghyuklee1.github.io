@@ -429,6 +429,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 const { body, title, date, links, tags, categories, excerpt, paper } = parseFrontmatter(raw);
                 let html = '';
                 if (typeof marked !== 'undefined') {
+                    // Use marked.js Extension API to protect LaTeX from markdown parsing.
+                    // Extensions tokenize BEFORE markdown, so LaTeX is never mangled.
+                    const mathBlockExt = {
+                        name: 'mathBlock',
+                        level: 'block',
+                        start: function(src) { return src.indexOf('$$'); },
+                        tokenizer: function(src) {
+                            const match = src.match(/^\$\$([\s\S]*?)\$\$/);
+                            if (match) {
+                                return { type: 'mathBlock', raw: match[0], text: match[1] };
+                            }
+                        },
+                        renderer: function(token) {
+                            return '<div class="math-display">$$' + token.text + '$$</div>';
+                        }
+                    };
+                    const mathInlineExt = {
+                        name: 'mathInline',
+                        level: 'inline',
+                        start: function(src) { return src.indexOf('$'); },
+                        tokenizer: function(src) {
+                            const match = src.match(/^\$([^\$\n]+?)\$/);
+                            if (match) {
+                                return { type: 'mathInline', raw: match[0], text: match[1] };
+                            }
+                        },
+                        renderer: function(token) {
+                            return '$' + token.text + '$';
+                        }
+                    };
+
+                    const instance = new marked.Marked();
                     const renderer = new marked.Renderer();
                     const origLink = renderer.link.bind(renderer);
                     renderer.link = function(token) {
@@ -436,29 +468,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         const h = (typeof token === 'object') ? token.href : token;
                         return (typeof h === 'string' && h.startsWith('http')) ? out.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ') : out;
                     };
-                    marked.setOptions({ gfm: true, breaks: true, renderer });
-
-                    // Protect LaTeX math blocks from marked.js mangling
-                    const mathPlaceholders = [];
-                    let safeBody = body;
-                    // Extract display math $$...$$ first (greedy across lines)
-                    safeBody = safeBody.replace(/\$\$([\s\S]*?)\$\$/g, function(match) {
-                        mathPlaceholders.push(match);
-                        return '%%MATH_BLOCK_' + (mathPlaceholders.length - 1) + '%%';
-                    });
-                    // Extract inline math $...$  (non-greedy, single line)
-                    safeBody = safeBody.replace(/\$([^\$\n]+?)\$/g, function(match) {
-                        mathPlaceholders.push(match);
-                        return '%%MATH_BLOCK_' + (mathPlaceholders.length - 1) + '%%';
-                    });
-
-                    html = marked.parse(safeBody);
-
-                    // Restore LaTeX blocks after markdown parsing
-                    // IMPORTANT: Use function form to avoid $ special chars in String.replace
-                    mathPlaceholders.forEach(function(original, i) {
-                        html = html.replace('%%MATH_BLOCK_' + i + '%%', function() { return original; });
-                    });
+                    instance.use({ extensions: [mathBlockExt, mathInlineExt] });
+                    instance.setOptions({ gfm: true, breaks: true, renderer });
+                    html = instance.parse(body);
                 } else {
                     html = body.replace(/\n/g, '<br>');
                 }
