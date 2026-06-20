@@ -11,12 +11,6 @@ paper:
     github: "https://github.com/donghyuklee1/3D-LSFM-Distortion-Correction"
 ---
 
-# Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers
-
-**Donghyuk Lee (Adviser: Iksung Kang)**  
-[GitHub Repository](https://github.com/donghyuklee1/3D-LSFM-Distortion-Correction)  
-*EE.49904 Computational Imaging (June 12, 2026)*
-
 ## 1. Introduction
 Light-Sheet Fluorescence Microscopy (LSFM) has become an indispensable tool for rapid, high-resolution volumetric imaging of biological samples. However, LSFM inherently suffers from sample-induced optical aberrations and scattering, which severely degrade the axial resolution and produce elongation artifacts.
 
@@ -32,6 +26,7 @@ $$x = N \left(\text{PoissonGaus} \left(G * (L \cdot v(f, c^{\text{obs}})) + b\ri
 
 ## 3. Model Architecture
 The network conceptually integrates a global context pathway for understanding macroscopic distortion via a Vision Transformer and a continuous local reconstruction pathway via a Multi-Head Implicit Neural Representation.
+<img width="741" height="249" alt="image" src="https://github.com/user-attachments/assets/c27e6fc9-feab-4f89-9fc1-e14aee0078de" />
 
 ### 3.1 Vision Transformer (ViT) Encoder
 The distorted stack is formulated as a sequence of axial slices along the z-axis:
@@ -72,9 +67,16 @@ $$L_{\text{phys}} = \|s \cdot D(\hat{y}, f) - x\|_{1, w}$$
 ## 5. Results and Discussion
 I conducted a comprehensive evaluation against three baseline methodologies using 4,092 fully degraded LSFM volumetric stacks. 
 
-My proposed framework demonstrates unprecedented geometric reconstruction, securing the lowest axial ratio error (0.0449 ± 0.0246) while maintaining competitive global restoration scores. This confirms that the explicitly disentangled Multi-Head INR decoder, guided heavily by the physics-informed forward operator ($L_{phys}$), successfully reconstructs the true continuous spherical boundaries of the calibration samples. Rather than blindly interpolating discrete voxel intensities, the coordinate-based implicit fields map spatial coordinates to structural densities, inherently acting as a powerful geometrical prior against the ill-posed nature of extreme axial smearing.
+My proposed framework demonstrates unprecedented geometric reconstruction, securing the lowest axial ratio error (0.0449 ± 0.0246) while maintaining competitive global restoration scores. 
+<img width="629" height="122" alt="image" src="https://github.com/user-attachments/assets/bddd37fa-3244-4447-8c6f-4500aa0cf9e2" />
+
+This confirms that the explicitly disentangled Multi-Head INR decoder, guided heavily by the physics-informed forward operator ($L_{phys}$), successfully reconstructs the true continuous spherical boundaries of the calibration samples. Rather than blindly interpolating discrete voxel intensities, the coordinate-based implicit fields map spatial coordinates to structural densities, inherently acting as a powerful geometrical prior against the ill-posed nature of extreme axial smearing.
+<img width="666" height="372" alt="image" src="https://github.com/user-attachments/assets/1505bcfe-ec82-44e0-9ba5-36211030a428" />
+
 
 The 16/64 z-stack mosaic explicitly verifies that my coordinate-based model successfully decouples structural localization from geometric warping, preserving both localized brightness amplitudes and sharp isotropic boundaries across the entire field of view—an outcome severely blurred by the spatial discretization constraints of standard CNNs.
+<img width="739" height="211" alt="image" src="https://github.com/user-attachments/assets/d22baa07-6f51-4126-b731-d66acee879a2" />
+
 
 ## 6. Limitations and Future Work
 While the proposed amortized ViT-INR framework demonstrates compelling advancements in continuous 3D morphology restoration, several limitations present critical avenues for future investigation:
