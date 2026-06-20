@@ -10,7 +10,6 @@ paper:
   links:
     github: "https://github.com/donghyuklee1/3D-LSFM-Distortion-Correction"
 ---
-_Please check the GitHub repository for detailed formulas and code_
 
 ## 1. Introduction
 Light-Sheet Fluorescence Microscopy (LSFM) has become an indispensable tool for rapid, high-resolution volumetric imaging of biological samples. However, LSFM inherently suffers from sample-induced optical aberrations and scattering, which severely degrade the axial resolution and produce elongation artifacts.
@@ -59,3 +58,5 @@ The 16/64 z-stack mosaic explicitly verifies that my coordinate-based model succ
 While the proposed amortized ViT-INR framework demonstrates compelling advancements in continuous 3D morphology restoration, several limitations present critical avenues for future investigation:
 1. Standard quadratic computational complexity (O(Z^2)) of the Axial ViT limits scalability for massive experimental datasets. Future work will explore Hierarchical MHSA or sub-quadratic state-space models like Vision Mamba (Vim).
 2. The current physical forward model primarily simulates static refractive index (RI) mismatches. Transitioning the framework from synthetic training sets to experimental biological target domains will necessitate expanding the auxiliary geometric branch to implicitly learn and invert complex, localized wavefront deformations.
+
+_Please check the GitHub repository for detailed formulas and code_
