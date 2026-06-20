@@ -4,7 +4,7 @@ date: 2026-06-22
 categories: "Project"
 excerpt: "Implicit Neural Representations for 3D LSFM Distortion Correction via Axial Vision Transformers"
 paper:
-  conference: "EE.49904 Computational Imaging"
+  conference: "EE.49904 Computational Imaging Class"
   authors: "Donghyuk Lee (Adviser: Iksung Kang)"
   date: "June 12, 2026"
   links:
