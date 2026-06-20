@@ -33,7 +33,7 @@ const ARCHIVE_POSTS_MANIFEST = [
     title: 'Starting the archiving', 
     date: '2026-06-21',
     categories: 'Talk, Daily',
-    excerpt: '👾',
+    excerpt: 'Welcome to my archive! 👾',
     author: 'Donghyuk Lee'
   }
 ];
