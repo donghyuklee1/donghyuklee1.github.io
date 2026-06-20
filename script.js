@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const manifest = typeof ARCHIVE_POSTS_MANIFEST !== 'undefined' ? ARCHIVE_POSTS_MANIFEST : [];
     const rawBase = typeof ARCHIVE_RAW_BASE !== 'undefined' ? ARCHIVE_RAW_BASE : '';
-    const baseUrl = 'posts/';
+    const baseUrl = 'archives/';
 
     function parseFrontmatter(raw) {
         const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
