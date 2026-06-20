@@ -300,10 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const manifest = typeof ARCHIVE_POSTS_MANIFEST !== 'undefined' ? ARCHIVE_POSTS_MANIFEST : [];
     const rawBase = typeof ARCHIVE_RAW_BASE !== 'undefined' ? ARCHIVE_RAW_BASE : '';
-    // GitHub Pages 프로젝트 사이트(예: user.github.io/repo-name/) 대응
-    let base = window.location.pathname;
-    if (!base.endsWith('/')) base = base.replace(/\/[^/]*$/, '/') || '/';
-    const baseUrl = base + 'posts/';
+    const baseUrl = 'posts/';
 
     function parseFrontmatter(raw) {
         const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
