@@ -2737,3 +2737,22 @@ html.dark-mode body .photo-modal-caption .photo-title {
 html.dark-mode body .photo-modal-caption .photo-date {
     color: #ccc;
 }
+
+/* Photo Year Grouping */
+.photo-year-section {
+    margin-bottom: 60px;
+}
+
+.photo-year-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    border-bottom: 4px solid #000;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+html.dark-mode body .photo-year-title {
+    border-bottom-color: #ffffff;
+    color: #ffffff;
+}
