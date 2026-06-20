@@ -427,16 +427,20 @@ document.addEventListener('DOMContentLoaded', function() {
         load()
             .then(raw => {
                 const { body, title, date, links, tags, categories, excerpt, paper } = parseFrontmatter(raw);
+                let html = '';
                 if (typeof marked !== 'undefined') {
                     const renderer = new marked.Renderer();
                     const origLink = renderer.link.bind(renderer);
-                    renderer.link = function(href, title, text) {
-                        const out = origLink(href, title, text);
-                        return href.startsWith('http') ? out.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ') : out;
+                    renderer.link = function(token) {
+                        const out = origLink(token);
+                        const h = (typeof token === 'object') ? token.href : token;
+                        return (typeof h === 'string' && h.startsWith('http')) ? out.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ') : out;
                     };
                     marked.setOptions({ gfm: true, breaks: true, renderer });
+                    html = marked.parse(body);
+                } else {
+                    html = body.replace(/\n/g, '<br>');
                 }
-                const html = typeof marked !== 'undefined' ? marked.parse(body) : body.replace(/\n/g, '<br>');
                 const post = getPostsForList().find(p => p.id === id);
                 const finalTitle = title || (post && post.title) || file;
                 const tagsHtml = (tags && tags.length > 0) ? tags.map(t => `<span class="archive-tag">${escapeHtml(t)}</span>`).join('') : '';
@@ -470,7 +474,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                console.error('Archive post load error:', err);
                 bodyEl.innerHTML = '<p class="archive-error">글을 불러올 수 없습니다.</p>';
             });
     }
