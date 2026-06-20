@@ -22,50 +22,18 @@ const ARCHIVE_RAW_BASE = 'https://cdn.jsdelivr.net/gh/donghyuklee1/donghyuklee1.
 const ARCHIVE_POSTS_MANIFEST = [
   { 
     file: '2026-06-20-worth-a-thousand-words.md', 
-    title: 'Worth A Thousand Words', 
-    date: '2008-10-17',
-    categories: 'Uncategorized',
+    title: 'ViT-INR based 3D abb. correction', 
+    date: '2026-06-22',
+    categories: 'Project',
     excerpt: 'Boat.',
-    author: 'Theme Admin'
+    author: 'Donghyuk Lee', 'Iksung Kang(adv.)'
   },
   { 
-    file: '2026-06-20-elements.md', 
-    title: 'Elements', 
-    date: '2008-09-05',
-    categories: 'Uncategorized',
-    excerpt: 'The purpose of this HTML is ...',
-    author: 'Theme Admin'
+    file: '2026-06-20-worth-a-thousand-words.md', 
+    title: 'Starting the archiving..', 
+    date: '2026-06-21',
+    categories: 'Talk', 'Daily',
+    excerpt: 'Boat.',
+    author: 'Donghyuk Lee'
   },
-  { 
-    file: '2026-06-20-more-tags.md', 
-    title: 'More Tags', 
-    date: '2008-06-21',
-    categories: 'Uncategorized',
-    excerpt: 'More of these posts need tags.',
-    author: 'Theme Admin'
-  },
-  { 
-    file: '2026-06-20-html.md', 
-    title: 'HTML', 
-    date: '2008-06-21',
-    categories: 'Uncategorized',
-    excerpt: 'What HTML tags would you like ...',
-    author: 'Theme Admin'
-  },
-  { 
-    file: '2026-06-20-links.md', 
-    title: 'Links', 
-    date: '2008-06-20',
-    categories: 'Uncategorized',
-    excerpt: 'A few well known WordPress links: ...',
-    author: 'Theme Admin'
-  },
-  { 
-    file: '2026-06-20-category-hierarchy.md', 
-    title: 'Category Hierarchy', 
-    date: '2008-06-20',
-    categories: 'First Child Category, One Grandchild Category, Parent, Second Child Category',
-    excerpt: 'This post has 4 categories, part ...',
-    author: 'Theme Admin'
-  }
 ];
