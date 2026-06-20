@@ -35,5 +35,5 @@ const ARCHIVE_POSTS_MANIFEST = [
     categories: 'Talk', 'Daily',
     excerpt: 'Boat.',
     author: 'Donghyuk Lee'
-  },
+  }
 ];
