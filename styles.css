@@ -1730,7 +1730,8 @@ html.dark-mode .archive-card-divider {
         overflow-x: auto;
         overflow-y: hidden;
         padding: 0 4px;
-        justify-content: flex-end;
+        justify-content: space-between;
+        width: 100%;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
