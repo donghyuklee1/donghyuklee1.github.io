@@ -1725,7 +1725,7 @@ html.dark-mode .archive-card-divider {
     }
     
     .navigation {
-        gap: 4px;
+        gap: 2px;
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
@@ -1742,8 +1742,8 @@ html.dark-mode .archive-card-divider {
     }
     
     .nav-link {
-        font-size: 0.75rem;
-        padding: 7px 11px;
+        font-size: 0.7rem;
+        padding: 6px 8px;
         white-space: nowrap;
         flex-shrink: 0;
         font-weight: 500;
