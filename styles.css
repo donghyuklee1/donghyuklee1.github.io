@@ -1779,32 +1779,38 @@ html.dark-mode .archive-card-divider {
 /* Mobile Header Optimization */
 @media (max-width: 768px) {
     .header {
-        padding: 14px 0;
+        padding: 10px 0;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
     }
     
     .header-inner {
         padding: 0 14px;
-        gap: 16px;
+        gap: 12px;
     }
     
     .header-name {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
     
     .navigation {
-        gap: 2px;
+        gap: 0;
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
-        padding: 0 4px;
+        padding: 0 2px;
         justify-content: space-between;
         width: 100%;
+        height: 34px;
+        align-items: center;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
         scroll-behavior: smooth;
+        position: relative;
     }
     
     .navigation::-webkit-scrollbar {
@@ -1813,12 +1819,19 @@ html.dark-mode .archive-card-divider {
     
     .nav-link {
         font-size: 0.7rem;
-        padding: 6px 8px;
+        padding: 5px 7px;
         white-space: nowrap;
         flex-shrink: 0;
         font-weight: 500;
         border-radius: 2px;
         transition: all 0.2s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+    .liquid-glass-pill {
+        height: 28px;
+        border-radius: 14px;
     }
     
     .theme-toggle {

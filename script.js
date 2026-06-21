@@ -528,21 +528,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!pill || !nav) return;
 
     // ── State ────────────────────────────────────────────────────────────────
-    let targetLeft  = 0;   // destination x (px from nav left edge)
-    let targetWidth = 0;   // destination width
+    let targetLeft  = 0;
+    let targetWidth = 0;
     let currentLeft  = 0;
     let currentWidth = 0;
     let isDragging   = false;
     let dragStartX   = 0;
+    let dragStartY   = 0;
     let dragPillLeft = 0;
+    let dragConfirmed = false;  // only confirm horizontal drag, not vertical scroll
     let rafId        = null;
     let settled      = false;
 
-    // Spring constants for realistic liquid feel
-    const SPRING_STIFFNESS = 0.18;   // lower = more elastic
-    const SPRING_DAMPING   = 0.72;   // higher = less oscillation
-
-    // Velocity for spring
+    // Spring constants
+    const SPRING_STIFFNESS = 0.18;
+    const SPRING_DAMPING   = 0.72;
     let velLeft  = 0;
     let velWidth = 0;
 
@@ -554,37 +554,43 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateTurbulence() {
         if (!turbActive) return;
         turbPhase += 0.018;
-        const bf = 0.015 + Math.sin(turbPhase) * 0.006;
+        const bf  = 0.015 + Math.sin(turbPhase) * 0.006;
         const bf2 = 0.008 + Math.cos(turbPhase * 0.7) * 0.003;
         if (turbulence) turbulence.setAttribute('baseFrequency', `${bf.toFixed(4)} ${bf2.toFixed(4)}`);
         requestAnimationFrame(animateTurbulence);
     }
-
     function startTurbulence() {
         if (turbActive) return;
         turbActive = true;
         animateTurbulence();
     }
-
     function stopTurbulence() {
         turbActive = false;
-        // Reset to calm state
         if (turbulence) turbulence.setAttribute('baseFrequency', '0.015 0.008');
     }
 
-    // ── Pill position helpers ─────────────────────────────────────────────────
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function getPillHeight() {
+        // Use actual nav height minus 6px padding, capped at 32px
+        return Math.min(nav.offsetHeight - 6, 32);
+    }
+
     function getNavRect() { return nav.getBoundingClientRect(); }
 
     function snapToLink(link) {
-        const navR = getNavRect();
+        const navR  = getNavRect();
         const linkR = link.getBoundingClientRect();
-        targetLeft  = linkR.left  - navR.left;
+        targetLeft  = linkR.left - navR.left;
         targetWidth = linkR.width;
     }
 
     function positionPill(left, width) {
         pill.style.left  = left  + 'px';
         pill.style.width = width + 'px';
+        // Keep pill height synced with nav
+        const h = getPillHeight();
+        pill.style.height = h + 'px';
+        pill.style.borderRadius = Math.round(h / 2) + 'px';
     }
 
     // ── Spring physics loop ───────────────────────────────────────────────────
@@ -602,17 +608,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         positionPill(currentLeft, currentWidth);
 
-        const moving = Math.abs(velLeft) > 0.1 || Math.abs(velWidth) > 0.1;
-        if (moving) {
+        if (Math.abs(velLeft) > 0.08 || Math.abs(velWidth) > 0.08) {
             rafId = requestAnimationFrame(springLoop);
         } else {
-            // Snap exactly and settle
             currentLeft  = targetLeft;
             currentWidth = targetWidth;
             positionPill(currentLeft, currentWidth);
             velLeft = velWidth = 0;
             stopTurbulence();
-
             if (!settled) {
                 settled = true;
                 pill.classList.add('settling');
@@ -629,29 +632,27 @@ document.addEventListener('DOMContentLoaded', function() {
         rafId = requestAnimationFrame(springLoop);
     }
 
-    // ── Nav link click → move pill ────────────────────────────────────────────
+    // ── Init pill position ────────────────────────────────────────────────────
     function initPill() {
         const active = nav.querySelector('.nav-link.active');
         if (active) {
             const navR  = getNavRect();
             const linkR = active.getBoundingClientRect();
-            currentLeft  = targetLeft  = linkR.left  - navR.left;
+            currentLeft  = targetLeft  = linkR.left - navR.left;
             currentWidth = targetWidth = linkR.width;
             positionPill(currentLeft, currentWidth);
         }
     }
 
-    // Wait a tick for layout
     requestAnimationFrame(() => requestAnimationFrame(initPill));
 
-    // Re-init on resize
     window.addEventListener('resize', () => {
         const active = nav.querySelector('.nav-link.active');
         if (active) snapToLink(active);
         if (!rafId) startSpring();
     });
 
-    // Intercept nav clicks
+    // ── Nav link click → move pill ───────────────────────────────────────────
     nav.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             snapToLink(link);
@@ -660,100 +661,137 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ── Drag interaction ──────────────────────────────────────────────────────
-    // Make pill draggable (pointer events pass through but we track nav drag)
     nav.style.position = 'relative';
 
-    function onDragStart(e) {
-        // Only start drag if clicking on/near the pill
-        const navR  = getNavRect();
-        const clickX = (e.touches ? e.touches[0].clientX : e.clientX) - navR.left;
-        const clickY = (e.touches ? e.touches[0].clientY : e.clientY) - navR.top;
-        const pillTop  = (nav.offsetHeight - 32) / 2;
-        const pillBot  = pillTop + 32;
-
-        if (clickX < currentLeft - 10 || clickX > currentLeft + currentWidth + 10) return;
-        if (clickY < pillTop - 4 || clickY > pillBot + 4) return;
-
-        isDragging = true;
-        dragStartX = (e.touches ? e.touches[0].clientX : e.clientX);
-        dragPillLeft = currentLeft;
-
-        pill.classList.add('dragging');
-        startTurbulence();
-        if (rafId) cancelAnimationFrame(rafId);
-
-        e.preventDefault();
-    }
-
-    function onDragMove(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const dx = clientX - dragStartX;
-
-        // Stretch pill width while dragging (surface tension feel)
-        const stretch = Math.min(Math.abs(dx) * 0.25, 20);
-        const newWidth  = currentWidth + stretch;
-        const newLeft   = dragPillLeft + dx - stretch / 2;
-
-        // Clamp within nav bounds
-        const navW = getNavRect().width;
-        const clampedLeft = Math.max(-4, Math.min(navW - newWidth + 4, newLeft));
-
-        positionPill(clampedLeft, newWidth);
-
-        // Highlight whichever link the pill is hovering
-        const pillCenter = clampedLeft + newWidth / 2;
+    // Highlight link under pill center during drag
+    function highlightUnderPill(pillCenter) {
+        const navR = getNavRect();
         nav.querySelectorAll('.nav-link').forEach(link => {
-            const navR  = getNavRect();
-            const lR    = link.getBoundingClientRect();
+            const lR   = link.getBoundingClientRect();
             const lLeft = lR.left - navR.left;
-            if (pillCenter >= lLeft && pillCenter <= lLeft + lR.width) {
-                link.style.opacity = '1';
-            } else {
-                link.style.opacity = '0.55';
-            }
+            const isOver = pillCenter >= lLeft && pillCenter <= lLeft + lR.width;
+            link.style.opacity = isOver ? '1' : '0.45';
+            link.style.fontWeight = isOver ? '700' : '';
         });
     }
 
-    function onDragEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        pill.classList.remove('dragging');
+    function resetLinkStyles() {
+        nav.querySelectorAll('.nav-link').forEach(l => {
+            l.style.opacity = '';
+            l.style.fontWeight = '';
+        });
+    }
 
-        // Reset opacity
-        nav.querySelectorAll('.nav-link').forEach(l => l.style.opacity = '');
-
-        // Find closest link to pill center
-        const pillCenter = currentLeft + currentWidth / 2;
+    // Snap to the link closest to pillCenter
+    function snapToClosest(pillCenter) {
         const navR = getNavRect();
         let closest = null, minDist = Infinity;
-
         nav.querySelectorAll('.nav-link').forEach(link => {
             const lR = link.getBoundingClientRect();
             const lCenter = (lR.left - navR.left) + lR.width / 2;
             const dist = Math.abs(pillCenter - lCenter);
             if (dist < minDist) { minDist = dist; closest = link; }
         });
+        return closest;
+    }
 
-        if (closest) {
-            // Trigger click to actually navigate
-            closest.click();
-            snapToLink(closest);
+    function onDragStart(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const navR    = getNavRect();
+        const clickX  = clientX - navR.left;
+        const clickY  = clientY - navR.top;
+
+        // Accept touch start anywhere on the nav row (not just the pill)
+        const isMobile = window.innerWidth <= 768;
+        const pillH = getPillHeight();
+        const pillTop = (nav.offsetHeight - pillH) / 2;
+        const pillBot = pillTop + pillH;
+
+        const inPillX = clickX >= currentLeft - 12 && clickX <= currentLeft + currentWidth + 12;
+        const inPillY = clickY >= pillTop - 6 && clickY <= pillBot + 6;
+
+        // On mobile allow drag from anywhere in nav; on desktop require pill hit
+        if (!isMobile && (!inPillX || !inPillY)) return;
+
+        isDragging    = true;
+        dragConfirmed = false;  // wait to confirm direction
+        dragStartX    = clientX;
+        dragStartY    = clientY;
+        dragPillLeft  = currentLeft;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        // Don't preventDefault yet — wait for direction confirm
+    }
+
+    function onDragMove(e) {
+        if (!isDragging) return;
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const dx = clientX - dragStartX;
+        const dy = clientY - dragStartY;
+
+        if (!dragConfirmed) {
+            // Confirm direction after 4px of movement
+            if (Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+            if (Math.abs(dy) > Math.abs(dx)) {
+                // Vertical scroll intent — cancel drag
+                isDragging = false;
+                return;
+            }
+            dragConfirmed = true;
+            pill.classList.add('dragging');
+            startTurbulence();
         }
 
+        e.preventDefault();  // block page scroll only after horizontal confirmed
+
+        // Surface-tension stretch effect
+        const stretch = Math.min(Math.abs(dx) * 0.22, 18);
+        const newWidth = targetWidth + stretch;
+        const newLeft  = dragPillLeft + dx - stretch / 2;
+
+        const navW = getNavRect().width;
+        const clampedLeft = Math.max(-4, Math.min(navW - newWidth + 4, newLeft));
+
+        // Update currentLeft so dragEnd can read it
+        currentLeft = clampedLeft;
+
+        positionPill(clampedLeft, newWidth);
+        highlightUnderPill(clampedLeft + newWidth / 2);
+    }
+
+    function onDragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+
+        if (!dragConfirmed) return;  // Was a tap, not a drag
+
+        pill.classList.remove('dragging');
+        resetLinkStyles();
+
+        const pillCenter = currentLeft + (targetWidth / 2);  // center-ish
+        const closest = snapToClosest(pillCenter);
+        if (closest) {
+            closest.click();     // triggers navigation + active class
+            snapToLink(closest);
+        }
         startSpring();
     }
 
-    // Mouse events
-    nav.addEventListener('mousedown',  onDragStart, { passive: false });
-    window.addEventListener('mousemove', onDragMove, { passive: false });
+    // Mouse
+    nav.addEventListener('mousedown',    onDragStart, { passive: true });
+    window.addEventListener('mousemove', onDragMove,  { passive: false });
     window.addEventListener('mouseup',   onDragEnd);
 
-    // Touch events
-    nav.addEventListener('touchstart', onDragStart, { passive: false });
-    window.addEventListener('touchmove', onDragMove, { passive: false });
-    window.addEventListener('touchend',  onDragEnd);
+    // Touch — touchstart passive so initial scroll is not blocked
+    nav.addEventListener('touchstart',    onDragStart, { passive: true });
+    window.addEventListener('touchmove',  onDragMove,  { passive: false });
+    window.addEventListener('touchend',   onDragEnd,   { passive: true });
 
 })();
+
+
+
+
