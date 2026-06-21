@@ -563,37 +563,33 @@ document.addEventListener('DOMContentLoaded', function() {
     function navRect()     { return nav.getBoundingClientRect(); }
     function pillH()       { return Math.min(nav.offsetHeight - 6, 32); }
 
-    function applyPill(left, width, morphT) {
-        const h   = pillH();
-        const br  = Math.round(h / 2);
-        const mob = window.innerWidth <= 768;
+    function applyPill(left, width, morphT, isDragMode) {
+        const h  = pillH();
+        const br = Math.round(h / 2);
 
-        pill.style.left   = left  + 'px';
-        pill.style.width  = width + 'px';
-        pill.style.height = h     + 'px';
+        pill.style.left  = left  + 'px';
+        pill.style.width = width + 'px';
+        pill.style.height = h   + 'px';
 
-        if (morphT > 0.01) {
+        if (isDragMode && morphT > 0.01) {
+            // Only morph shape during drag — not during click navigation
             const isMovingRight = (tgtLeft + tgtWidth / 2) > (dispLeft + dispWidth / 2);
-            // Very subtle morph — just a tiny hint of liquid
-            const squeeze = 1 - morphT * 0.03;                   // was 0.08
-            const brLead  = Math.round(br * (1 - morphT * 0.12)); // was 0.35
-            const brTrail = Math.round(br * (1 + morphT * 0.08)); // was 0.25
-            const [brL, brR] = isMovingRight
-                ? [brTrail, brLead] : [brLead, brTrail];
+            const squeeze = 1 - morphT * 0.03;
+            const brLead  = Math.round(br * (1 - morphT * 0.12));
+            const brTrail = Math.round(br * (1 + morphT * 0.08));
+            const [brL, brR] = isMovingRight ? [brTrail, brLead] : [brLead, brTrail];
             pill.style.borderRadius = `${brL}px ${brR}px ${brR}px ${brL}px`;
             pill.style.transform    = `translateY(-50%) scaleY(${squeeze})`;
-
-            // Keep specular highlights stable — no dramatic glow shift
-            const outerShadow = mob ? '' : `,0 4px 20px rgba(0,0,0,0.08)`;
-            pill.style.boxShadow =
-                `inset  2px  2px  6px rgba(255,255,255,0.60),` +
-                `inset -2px -2px  8px rgba(200,230,255,0.18)` +
-                outerShadow;
+            // Don't override boxShadow or backdrop-filter during drag either —
+            // let CSS handle those so glass stays transparent
         } else {
+            // Clean settled state — pure CSS takes over (glass effect fully intact)
             pill.style.borderRadius = br + 'px';
             pill.style.transform    = 'translateY(-50%)';
-            pill.style.boxShadow    = '';
         }
+
+        // Never override boxShadow via JS — CSS class handles it.
+        // This ensures backdrop-filter composites correctly at all times.
     }
 
     // ── Main animation RAF ────────────────────────────────────────────────────
@@ -616,10 +612,10 @@ document.addEventListener('DOMContentLoaded', function() {
             dispLeft  += velLeft;
             dispWidth += velWidth;
 
-            // morphT: very small cap during drag so shape barely distorts
+            // morphT: small cap during drag
             const morphT = Math.min(Math.abs(dispWidth - tgtWidth) / (tgtWidth * 2.0 + 1), 0.25);
 
-            applyPill(dispLeft, dispWidth, morphT);
+            applyPill(dispLeft, dispWidth, morphT, true);  // isDragMode = true
 
             // Highlight menu under pill
             const pillCenter = dispLeft + dispWidth / 2;
@@ -638,18 +634,15 @@ document.addEventListener('DOMContentLoaded', function() {
             dispLeft  += (tgtLeft  - dispLeft)  * LERP;
             dispWidth += (tgtWidth - dispWidth) * LERP;
 
-            // morphT: tiny, based on remaining distance normalized to pill width
-            // Caps at 0.15 so shape change is barely perceptible
-            const distRatio = Math.abs(tgtLeft - dispLeft) / (tgtWidth + 1);
-            const morphT = Math.min(distRatio * 0.18, 0.15);
-
-            applyPill(dispLeft, dispWidth, morphT);
+            // During lerp movement: just update geometry, no morphing at all
+            // morphT=0, isDragMode=false → CSS handles glass transparency fully
+            applyPill(dispLeft, dispWidth, 0, false);
 
             const eps = 0.08;
             needMore = Math.abs(tgtLeft - dispLeft) > eps || Math.abs(tgtWidth - dispWidth) > eps;
             if (!needMore) {
                 dispLeft = tgtLeft; dispWidth = tgtWidth;
-                applyPill(dispLeft, dispWidth, 0);
+                applyPill(dispLeft, dispWidth, 0, false);
                 turbStop();
                 pill.classList.add('settling');
                 setTimeout(() => pill.classList.remove('settling'), 380);
