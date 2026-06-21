@@ -564,7 +564,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function pillH()       { return Math.min(nav.offsetHeight - 6, 32); }
 
     function applyPill(left, width, morphT) {
-        // morphT 0 = settled, 1 = full-drag stretch
         const h   = pillH();
         const br  = Math.round(h / 2);
         const mob = window.innerWidth <= 768;
@@ -573,35 +572,33 @@ document.addEventListener('DOMContentLoaded', function() {
         pill.style.width  = width + 'px';
         pill.style.height = h     + 'px';
 
-        // Liquid shape morphing: squish vertically + stretch border-radius on leading edge
         if (morphT > 0.01) {
             const isMovingRight = (tgtLeft + tgtWidth / 2) > (dispLeft + dispWidth / 2);
-            const squeeze = 1 - morphT * 0.08;            // slight y-squish
-            const brLead  = Math.round(br * (1 - morphT * 0.35)); // leading edge flattens
-            const brTrail = Math.round(br * (1 + morphT * 0.25)); // trailing edge rounds more
+            // Very subtle morph — just a tiny hint of liquid
+            const squeeze = 1 - morphT * 0.03;                   // was 0.08
+            const brLead  = Math.round(br * (1 - morphT * 0.12)); // was 0.35
+            const brTrail = Math.round(br * (1 + morphT * 0.08)); // was 0.25
             const [brL, brR] = isMovingRight
                 ? [brTrail, brLead] : [brLead, brTrail];
             pill.style.borderRadius = `${brL}px ${brR}px ${brR}px ${brL}px`;
             pill.style.transform    = `translateY(-50%) scaleY(${squeeze})`;
 
-            // Extra specular glow on leading edge — no outer shadows on mobile
-            const glowSide = isMovingRight ? '' : '-';
-            const outerShadow = mob ? '' :
-                `,0 6px 28px rgba(0,0,0,0.12)`;
+            // Keep specular highlights stable — no dramatic glow shift
+            const outerShadow = mob ? '' : `,0 4px 20px rgba(0,0,0,0.08)`;
             pill.style.boxShadow =
-                `inset  2px  2px  6px rgba(255,255,255,0.65),` +
-                `inset -2px -2px  8px rgba(200,230,255,0.22),` +
-                `inset ${glowSide}8px 0 14px rgba(255,255,255,0.25)` +
+                `inset  2px  2px  6px rgba(255,255,255,0.60),` +
+                `inset -2px -2px  8px rgba(200,230,255,0.18)` +
                 outerShadow;
         } else {
             pill.style.borderRadius = br + 'px';
             pill.style.transform    = 'translateY(-50%)';
-            pill.style.boxShadow    = '';  // revert to CSS class
+            pill.style.boxShadow    = '';
         }
     }
 
     // ── Main animation RAF ────────────────────────────────────────────────────
-    const STIFF = 0.20, DAMP = 0.70;
+    // Softer spring: higher damping = less oscillation, lower stiffness = smoother glide
+    const STIFF = 0.14, DAMP = 0.78;
 
     function frame() {
         rafId = null;
@@ -612,9 +609,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const dLeft  = dragRawLeft  - dispLeft;
             const dWidth = dragRawWidth - dispWidth;
 
-            // Smooth follow with very high stiffness so it feels "glued"
-            velLeft  = velLeft  * 0.55 + dLeft  * 0.45;
-            velWidth = velWidth * 0.55 + dWidth * 0.45;
+            // Smooth follow — slightly less snappy to feel more fluid
+            velLeft  = velLeft  * 0.62 + dLeft  * 0.38;
+            velWidth = velWidth * 0.62 + dWidth * 0.38;
 
             dispLeft  += velLeft;
             dispWidth += velWidth;
@@ -698,11 +695,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (a) { snapTo(a); kick(); }
     });
 
-    // Nav link clicks
+    // Nav link clicks — no turbulence, just smooth spring
     nav.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             snapTo(link);
-            turbStart();
             kick();
         });
     });
@@ -757,11 +753,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         e.preventDefault();
 
-        // Surface-tension elongation: pill stretches in direction of drag
-        const maxStretch = Math.min(tgtWidth * 0.55, 28);
-        const stretch    = Math.min(Math.abs(dx) * 0.28, maxStretch);
-        // Leading edge trails slightly (inertia simulation)
-        const lag        = dx * 0.12;
+        // Subtle elongation — just a gentle hint of stretch
+        const maxStretch = Math.min(tgtWidth * 0.20, 10);  // was 0.55, 28
+        const stretch    = Math.min(Math.abs(dx) * 0.10, maxStretch); // was 0.28
+        const lag        = dx * 0.05;                                  // was 0.12
 
         dragRawWidth = dragPillW0 + stretch;
         dragRawLeft  = dragPillLeft0 + dx - stretch * 0.5 + lag * (dx < 0 ? 1 : -1);
