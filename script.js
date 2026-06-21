@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // morphT 0 = settled, 1 = full-drag stretch
         const h   = pillH();
         const br  = Math.round(h / 2);
+        const mob = window.innerWidth <= 768;
 
         pill.style.left   = left  + 'px';
         pill.style.width  = width + 'px';
@@ -583,13 +584,15 @@ document.addEventListener('DOMContentLoaded', function() {
             pill.style.borderRadius = `${brL}px ${brR}px ${brR}px ${brL}px`;
             pill.style.transform    = `translateY(-50%) scaleY(${squeeze})`;
 
-            // Extra specular glow on leading edge
-            const glowSide = isMovingRight ? 'right' : 'left';
+            // Extra specular glow on leading edge — no outer shadows on mobile
+            const glowSide = isMovingRight ? '' : '-';
+            const outerShadow = mob ? '' :
+                `,0 6px 28px rgba(0,0,0,0.12)`;
             pill.style.boxShadow =
                 `inset  2px  2px  6px rgba(255,255,255,0.65),` +
                 `inset -2px -2px  8px rgba(200,230,255,0.22),` +
-                `0 6px 28px rgba(0,0,0,0.12),` +
-                `inset ${glowSide === 'right' ? '' : '-'}8px 0 14px rgba(255,255,255,0.25)`;
+                `inset ${glowSide}8px 0 14px rgba(255,255,255,0.25)` +
+                outerShadow;
         } else {
             pill.style.borderRadius = br + 'px';
             pill.style.transform    = 'translateY(-50%)';

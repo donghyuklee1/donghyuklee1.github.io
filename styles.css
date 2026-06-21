@@ -1828,6 +1828,12 @@ html.dark-mode .archive-card-divider {
     .liquid-glass-pill {
         height: 28px;
         border-radius: 14px;
+        /* Remove outer shadows on mobile — they get clipped by header overflow:hidden */
+        box-shadow:
+            inset  2px  2px  6px rgba(255, 255, 255, 0.60),
+            inset -2px -2px  8px rgba(200, 230, 255, 0.20),
+            inset  0px  0px 14px rgba(255, 255, 255, 0.12);
+        filter: url(#liquid-glass-filter);  /* keep refraction, drop SVG drop-shadow */
     }
     
     .theme-toggle {
