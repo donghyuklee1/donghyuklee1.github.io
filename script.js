@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const archiveSection = document.getElementById('archive');
     const cvSection = document.getElementById('cv');
     const photosSection = document.getElementById('photos');
-    const insightsSection = document.getElementById('insights');
+    const publicationsSection = document.getElementById('publications');
     const contactSection = document.getElementById('contact');
     
     // Function to hide all sections
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (archiveSection) archiveSection.style.display = 'none';
         if (cvSection) cvSection.style.display = 'none';
         if (photosSection) photosSection.style.display = 'none';
-        if (insightsSection) insightsSection.style.display = 'none';
+        if (publicationsSection) publicationsSection.style.display = 'none';
         if (contactSection) contactSection.style.display = 'none';
         
         // Remove footer fixed class for all sections except contact
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initially hide all sections except home
     if (cvSection) cvSection.style.display = 'none';
     if (photosSection) photosSection.style.display = 'none';
-    if (insightsSection) insightsSection.style.display = 'none';
+    if (publicationsSection) publicationsSection.style.display = 'none';
     if (contactSection) contactSection.style.display = 'none';
     if (archiveSection) archiveSection.style.display = 'none';
     
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
             else if (targetId === 'photos') {
                 if (photosSection) photosSection.style.display = 'block';
             }
-            // Handle Insights section
-            else if (targetId === 'insights') {
-                if (insightsSection) insightsSection.style.display = 'block';
+            // Handle Publications section
+            else if (targetId === 'publications') {
+                if (publicationsSection) publicationsSection.style.display = 'block';
             }
             // Handle Archive section
             else if (targetId === 'archive') {
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(item);
     });
     
-    // Paper items (Insights section)
+    // Paper items (Publications section)
     const paperItems = document.querySelectorAll('.paper-item');
     paperItems.forEach(item => {
         item.style.opacity = '0';

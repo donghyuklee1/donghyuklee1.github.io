@@ -45,7 +45,7 @@
                 <a href="#archive" class="nav-link">Archive</a>
                 <a href="#cv" class="nav-link">CV</a>
                 <a href="#photos" class="nav-link">Photos</a>
-                <a href="#insights" class="nav-link">Insights</a>
+                <a href="#publications" class="nav-link">Publications</a>
                 <a href="#contact" class="nav-link">Contact</a>
                 </nav>
             </div>
@@ -220,262 +220,47 @@
             </div>
         </section>
 
-        <!-- Insights Section -->
-        <section id="insights" class="insights-section">
-            <h2 class="section-title">Paper List</h2>
-            <p class="section-intro">I'm sharing some impressive papers I've read recently. (Last updated: June 2026)</p>
+        <!-- Publications Section -->
+        <section id="publications" class="publications-section">
+            <h2 class="publications-main-title">Publications</h2>
             
-            <!-- Category Filter -->
-            <div class="category-filter">
-                <button class="filter-btn active" data-category="all">All Papers</button>
-                <button class="filter-btn" data-category="computational-microscopy">Computational Microscopy</button>
-                <button class="filter-btn" data-category="computational-imaging">Computational Imaging</button>
-                <button class="filter-btn" data-category="bioimaging">Bioimaging</button>
-                <button class="filter-btn" data-category="machine-learning">Machine Learning</button>
-                <button class="filter-btn" data-category="computer-vision">Computer Vision</button>
-                <button class="filter-btn" data-category="nlp">NLP</button>
-                <button class="filter-btn" data-category="robotics">Robotics</button>
+            <div class="publications-group">
+                <h3 class="publications-sub-title">Preprints</h3>
+                <div class="pub-item">
+                    <a href="https://doi.org/10.1101/2025.10.11.681535" target="_blank" class="pub-title">Parallel frequency-multiplexed aberration measurement for widefield fluorescence microscopy</a>
+                    <div class="pub-authors">Kim H, <strong>Kang I</strong>, Natan R, Ji N</div>
+                    <div class="pub-venue"><em>bioRxiv</em> (2025) 2025.10.11.681535. <a href="https://doi.org/10.1101/2025.10.11.681535" target="_blank" class="pub-link">https://doi.org/10.1101/2025.10.11.681535</a> (Under review)</div>
+                </div>
+                <div class="pub-item">
+                    <a href="https://doi.org/10.1101/2024.10.20.619284" target="_blank" class="pub-title">Adaptive optical correction for in vivo two-photon fluorescence microscopy with neural fields</a>
+                    <div class="pub-authors"><strong>Kang I</strong>, Kim H, Natan R, Zhang Q, Yu SX, Ji N</div>
+                    <div class="pub-venue"><em>bioRxiv</em> (2024) 2024.10.20.619284 <a href="https://doi.org/10.1101/2024.10.20.619284" target="_blank" class="pub-link">https://doi.org/10.1101/2024.10.20.619284</a> (Accepted in principle)</div>
+                </div>
             </div>
 
-            <div class="papers-list">
-                <!-- Computational microscopy and imaging papers -->
-                <div class="paper-item" data-category="computational-microscopy">
-                    <div class="paper-number">01</div>
-                    <div class="paper-content">
-                        <a href="https://www.mdpi.com/1424-8220/24/7/2053" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category microscopy">Computational Microscopy</span>
-                                <span class="paper-date">Mar 2024</span>
-                            </div>
-                            <h3 class="paper-title">Distortion Correction and Denoising of Light Sheet Fluorescence Images</h3>
-                            <p class="paper-description">A practical LSFM preprocessing pipeline that combines deblurring, contrast enhancement, denoising, and axial distortion correction for cleaner 3D reconstruction.</p>
-                        </a>
-                    </div>
+            <div class="publications-group">
+                <h3 class="publications-sub-title">Journal</h3>
+                <div class="pub-item">
+                    <a href="https://www.nature.com/articles/s41467-025-62663-4" target="_blank" class="pub-title">Optical segmentation-based compressed readout of neuronal voltage dynamics</a>
+                    <div class="pub-authors">Kim S, Yoon J, Ko G, <strong>Kang I</strong>, Tian H, Fan LZ, Li Y, Cohen AE, Wu J, Dai Q, Choi MM</div>
+                    <div class="pub-venue"><em>Nature Communications</em> (2025) 16(7194) <a href="https://www.nature.com/articles/s41467-025-62663-4" target="_blank" class="pub-link">https://www.nature.com/articles/s41467-025-62663-4</a></div>
                 </div>
-
-                <div class="paper-item" data-category="computational-imaging">
-                    <div class="paper-number">02</div>
-                    <div class="paper-content">
-                        <a href="https://www.science.org/doi/10.1126/sciadv.adg4671" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category imaging">Computational Imaging</span>
-                                <span class="paper-date">Jun 2023</span>
-                            </div>
-                            <h3 class="paper-title">NeuWS: Neural Wavefront Shaping for Guidestar-Free Imaging through Static and Dynamic Scattering Media</h3>
-                            <p class="paper-description">A neural wavefront-shaping method that reconstructs diffraction-limited images through strong scattering without guidestars or point scanning.</p>
-                        </a>
-                    </div>
+                <div class="pub-item">
+                    <a href="https://doi.org/10.1038/s42256-024-00853-3" target="_blank" class="pub-title">Coordinate-based neural representations for computational adaptive optics in widefield microscopy</a>
+                    <div class="pub-authors"><strong>Kang I*</strong>, Zhang Q*, Yu SX, Ji N</div>
+                    <div class="pub-venue"><em>Nature Machine Intelligence</em> (2024) 6, 714-725. <a href="https://doi.org/10.1038/s42256-024-00853-3" target="_blank" class="pub-link">https://doi.org/10.1038/s42256-024-00853-3</a></div>
+                    <div class="pub-note">*Contributed equally and co-correspondence authors.</div>
                 </div>
-
-                <div class="paper-item" data-category="computational-microscopy">
-                    <div class="paper-number">03</div>
-                    <div class="paper-content">
-                        <a href="https://opg.optica.org/boe/abstract.cfm?URI=boe-13-11-5900" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category microscopy">Computational Microscopy</span>
-                                <span class="paper-date">Nov 2022</span>
-                            </div>
-                            <h3 class="paper-title">Three-dimensional Bi-functional Refractive Index and Fluorescence Microscopy (BRIEF)</h3>
-                            <p class="paper-description">A multimodal microscopy approach that jointly recovers 3D fluorescence and refractive index information to correct scattering in fluorescence images.</p>
-                        </a>
-                    </div>
+                <div class="pub-item">
+                    <a href="https://doi.org/10.1364/OPTICA.492666" target="_blank" class="pub-title">Accelerated deep self-supervised ptycho-laminography for three-dimensional nanoscale imaging of integrated circuits</a>
+                    <div class="pub-authors"><strong>Kang I</strong>, Jiang Y, Holler M, Guizar-Sicairos M, Levi AFJ, Klug J, Vogt S, Barbastathis G</div>
+                    <div class="pub-venue"><em>Optica</em> (2023) 10(8), 1000-1008. <a href="https://doi.org/10.1364/OPTICA.492666" target="_blank" class="pub-link">https://doi.org/10.1364/OPTICA.492666</a></div>
                 </div>
-
-                <div class="paper-item" data-category="computational-imaging">
-                    <div class="paper-number">04</div>
-                    <div class="paper-content">
-                        <a href="https://openaccess.thecvf.com/content/ICCV2025/html/He_Recover_Biological_Structure_from_Sparse-View_Diffraction_Images_with_Neural_Volumetric_ICCV_2025_paper.html" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category imaging">Computational Imaging</span>
-                                <span class="paper-date">Oct 2025</span>
-                            </div>
-                            <h3 class="paper-title">Recover Biological Structure from Sparse-View Diffraction Images with Neural Volumetric Prior</h3>
-                            <p class="paper-description">A physics-guided neural volumetric prior for reconstructing biological 3D structure from sparse-view diffraction microscopy measurements.</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="bioimaging">
-                    <div class="paper-number">05</div>
-                    <div class="paper-content">
-                        <a href="https://elifesciences.org/articles/91979" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category bio">Bioimaging</span>
-                                <span class="paper-date">Jun 2025</span>
-                            </div>
-                            <h3 class="paper-title">Expansion-assisted Selective Plane Illumination Microscopy for Nanoscale Imaging of Centimeter-scale Tissues</h3>
-                            <p class="paper-description">ExA-SPIM combines tissue expansion, clearing, and large-field light-sheet imaging for fast nanoscale visualization across centimeter-scale samples.</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="computational-microscopy">
-                    <div class="paper-number">06</div>
-                    <div class="paper-content">
-                        <a href="https://www.nature.com/articles/s41592-026-03082-1" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category microscopy">Computational Microscopy</span>
-                                <span class="paper-date">May 2026</span>
-                            </div>
-                            <h3 class="paper-title">MicroSplit: Semantic Unmixing of Fluorescent Microscopy Data</h3>
-                            <p class="paper-description">A deep learning-based computational multiplexing method that separates superimposed fluorescent structures into denoised semantic channels.</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">07</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2403.06977" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category cv">Computer Vision</span>
-                                <span class="paper-date">Mar 2024</span>
-                            </div>
-                            <h3 class="paper-title">VideoMamba: State Space Model for Efficient Video Understanding</h3>
-                            <p class="paper-description">An efficient video understanding backbone that adapts state space models for scalable long-range spatiotemporal representation learning.</p>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Machine Learning Papers -->
-                <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">08</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.07295" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category ml">Machine Learning</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.07295</h3>
-                            <p class="paper-description">Advanced machine learning techniques and algorithms</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">09</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.00997" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category cv">Computer Vision</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.00997</h3>
-                            <p class="paper-description">Image processing and visual recognition systems</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="nlp">
-                    <div class="paper-number">10</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.14476" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category nlp">Natural Language Processing</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.14476</h3>
-                            <p class="paper-description">Language models and text understanding</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">11</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.13311" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category ml">Machine Learning</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.13311</h3>
-                            <p class="paper-description">Neural network optimization and training methods</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="robotics">
-                    <div class="paper-number">12</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.10414" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category robotics">Robotics & Control</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.10414</h3>
-                            <p class="paper-description">Autonomous systems and robotic control</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">13</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.10446" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category cv">Computer Vision</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.10446</h3>
-                            <p class="paper-description">Visual perception and scene understanding</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">14</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2508.10922" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category ml">Machine Learning</span>
-                                <span class="paper-date">Aug 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2508.10922</h3>
-                            <p class="paper-description">Deep learning architectures and frameworks</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="nlp">
-                    <div class="paper-number">15</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2509.13310" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category nlp">Natural Language Processing</span>
-                                <span class="paper-date">Sep 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2509.13310</h3>
-                            <p class="paper-description">Transformer models and attention mechanisms</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="machine-learning">
-                    <div class="paper-number">16</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2501.18914" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category ml">Machine Learning</span>
-                                <span class="paper-date">Jan 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2501.18914</h3>
-                            <p class="paper-description">Reinforcement learning and decision making</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="paper-item" data-category="computer-vision">
-                    <div class="paper-number">17</div>
-                    <div class="paper-content">
-                        <a href="https://arxiv.org/abs/2508.05004" target="_blank" class="paper-link">
-                            <div class="paper-header">
-                                <span class="paper-category cv">Computer Vision</span>
-                                <span class="paper-date">Aug 2025</span>
-                            </div>
-                            <h3 class="paper-title">arXiv:2508.05004</h3>
-                            <p class="paper-description">3D vision and spatial understanding</p>
-                        </a>
-                    </div>
+                <div class="pub-item">
+                    <a href="https://www.nature.com/articles/s41377-023-01181-8" target="_blank" class="pub-title">Attentional Ptycho-Tomography (APT) for three-dimensional nanoscale X-ray imaging with minimal data acquisition and computation time</a>
+                    <div class="pub-authors"><strong>Kang I*</strong>, Wu Z*, Jiang Y, Yao Y, Deng J, Klug J, Vogt S, Barbastathis G</div>
+                    <div class="pub-venue"><em>Light: Science & Applications</em> (2023) 12(131). <a href="https://www.nature.com/articles/s41377-023-01181-8" target="_blank" class="pub-link">https://www.nature.com/articles/s41377-023-01181-8</a></div>
+                    <div class="pub-note">News: <a href="#" class="pub-link">EurekAlert!</a><br>*Contributed equally.</div>
                 </div>
             </div>
         </section>

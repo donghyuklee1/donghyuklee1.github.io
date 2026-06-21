@@ -801,246 +801,86 @@ html.dark-mode .home-news-text {
     color: #bdc3c7;
 }
 
-/* Insights Section Styles */
-.insights-section {
-    padding: 48px 40px 60px 40px;
-    background-color: #ffffff;
-    border-radius: 0;
-    backdrop-filter: none;
-    box-shadow: none;
-    border: none;
+/* Publications Section Styles */
+.publications-section {
+    padding: 60px 40px 80px 40px;
     display: none;
-}
-
-/* Category Filter */
-.category-filter {
-    display: flex;
-    justify-content: flex-start;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 40px 0 32px 0;
-    padding: 0;
-    max-width: 100%;
-}
-
-.filter-btn {
-    padding: 10px 22px;
     background-color: #ffffff;
-    border: 1.5px solid #000000;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #000000;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.filter-btn:hover {
-    background-color: #000000;
-    border-color: #000000;
-    color: #ffffff;
-}
-
-.filter-btn.active {
-    background-color: #000000;
-    border-color: #000000;
-    color: #ffffff;
-}
-
-.papers-list {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.paper-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 28px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-left: 4px solid #000000;
-    border-radius: 4px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-}
-
-.paper-item:hover {
-    border-left-color: #000000;
-    border-color: #000000;
-    background-color: #fafafa;
-}
-
-.paper-number {
-    font-size: 1.2rem;
+.publications-main-title {
+    font-size: 2.2rem;
     font-weight: 700;
     color: #000000;
-    background-color: #ffffff;
-    min-width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #000000;
-    border-radius: 0;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
 }
 
-.paper-content {
-    flex: 1;
-    position: relative;
-    z-index: 1;
+.publications-group {
+    margin-bottom: 40px;
 }
 
-.paper-link {
-    text-decoration: none;
-    display: block;
-}
-
-.paper-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.paper-category {
-    display: inline-block;
-    padding: 7px 16px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    transition: all 0.2s ease;
-}
-
-.paper-category.ml {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #000000;
-}
-
-.paper-category.cv {
-    background-color: #ffffff;
+.publications-sub-title {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #000000;
-    border: 1px solid #000000;
-}
-
-.paper-category.nlp {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border: 1px solid #1a1a1a;
-}
-
-.paper-category.robotics {
-    background-color: #444444;
-    color: #ffffff;
-    border: 1px solid #444444;
-}
-
-.paper-category.microscopy {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #000000;
-}
-
-.paper-category.imaging {
-    background-color: #2b2b2b;
-    color: #ffffff;
-    border: 1px solid #2b2b2b;
-}
-
-.paper-category.bio {
-    background-color: #666666;
-    color: #ffffff;
-    border: 1px solid #666666;
-}
-
-.paper-date {
-    font-size: 0.85rem;
-    color: #777777;
-    font-weight: 500;
-}
-
-.paper-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 8px;
-    transition: color 0.2s ease;
+    margin-bottom: 20px;
     letter-spacing: -0.01em;
 }
 
-.paper-link:hover .paper-title {
-    color: #333;
+.pub-item {
+    margin-bottom: 24px;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #000000;
 }
 
-.paper-description {
-    font-size: 0.9rem;
-    color: #555555;
-    line-height: 1.6;
-    margin: 0;
+.pub-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0066cc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
 }
 
-.paper-meta {
-    font-size: 0.95rem;
-    color: #6c757d;
-    margin: 0;
+.pub-title:hover {
+    text-decoration: underline;
 }
 
-/* Publications Section Styles */
-.publications-section {
-    padding: 40px 0;
+.pub-authors {
+    color: #000000;
+    margin-bottom: 2px;
 }
 
-.publications-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
+.pub-authors strong {
+    font-weight: 700;
 }
 
-.publication-item {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+.pub-venue {
+    color: #000000;
+    margin-bottom: 2px;
 }
 
-.publication-item h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-}
-
-.publication-item ul {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-.publication-item li {
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.publication-placeholder {
-    text-align: center;
-    padding: 40px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    color: #6c757d;
+.pub-venue em {
     font-style: italic;
 }
+
+.pub-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.pub-link:hover {
+    text-decoration: underline;
+}
+
+.pub-note {
+    color: #000000;
+}
+
 
 /* Archive Section Styles - kimjy99 스타일 깔끔/실용적 */
 .archive-section {
@@ -1804,7 +1644,7 @@ html.dark-mode .archive-card-divider {
         font-size: 1.4rem;
     }
 
-    .insights-section {
+    .publications-section {
         padding: 20px 12px 28px;
     }
 
@@ -2097,11 +1937,11 @@ html.dark-mode .archive-card-divider {
        home 섹션과 contact 섹션은 제외 */
     .photos-section,
     .archive-section,
-    .insights-section {
+    .publications-section {
         padding-top: 60px !important;
     }
     
-    [class*="-section"]:not(.contact-section):not(.home):not(.home-section):not(.photos-section):not(.archive-section):not(.insights-section) {
+    [class*="-section"]:not(.contact-section):not(.home):not(.home-section):not(.photos-section):not(.archive-section):not(.publications-section) {
         max-height: calc(100vh - 140px);
         overflow: auto;
         padding-top: 20px;
@@ -2169,7 +2009,7 @@ html.dark-mode body .cv-preview iframe {
 }
 
 html.dark-mode body .photos-section,
-html.dark-mode body .insights-section,
+html.dark-mode body .publications-section,
 html.dark-mode body .archive-section,
 html.dark-mode body .contact-section {
     background-color: #000000 !important;
@@ -2639,7 +2479,7 @@ html.dark-mode body .footer .kaist-logo {
     /* Section padding for smaller screens */
     .archive-section,
     .photos-section,
-    .insights-section,
+    .publications-section,
     .contact-section,
     .cv-section {
         padding-top: 20px;
