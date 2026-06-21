@@ -597,27 +597,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ── Main animation RAF ────────────────────────────────────────────────────
-    // Softer spring: higher damping = less oscillation, lower stiffness = smoother glide
-    const STIFF = 0.14, DAMP = 0.78;
+    // Overdamped spring — no bounce, just smooth glide
+    // LERP factor: each frame, move this fraction toward target (0.12 = gentle, 0.20 = snappy)
+    const LERP = 0.13;
 
     function frame() {
         rafId = null;
         let needMore = false;
 
         if (dragging && dragConfirmed) {
-            // Direct tracking: pill follows finger exactly this frame
+            // Direct tracking with slight lag — fluid feel
             const dLeft  = dragRawLeft  - dispLeft;
             const dWidth = dragRawWidth - dispWidth;
 
-            // Smooth follow — slightly less snappy to feel more fluid
             velLeft  = velLeft  * 0.62 + dLeft  * 0.38;
             velWidth = velWidth * 0.62 + dWidth * 0.38;
 
             dispLeft  += velLeft;
             dispWidth += velWidth;
 
-            // morphT: 0→1 based on how far from settled width
-            const morphT = Math.min(Math.abs(dispWidth - tgtWidth) / (tgtWidth * 0.5 + 1), 1);
+            // morphT: very small cap during drag so shape barely distorts
+            const morphT = Math.min(Math.abs(dispWidth - tgtWidth) / (tgtWidth * 2.0 + 1), 0.25);
 
             applyPill(dispLeft, dispWidth, morphT);
 
@@ -634,32 +634,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
             needMore = Math.abs(dLeft) > 0.2 || Math.abs(dWidth) > 0.2;
         } else if (!dragging) {
-            // Spring back to target
-            const dLeft  = tgtLeft  - dispLeft;
-            const dWidth = tgtWidth - dispWidth;
+            // Smooth lerp — exponential ease-out, no overshoot, no oscillation
+            dispLeft  += (tgtLeft  - dispLeft)  * LERP;
+            dispWidth += (tgtWidth - dispWidth) * LERP;
 
-            velLeft  = velLeft  * DAMP + dLeft  * STIFF;
-            velWidth = velWidth * DAMP + dWidth * STIFF;
-
-            dispLeft  += velLeft;
-            dispWidth += velWidth;
-
-            const morphT = Math.min(
-                (Math.abs(velLeft) + Math.abs(velWidth)) / (tgtWidth * 0.08 + 0.5),
-                1
-            );
+            // morphT: tiny, based on remaining distance normalized to pill width
+            // Caps at 0.15 so shape change is barely perceptible
+            const distRatio = Math.abs(tgtLeft - dispLeft) / (tgtWidth + 1);
+            const morphT = Math.min(distRatio * 0.18, 0.15);
 
             applyPill(dispLeft, dispWidth, morphT);
 
-            needMore = Math.abs(velLeft) > 0.06 || Math.abs(velWidth) > 0.06;
+            const eps = 0.08;
+            needMore = Math.abs(tgtLeft - dispLeft) > eps || Math.abs(tgtWidth - dispWidth) > eps;
             if (!needMore) {
                 dispLeft = tgtLeft; dispWidth = tgtWidth;
-                velLeft  = 0;       velWidth  = 0;
                 applyPill(dispLeft, dispWidth, 0);
                 turbStop();
-                // Settle jiggle
                 pill.classList.add('settling');
-                setTimeout(() => pill.classList.remove('settling'), 500);
+                setTimeout(() => pill.classList.remove('settling'), 380);
             }
         }
 
