@@ -716,7 +716,10 @@ document.addEventListener('DOMContentLoaded', function() {
         dragRawLeft   = dispLeft;
         dragRawWidth  = dispWidth;
 
-        if (rafId) cancelAnimationFrame(rafId);
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
     }
 
     function onMove(e) {
@@ -729,7 +732,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!dragConfirmed) {
             if (Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
-            if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; }
+            if (Math.abs(dy) > Math.abs(dx)) { 
+                dragging = false; 
+                kick(); // restart spring if it was moving
+                return; 
+            }
             dragConfirmed = true;
             pill.classList.add('dragging');
             turbStart();
@@ -756,7 +763,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!dragging) return;
         dragging = false;
 
-        if (!dragConfirmed) return;
+        if (!dragConfirmed) {
+            kick(); // restart spring for tap
+            return;
+        }
 
         pill.classList.remove('dragging');
         nav.querySelectorAll('.nav-link').forEach(l => {
