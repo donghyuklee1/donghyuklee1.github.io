@@ -130,7 +130,12 @@ body::before {
 .nav-link.active {
     color: #000000;
     font-weight: 600;
-    background-color: #e8e8e8;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) contrast(80%) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) contrast(80%) saturate(120%);
+    box-shadow: inset 10px 10px 20px rgba(153, 192, 255, 0.1), inset 2px 2px 5px rgba(195, 218, 255, 0.2), inset -10px -10px 20px rgba(229, 253, 190, 0.1), inset -2px -2px 30px rgba(247, 255, 226, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
 }
 
 /* Main Content */
@@ -1984,7 +1989,12 @@ html.dark-mode body .nav-link:hover {
 
 html.dark-mode body .nav-link.active {
     color: #ffffff !important;
-    background-color: #333333 !important;
+    background-color: rgba(50, 50, 50, 0.4) !important;
+    backdrop-filter: blur(20px) contrast(80%) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) contrast(80%) saturate(120%);
+    box-shadow: inset 10px 10px 20px rgba(153, 192, 255, 0.05), inset 2px 2px 5px rgba(195, 218, 255, 0.1), inset -10px -10px 20px rgba(229, 253, 190, 0.05), inset -2px -2px 30px rgba(247, 255, 226, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
 }
 
 html.dark-mode body .main-content,
