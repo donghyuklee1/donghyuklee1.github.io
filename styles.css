@@ -69,12 +69,12 @@ body::before {
     margin: 0;
     letter-spacing: 0.01em;
     line-height: 1.2;
+    flex-shrink: 0;
 }
 
+
 .theme-toggle {
-    position: absolute;
-    top: 14px;
-    right: 20px;
+    position: static;
     background: none;
     border: none;
     width: 36px;
@@ -86,6 +86,8 @@ body::before {
     transition: opacity 0.2s ease;
     z-index: 1001;
     color: #000000;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .theme-toggle:hover {
@@ -1782,15 +1784,21 @@ html.dark-mode .archive-card-divider {
     
     .header-inner {
         padding: 0 14px;
-        gap: 12px;
+        gap: 0;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 6px;
     }
-    
+
     .header-name {
         font-size: 1.1rem;
         font-weight: 600;
         white-space: nowrap;
         flex-shrink: 0;
+        /* Takes up remaining first-row space */
+        flex: 1;
     }
+
     
     .navigation {
         gap: 0;
@@ -1837,12 +1845,12 @@ html.dark-mode .archive-card-divider {
     }
     
     .theme-toggle {
-        width: 36px;
-        height: 36px;
-        top: 12px;
-        right: 14px;
+        width: 32px;
+        height: 32px;
         padding: 0;
+        flex-shrink: 0;
     }
+
     
     .theme-toggle i {
         font-size: 0.95rem;
