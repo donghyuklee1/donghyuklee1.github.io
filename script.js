@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cdnUrl = rawBase ? rawBase + file : null;
         listEl.style.display = 'none';
         detailEl.style.display = 'block';
-        bodyEl.innerHTML = '<p class="archive-loading">로딩 중...</p>';
+        bodyEl.innerHTML = '<p class="archive-loading">Loading..</p>';
         const load = () => (cdnUrl ? fetchPost(cdnUrl) : fetchPost(pageUrl)).catch(() => cdnUrl && fetchPost(pageUrl).catch(() => Promise.reject()));
         load()
             .then(raw => {
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch((err) => {
                 console.error('Archive post load error:', err);
-                bodyEl.innerHTML = '<p class="archive-error">글을 불러올 수 없습니다.</p>';
+                bodyEl.innerHTML = '<p class="archive-error">Loading Failed 😨</p>';
             });
     }
 
